@@ -12,7 +12,10 @@ namespace FreeEscape.Core
         {
             gameEndCanvas.gameObject.SetActive(false);
         }
-
+        public void ShowGameEndCanvas()
+        {
+            gameEndCanvas.gameObject.SetActive(true);
+        }
         
     }
 }
