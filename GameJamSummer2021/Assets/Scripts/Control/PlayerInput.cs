@@ -9,8 +9,8 @@ namespace FreeEscape.Control
     {
         private Mover mover;
         private LaunchBomb launchBomb;
-        private float rotateAmount = 1f;
-        private float accelerateAmount = 1f;
+        private float rotateAmount = 3.5f;
+        private float accelerateAmount = 6f;
 
         void Start()
         {
