@@ -166,5 +166,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d495ec2f8044b76b880c8e1a22d3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTillExplode: 3
+  timeTillExplode: 1.7
   bombExplosionPrefab: {fileID: 1271698509434383672, guid: a087afe7ce91d4418b096edea80be608, type: 3}
