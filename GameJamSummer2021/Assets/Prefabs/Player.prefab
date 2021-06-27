@@ -131,8 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5079cd31ad4e8425f9fb6ad0218bcf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAmount: 3.3
-  accelerateAmount: 4
+  rotateAmount: 150
 --- !u!114 &8889530787533061661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840a6f8e61f624f1eae5a590e12c4e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelAmount: 12
 --- !u!50 &8889530787533061660
 Rigidbody2D:
   serializedVersion: 4

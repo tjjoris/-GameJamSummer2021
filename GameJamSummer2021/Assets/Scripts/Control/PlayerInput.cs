@@ -9,8 +9,10 @@ namespace FreeEscape.Control
     {
         private Mover mover;
         private LaunchBomb launchBomb;
-        [SerializeField] private float rotateAmount = 3.5f;
-        [SerializeField] private float accelerateAmount = 6f;
+        [SerializeField] private float rotateAmount = 90f;
+        private float accelerateAmount = 6f;
+        private bool rotateRight;
+        private bool rotateLeft;
 
         void Start()
         {
@@ -25,28 +27,54 @@ namespace FreeEscape.Control
             LeftKey();
             RightKey();
             SpaceKey();
+            SendRotation();
         }
 
         private void ForwardKey()
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                mover.Accelerate(accelerateAmount);
+                mover.Accelerate(true);
+            }
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                mover.Accelerate(false);
             }
         }
         private void LeftKey()
         {
             if (Input.GetKey(KeyCode.A))
             {
-                mover.Rotate(rotateAmount);
+                rotateLeft = true;
+            }
+            else
+            {
+                rotateLeft = false;
             }
         }
         private void RightKey()
         {
             if (Input.GetKey(KeyCode.D))
             {
-                mover.Rotate(-rotateAmount);
+                rotateRight = true;
             }
+            else
+            {
+                rotateRight = false;
+            }
+        }
+        private void SendRotation()
+        {
+            if ((rotateRight && rotateLeft) || (!rotateRight && !rotateLeft))
+                {
+                mover.Rotate(0);
+            }
+            else if (rotateLeft)
+            {
+                mover.Rotate(rotateAmount);
+            }
+            else if (rotateRight)
+                mover.Rotate(-rotateAmount);
         }
         private void SpaceKey()
         {
