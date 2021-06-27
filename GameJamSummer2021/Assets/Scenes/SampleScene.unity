@@ -997,6 +997,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Debris
       objectReference: {fileID: 0}
+    - target: {fileID: 7041336704041507613, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
 --- !u!1001 &8889530787702864652
@@ -1009,14 +1013,6 @@ PrefabInstance:
     - target: {fileID: 8889530787533061635, guid: 0f56a7e5deb5b4652b4b294b7e51a302, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8889530787533061662, guid: 0f56a7e5deb5b4652b4b294b7e51a302, type: 3}
-      propertyPath: rotateAmount
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8889530787533061662, guid: 0f56a7e5deb5b4652b4b294b7e51a302, type: 3}
-      propertyPath: accelerateAmount
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8889530787533061663, guid: 0f56a7e5deb5b4652b4b294b7e51a302, type: 3}
       propertyPath: m_RootOrder
