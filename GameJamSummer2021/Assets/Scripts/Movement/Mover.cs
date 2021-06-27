@@ -28,7 +28,7 @@ namespace FreeEscape.Movement
         }
         public void Rotate(float rotateAngle)
         {
-            gameObject.transform.Rotate(0, 0, rotateAngle);
+            gameObject.transform.Rotate(0, 0, rotateAngle * Time.deltaTime);
         }
     }
 }

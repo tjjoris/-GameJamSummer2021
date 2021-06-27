@@ -16,6 +16,7 @@ namespace FreeEscape.Collision
                 //make debris explode
                 Debug.Log("bomb collided with debris.");
                 debris.HitByBomb();
+                Destroy(gameObject, 1f);
             }
         }
     }
