@@ -7,11 +7,11 @@ namespace FreeEscape.Background
         [SerializeField] private GameObject starPrefab;
         private float starMinSize = 0.01f;
         private float starMaxSize = 0.08f;
-        private float mapXMin = -40f;
-        private float mapYMin = -40f;
-        private float mapXMax = 40f;
-        private float mapYMax = 40f;
-        private float starCount = 300f;
+        private float mapXMin = -100f;
+        private float mapYMin = -100f;
+        private float mapXMax = 100f;
+        private float mapYMax = 100f;
+        private float starCount = 500f;
         // Start is called before the first frame update
         void Start()
         {
