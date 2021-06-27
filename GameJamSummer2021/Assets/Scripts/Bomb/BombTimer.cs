@@ -6,6 +6,7 @@ namespace FreeEscape.Bomb
 {
     public class BombTimer : MonoBehaviour
     {
+        [SerializeField] GameObject bombExplosionPrefab;
         // Start is called before the first frame update
         IEnumerator Start()
         {
