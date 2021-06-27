@@ -202,42 +202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326684046}
   m_CullTransparentMesh: 1
---- !u!1 &403473775 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7041336704041507611, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
-  m_PrefabInstance: {fileID: 7041336703098735689}
-  m_PrefabAsset: {fileID: 0}
---- !u!60 &403473776
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403473775}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.1932447, y: 4.5320044}
-      - {x: -0.8513109, y: 4.291707}
-      - {x: -1.4760842, y: 0.26128748}
-      - {x: -1.3037322, y: -5.0569687}
-      - {x: 1.2082727, y: -4.9615097}
-      - {x: 1.5715438, y: 0.1658268}
 --- !u!1 &505611535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8889530787533061635, guid: 0f56a7e5deb5b4652b4b294b7e51a302, type: 3}
@@ -985,10 +949,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 403473776, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7041336704041507610, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1037,12 +997,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Debris
       objectReference: {fileID: 0}
-    - target: {fileID: 7041336704041507613, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7041336704041507613, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c445d4a3986d46c78271fbc02385e35, type: 3}
 --- !u!1001 &8889530787702864652
 PrefabInstance:
