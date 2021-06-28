@@ -34,7 +34,12 @@ namespace FreeEscape
         //}
         private void OnTriggerStay2D(Collider2D collision)
         {
-            //Debug.Log("trigger stay");
+
+            RedBarrel redBarrel = collision.gameObject.GetComponent<RedBarrel>();
+            if (redBarrel != null)
+            {
+                redBarrel.RedBarrelTriggered();
+            }
             Debris debris = collision.gameObject.GetComponent<Debris>();
             if (debris != null)
             {
@@ -42,6 +47,7 @@ namespace FreeEscape
                 Destroy(gameObject);
 
             }
+
         }
 
     }
