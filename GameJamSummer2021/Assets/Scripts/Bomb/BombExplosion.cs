@@ -8,6 +8,7 @@ namespace FreeEscape
     public class BombExplosion : MonoBehaviour
     {
         private bool bigExplosion;
+        [SerializeField] private bool thisIsBigExplosion;
         //private CircleCollider2D collider2D;
         void Start()
         {
@@ -47,7 +48,7 @@ namespace FreeEscape
             if (debris != null)
             {
                 //Destroy(collision.gameObject);
-                debris.HitByBomb(bigExplosion);
+                debris.HitByBomb(thisIsBigExplosion);
                 Destroy(gameObject);
 
             }
