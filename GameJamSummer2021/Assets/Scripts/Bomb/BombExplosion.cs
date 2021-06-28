@@ -7,6 +7,7 @@ namespace FreeEscape
 {
     public class BombExplosion : MonoBehaviour
     {
+        private bool bigExplosion;
         //private CircleCollider2D collider2D;
         void Start()
         {
@@ -38,12 +39,15 @@ namespace FreeEscape
             RedBarrel redBarrel = collision.gameObject.GetComponent<RedBarrel>();
             if (redBarrel != null)
             {
+                bigExplosion = true;
                 redBarrel.RedBarrelTriggered();
+                
             }
             Debris debris = collision.gameObject.GetComponent<Debris>();
             if (debris != null)
             {
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
+                debris.HitByBomb(bigExplosion);
                 Destroy(gameObject);
 
             }

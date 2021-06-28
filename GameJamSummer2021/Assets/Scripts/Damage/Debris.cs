@@ -6,10 +6,15 @@ namespace FreeEscape.Damage
 {
     public class Debris : MonoBehaviour
     {
-
-        public void HitByBomb()
+        [SerializeField] private bool resistantDebris;
+        //public bool GetResistantDebris()
+        //{
+        //    return resistantDebris;
+        //}
+        public void HitByBomb(bool bigExplosion)
         {
-            Destroy(gameObject, 1f);
+            if ((bigExplosion && resistantDebris) || (!bigExplosion && !resistantDebris))
+            Destroy(gameObject);
         }
     }
 }
