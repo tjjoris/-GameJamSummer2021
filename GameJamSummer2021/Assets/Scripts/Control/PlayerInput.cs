@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Movement;
+using FreeEscape.Display;
 
 namespace FreeEscape.Control
 {
@@ -9,6 +10,7 @@ namespace FreeEscape.Control
     {
         private Mover mover;
         private LaunchBomb launchBomb;
+        [SerializeField] private PlayerAnimator playerAnimator;
         [SerializeField] private float rotateAmount = 90f;
         private float accelerateAmount = 6f;
         private bool rotateRight;
@@ -35,10 +37,12 @@ namespace FreeEscape.Control
             if (Input.GetKeyDown(KeyCode.W))
             {
                 mover.Accelerate(true);
+                playerAnimator.InputUp(true);
             }
             if (Input.GetKeyUp(KeyCode.W))
             {
                 mover.Accelerate(false);
+                playerAnimator.InputUp(false);
             }
         }
         private void LeftKey()
@@ -46,10 +50,12 @@ namespace FreeEscape.Control
             if (Input.GetKey(KeyCode.A))
             {
                 rotateLeft = true;
+                playerAnimator.InputLeft(true);
             }
             else
             {
                 rotateLeft = false;
+                playerAnimator.InputLeft(false);
             }
         }
         private void RightKey()
@@ -57,10 +63,12 @@ namespace FreeEscape.Control
             if (Input.GetKey(KeyCode.D))
             {
                 rotateRight = true;
+                playerAnimator.InputRight(true);
             }
             else
             {
                 rotateRight = false;
+                playerAnimator.InputRight(false);
             }
         }
         private void SendRotation()

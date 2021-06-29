@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2109213340432908205
+--- !u!1 &7041336703690308914
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,36 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2109213340432908202}
-  - component: {fileID: 2109213340432908203}
+  - component: {fileID: 7041336703690308917}
+  - component: {fileID: 7041336703690308916}
   m_Layer: 0
-  m_Name: Debris Body
+  m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2109213340432908202
+--- !u!4 &7041336703690308917
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109213340432908205}
+  m_GameObject: {fileID: 7041336703690308914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
-  m_Father: {fileID: 2109213340620659077}
+  m_Father: {fileID: 7041336704041507610}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2109213340432908203
+--- !u!212 &7041336703690308916
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109213340432908205}
+  m_GameObject: {fileID: 7041336703690308914}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 41c7f8faa9b6b433f8eff12e3128500f, type: 3}
-  m_Color: {r: 0.46293163, g: 0.6256999, b: 0.9716981, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2109213340620659076
+--- !u!1 &7041336704041507611
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,53 +91,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2109213340620659077}
-  - component: {fileID: 2109213340620659075}
-  - component: {fileID: 9003456754849761263}
-  - component: {fileID: 634337418528254388}
+  - component: {fileID: 7041336704041507610}
+  - component: {fileID: 7041336704041507612}
+  - component: {fileID: 403473776}
+  - component: {fileID: 8376460776939498283}
   m_Layer: 6
-  m_Name: Resistant Debris
+  m_Name: Debris_Basic01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2109213340620659077
+--- !u!4 &7041336704041507610
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109213340620659076}
-  m_LocalRotation: {x: -0, y: -0, z: -0.46825737, w: 0.8835922}
-  m_LocalPosition: {x: -7.33, y: 10.74, z: 0}
+  m_GameObject: {fileID: 7041336704041507611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 13.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2109213340432908202}
+  - {fileID: 7041336703690308917}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -55.842}
---- !u!114 &2109213340620659075
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7041336704041507612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109213340620659076}
+  m_GameObject: {fileID: 7041336704041507611}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 528ac96a32e8e44a39581afa9cb30870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resistantDebris: 1
---- !u!50 &9003456754849761263
+  resistantDebris: 0
+--- !u!50 &403473776
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109213340620659076}
+  m_GameObject: {fileID: 7041336704041507611}
   m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -151,13 +151,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &634337418528254388
+--- !u!60 &8376460776939498283
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109213340620659076}
+  m_GameObject: {fileID: 7041336704041507611}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 68914d51d4e7247ed928297428ef5f66, type: 2}
