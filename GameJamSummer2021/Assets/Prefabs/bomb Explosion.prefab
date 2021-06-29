@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1271698509434383675}
   - component: {fileID: 3969336013768937701}
   - component: {fileID: 768739744137848519}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: bomb Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73b0789b843e4c528d29e2d3ac1125c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisIsBigExplosion: 0
 --- !u!50 &768739744137848519
 Rigidbody2D:
   serializedVersion: 4

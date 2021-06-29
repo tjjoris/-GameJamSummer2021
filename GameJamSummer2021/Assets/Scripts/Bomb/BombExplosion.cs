@@ -8,6 +8,7 @@ namespace FreeEscape
     public class BombExplosion : MonoBehaviour
     {
         private bool bigExplosion;
+        private bool causedDamageToPlayer;
         [SerializeField] private bool thisIsBigExplosion;
         //private CircleCollider2D collider2D;
         void Start()
@@ -36,7 +37,12 @@ namespace FreeEscape
         //}
         private void OnTriggerStay2D(Collider2D collision)
         {
-
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null && !causedDamageToPlayer)
+            {
+                causedDamageToPlayer = true;
+                playerHealth.TakeDamage(15f);
+            }
             RedBarrel redBarrel = collision.gameObject.GetComponent<RedBarrel>();
             if (redBarrel != null)
             {
@@ -49,7 +55,7 @@ namespace FreeEscape
             {
                 //Destroy(collision.gameObject);
                 debris.HitByBomb(thisIsBigExplosion);
-                Destroy(gameObject);
+                //Destroy(gameObject);
 
             }
 
