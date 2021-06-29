@@ -11,13 +11,13 @@ namespace FreeEscape.Damage
         private HPBar hPBar;
         private float hPCurrent = 100f;
         private float hPMax = 100f;
-        private LoseCanvas loseCanvas;
+        [SerializeField] private LoseCanvas loseCanvas;
         // Start is called before the first frame update
         void Start()
         {
             hPBar = FindObjectOfType<HPBar>();
             hPBar.UpdateHPSlider(hPCurrent / hPMax);
-            loseCanvas = FindObjectOfType<LoseCanvas>();
+            //loseCanvas = FindObjectOfType<LoseCanvas>();
         }
         public void TakeDamage(float amount)
         {

@@ -15,6 +15,7 @@ namespace FreeEscape.UI
         }
         public void UpdateHPSlider(float hPFraction)
         {
+            if (hPSlider == null) return;
             hPSlider.value = hPFraction;
             Debug.Log(hPFraction.ToString());
         }
