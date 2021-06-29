@@ -13,7 +13,7 @@ namespace FreeEscape.Damage
         //}
         public void HitByBomb(bool bigExplosion)
         {
-            if ((bigExplosion && resistantDebris) || (!bigExplosion && !resistantDebris))
+            if ((bigExplosion && resistantDebris) || (!resistantDebris))
             Destroy(gameObject);
         }
     }
