@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7041336704041507612}
   - component: {fileID: 403473776}
   - component: {fileID: 8376460776939498283}
+  - component: {fileID: 7085313226361910021}
   m_Layer: 6
   m_Name: Debris_Basic01
   m_TagString: Untagged
@@ -187,3 +188,15 @@ PolygonCollider2D:
       - {x: 2.1802902, y: -2.8902044}
       - {x: 3.1309571, y: -1.1665325}
       - {x: 2.3332694, y: 1.3560228}
+--- !u!114 &7085313226361910021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041336704041507611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92d20777a79141f480517708e349541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
