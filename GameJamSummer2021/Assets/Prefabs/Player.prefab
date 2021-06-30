@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5079cd31ad4e8425f9fb6ad0218bcf3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 8311373712051900343}
 --- !u!114 &8889530787533061661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 8311373712051900343}
   accelAmount: 16
-  rotateAmount: 90
+  rotateAmount: 180
 --- !u!50 &8889530787533061660
 Rigidbody2D:
   serializedVersion: 4

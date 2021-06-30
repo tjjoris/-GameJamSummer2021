@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8258503368161131032}
-  - component: {fileID: 8258503368161131033}
-  - component: {fileID: 8258503368161131030}
-  - component: {fileID: 8258503368161131035}
   - component: {fileID: 8258503368161131034}
+  - component: {fileID: 8258503368161131033}
+  - component: {fileID: 8258503368161131035}
   m_Layer: 6
   m_Name: BigBoomer
   m_TagString: Untagged
@@ -28,13 +27,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8258503368161131031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 22.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8258503368725520338}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8258503368161131034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8258503368161131031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73238224bb1e4482aa36c76bcd287066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 1070671104120590391, guid: d9e9b94833e394d14be020590996382a, type: 3}
+  explosionRadius: 10
+  damage: 30
 --- !u!58 &8258503368161131033
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -51,19 +65,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.86
---- !u!114 &8258503368161131030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8258503368161131031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 528ac96a32e8e44a39581afa9cb30870, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resistantDebris: 0
 --- !u!50 &8258503368161131035
 Rigidbody2D:
   serializedVersion: 4
@@ -85,20 +86,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8258503368161131034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8258503368161131031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73238224bb1e4482aa36c76bcd287066, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1070671104120590391, guid: d9e9b94833e394d14be020590996382a, type: 3}
-  explosionRadius: 8
 --- !u!1 &8258503368725520339
 GameObject:
   m_ObjectHideFlags: 0

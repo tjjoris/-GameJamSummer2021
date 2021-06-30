@@ -7,58 +7,24 @@ namespace FreeEscape
 {
     public class BombExplosion : MonoBehaviour
     {
-        private bool bigExplosion;
-        private bool causedDamageToPlayer;
         [SerializeField] private bool thisIsBigExplosion;
-        //private CircleCollider2D collider2D;
+        public bool BigExplosion { get { return thisIsBigExplosion; } set { thisIsBigExplosion = value; } }
+        [SerializeField] private float _damage;
+        public float Damage { get{ return _damage; } set{ _damage = value; } }
+        
+        
         void Start()
         {
             Destroy(gameObject, 0.2f);
-            //collider2D = GetComponent<CircleCollider2D>();
-            //if (collider2D.IsTouchingLayers(LayerMask.GetMask("Debris")))
-            //{
-            //    Debug.Log("collided with debris111");
-            //}
-            //collider2D.
         }
-        //private void OnTriggerEnter2D(Collider2D collision)
-        //{
-        //    if (collision.gameObject.layer == LayerMask.GetMask("Debris"))
-        //    {
-        //        Debug.Log("collision from on trigger enter");
-        //    }
-        //}
-        //private void OnCollisionStay2D(Collision2D collision)
-        //{
-        //    //if (collision.gameObject.layer == LayerMask.GetMask("Debris"))
-        //    {
-        //        Debug.Log("collision stay");
-        //    }
-        //}
-        private void OnTriggerStay2D(Collider2D collision)
+  
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null && !causedDamageToPlayer)
+            I_ExplosionReaction objectHit = collision.gameObject.GetComponent<I_ExplosionReaction>();
+            if (objectHit != null)
             {
-                causedDamageToPlayer = true;
-                playerHealth.TakeDamage(15f);
+                objectHit.HitByExplosion(this);
             }
-            RedBarrel redBarrel = collision.gameObject.GetComponent<RedBarrel>();
-            if (redBarrel != null)
-            {
-                bigExplosion = true;
-                redBarrel.RedBarrelTriggered();
-                
-            }
-            Debris debris = collision.gameObject.GetComponent<Debris>();
-            if (debris != null)
-            {
-                //Destroy(collision.gameObject);
-                debris.HitByBomb(thisIsBigExplosion);
-                //Destroy(gameObject);
-
-            }
-
         }
 
     }

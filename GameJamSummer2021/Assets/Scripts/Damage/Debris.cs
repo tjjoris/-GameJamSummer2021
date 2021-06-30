@@ -4,16 +4,13 @@ using UnityEngine;
 
 namespace FreeEscape.Damage
 {
-    public class Debris : MonoBehaviour
+    public class Debris : MonoBehaviour, I_ExplosionReaction
     {
         [SerializeField] private bool resistantDebris;
-        //public bool GetResistantDebris()
-        //{
-        //    return resistantDebris;
-        //}
-        public void HitByBomb(bool bigExplosion)
+
+        public void HitByExplosion(BombExplosion _explosion)
         {
-            if ((bigExplosion && resistantDebris) || (!resistantDebris))
+            if ((_explosion.BigExplosion && resistantDebris) || (!resistantDebris))
             Destroy(gameObject);
         }
     }

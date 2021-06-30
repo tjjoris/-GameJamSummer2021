@@ -4,21 +4,27 @@ using UnityEngine;
 
 namespace FreeEscape.Damage
 {
-    public class RedBarrel : MonoBehaviour
+    public class RedBarrel : MonoBehaviour, I_ExplosionReaction
     {
         [SerializeField] private GameObject explosionPrefab;
         [SerializeField] private float explosionRadius;
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] private float damage;
         
+        public void HitByExplosion(BombExplosion _explosion)
+        {
+            GenerateExplosion();
+            Destroy(gameObject);
         }
-        public void RedBarrelTriggered()
+
+        private void GenerateExplosion()
         {
             GameObject bigExplosion = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
-            Vector3 explosionScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+            BombExplosion explosionStats = bigExplosion.GetComponent<BombExplosion>();
+            explosionStats.BigExplosion = true;
+            explosionStats.Damage = damage;
+            
+            Vector3 explosionScale = new Vector3(explosionRadius, explosionRadius, 1);
             bigExplosion.transform.localScale = explosionScale;
-            Destroy(gameObject);
         }
         private void OnDrawGizmos()
         {

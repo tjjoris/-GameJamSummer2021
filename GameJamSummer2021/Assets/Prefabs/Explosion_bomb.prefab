@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3969336013768937701}
   - component: {fileID: 768739744137848519}
   m_Layer: 10
-  m_Name: bomb Explosion
+  m_Name: Explosion_bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271698509434383672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03381813, y: 13.156641, z: -0.00095935684}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6544541498638063338}
@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisIsBigExplosion: 0
+  _damage: 10
 --- !u!50 &768739744137848519
 Rigidbody2D:
   serializedVersion: 4

@@ -27,6 +27,10 @@ namespace FreeEscape.Movement
         public void Rotate(float _rotateDir)
         {
             gameObject.transform.Rotate(0, 0, rotateAmount * _rotateDir * Time.deltaTime);
+            UpdateAnimatorRotation(_rotateDir);
+        }
+        private void UpdateAnimatorRotation(float _rotateDir)
+        {
             if (_rotateDir == 0)
             {
                 playerAnimator.InputLeft(false);
@@ -41,6 +45,7 @@ namespace FreeEscape.Movement
                 playerAnimator.InputRight(true);
             }
         }
+
         private void FixedUpdate()
         {
             if (accelBool)
@@ -54,5 +59,6 @@ namespace FreeEscape.Movement
                 playerAnimator.InputUp(false);
             }
         }
+
     }
 }

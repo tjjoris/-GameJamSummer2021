@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FreeEscape.Damage;
 
 namespace FreeEscape.Bomb
 {
-    public class BombTimer : MonoBehaviour
+    public class BombTimer : MonoBehaviour, I_ExplosionReaction
     {
         [SerializeField] float timeTillExplode = 3.7f;
         [SerializeField] GameObject bombExplosionPrefab;
@@ -18,6 +19,11 @@ namespace FreeEscape.Bomb
         {
             Instantiate(bombExplosionPrefab, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
+
+        public void HitByExplosion(BombExplosion _explosion)
+        {
+            Detonate();
         }
     }
 }

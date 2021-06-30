@@ -6,13 +6,13 @@ using FreeEscape.Core;
 
 namespace FreeEscape.Damage
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealth : MonoBehaviour, I_ExplosionReaction
     {
         private HPBar hPBar;
         private float hPCurrent = 100f;
         private float hPMax = 100f;
         [SerializeField] private LoseCanvas loseCanvas;
-        // Start is called before the first frame update
+
         void Start()
         {
             hPBar = FindObjectOfType<HPBar>();
@@ -32,6 +32,11 @@ namespace FreeEscape.Damage
                 loseCanvas.ShowLoseCanvas();
                 Time.timeScale = 0f;
             }
+        }
+
+        public void HitByExplosion(BombExplosion _explosion)
+        {
+            TakeDamage(_explosion.Damage);
         }
     }
 }
