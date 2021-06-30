@@ -11,8 +11,6 @@ namespace FreeEscape.Control
         private Mover mover;
         private LaunchBomb launchBomb;
         [SerializeField] private PlayerAnimator playerAnimator;
-        [SerializeField] private float rotateAmount = 90f;
-        private float accelerateAmount = 6f;
         private bool rotateRight;
         private bool rotateLeft;
 
@@ -73,16 +71,14 @@ namespace FreeEscape.Control
         }
         private void SendRotation()
         {
-            if ((rotateRight && rotateLeft) || (!rotateRight && !rotateLeft))
-                {
-                mover.Rotate(0);
-            }
-            else if (rotateLeft)
+            if (rotateLeft && !rotateRight)
             {
-                mover.Rotate(rotateAmount);
+                mover.Rotate(1);
             }
-            else if (rotateRight)
-                mover.Rotate(-rotateAmount);
+            else if (rotateRight && !rotateLeft)
+            {
+                mover.Rotate(-1);
+            }
         }
         private void SpaceKey()
         {
