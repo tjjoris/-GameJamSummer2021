@@ -10,7 +10,6 @@ namespace FreeEscape.Control
     {
         private Mover mover;
         private LaunchBomb launchBomb;
-        [SerializeField] private PlayerAnimator playerAnimator;
         private bool rotateRight;
         private bool rotateLeft;
 
@@ -35,12 +34,10 @@ namespace FreeEscape.Control
             if (Input.GetKeyDown(KeyCode.W))
             {
                 mover.Accelerate(true);
-                playerAnimator.InputUp(true);
             }
             if (Input.GetKeyUp(KeyCode.W))
             {
                 mover.Accelerate(false);
-                playerAnimator.InputUp(false);
             }
         }
         private void LeftKey()
@@ -48,12 +45,10 @@ namespace FreeEscape.Control
             if (Input.GetKey(KeyCode.A))
             {
                 rotateLeft = true;
-                playerAnimator.InputLeft(true);
             }
             else
             {
                 rotateLeft = false;
-                playerAnimator.InputLeft(false);
             }
         }
         private void RightKey()
@@ -61,21 +56,23 @@ namespace FreeEscape.Control
             if (Input.GetKey(KeyCode.D))
             {
                 rotateRight = true;
-                playerAnimator.InputRight(true);
             }
             else
             {
                 rotateRight = false;
-                playerAnimator.InputRight(false);
             }
         }
         private void SendRotation()
         {
-            if (rotateLeft && !rotateRight)
+            if (rotateLeft && rotateRight || !rotateLeft && !rotateRight)
+            {
+                mover.Rotate(0);
+            }
+            else if (rotateLeft)
             {
                 mover.Rotate(1);
             }
-            else if (rotateRight && !rotateLeft)
+            else if (rotateRight)
             {
                 mover.Rotate(-1);
             }

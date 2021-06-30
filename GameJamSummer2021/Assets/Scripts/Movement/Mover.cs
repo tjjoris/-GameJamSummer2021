@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FreeEscape.Display;
 
 namespace FreeEscape.Movement
 {
     public class Mover : MonoBehaviour
     {
         private bool accelBool; //true if acccelerating forward
+        [SerializeField] private PlayerAnimator playerAnimator;
         [SerializeField]private float accelAmount = 10f;
         [SerializeField] private float rotateAmount = 90f;
         private float forwardSpeed;
@@ -25,6 +27,19 @@ namespace FreeEscape.Movement
         public void Rotate(float _rotateDir)
         {
             gameObject.transform.Rotate(0, 0, rotateAmount * _rotateDir * Time.deltaTime);
+            if (_rotateDir == 0)
+            {
+                playerAnimator.InputLeft(false);
+                playerAnimator.InputRight(false);
+            }
+            else if (_rotateDir > 0)
+            {
+                playerAnimator.InputLeft(true);
+            }
+            else if (_rotateDir < 0)
+            {
+                playerAnimator.InputRight(true);
+            }
         }
         private void FixedUpdate()
         {
@@ -32,6 +47,11 @@ namespace FreeEscape.Movement
             {
                 Vector2 forwardV2 = new Vector2(0, accelAmount);
                 rb.AddRelativeForce(forwardV2);
+                playerAnimator.InputUp(true);
+            }
+            else
+            {
+                playerAnimator.InputUp(false);
             }
         }
     }

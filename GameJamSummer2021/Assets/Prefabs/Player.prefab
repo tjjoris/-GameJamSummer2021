@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 8311373712051900343}
-  rotateAmount: 140
 --- !u!114 &8889530787533061661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840a6f8e61f624f1eae5a590e12c4e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 8311373712051900343}
   accelAmount: 16
+  rotateAmount: 90
 --- !u!50 &8889530787533061660
 Rigidbody2D:
   serializedVersion: 4
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 2280275934327890897, guid: c22b15dcfded44e13aebbd5895e2ac13, type: 3}
+  reverseVelocity: 100
 --- !u!58 &1329549614296166035
 CircleCollider2D:
   m_ObjectHideFlags: 0
