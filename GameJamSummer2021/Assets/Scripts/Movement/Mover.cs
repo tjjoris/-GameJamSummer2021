@@ -9,11 +9,8 @@ namespace FreeEscape.Movement
     {
         private bool accelBool; //true if acccelerating forward
         [SerializeField] private PlayerAnimator playerAnimator;
-        [SerializeField]private float accelAmount = 10f;
-        [SerializeField] private float rotateAmount = 90f;
-        private float forwardSpeed;
-        private Vector2 velocity;
-        private float maxSpeed = 5;
+        [SerializeField]private float accelAmount;
+        [SerializeField] private float rotateAmount;
         private Rigidbody2D rb;
         void Start()
         {
