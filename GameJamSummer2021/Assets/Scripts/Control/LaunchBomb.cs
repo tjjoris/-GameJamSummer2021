@@ -12,6 +12,7 @@ namespace FreeEscape.Control
         private Rigidbody2D rb;
         [SerializeField] private float reverseVelocity = 100f;
         [SerializeField] private float cooldown;
+        [SerializeField] private AudioSource launchAudioClip;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
         private void Start()
@@ -46,6 +47,8 @@ namespace FreeEscape.Control
             Vector2 reverseV2 = new Vector2(0, -reverseVelocity);
             bomb.GetComponent<Rigidbody2D>().AddRelativeForce(reverseV2);
             bomb.GetComponent<Rigidbody2D>().velocity = shipVelocity;
+            launchAudioClip.Play();
+
         }
 
         private void BeginCooldown()
