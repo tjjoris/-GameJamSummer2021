@@ -10,13 +10,16 @@ namespace FreeEscape.Control
     {
         private Mover mover;
         private LaunchBomb launchBomb;
+        private Reverse reverse;
         private bool rotateRight;
         private bool rotateLeft;
+        private bool reverseBool;
 
         void Start()
         {
             mover = GetComponent<Mover>();
             launchBomb = GetComponent<LaunchBomb>();
+            reverse = GetComponent<Reverse>();
         }
 
 
@@ -25,6 +28,7 @@ namespace FreeEscape.Control
             ForwardKey();
             LeftKey();
             RightKey();
+            ReverseKey();
             SpaceKey();
             SendRotation();
         }
@@ -60,6 +64,18 @@ namespace FreeEscape.Control
             else
             {
                 rotateRight = false;
+            }
+        }
+        private void ReverseKey()
+        {
+            if (Input.GetKey(KeyCode.S))
+            {
+                reverseBool = true;
+                reverse.ReverseFunction();
+            }
+            else
+            {
+                reverseBool = false;
             }
         }
         private void SendRotation()

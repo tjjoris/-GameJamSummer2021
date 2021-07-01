@@ -699,6 +699,8 @@ GameObject:
   - component: {fileID: 6781993689847770052}
   - component: {fileID: 1329549614296166035}
   - component: {fileID: 6214594623971848839}
+  - component: {fileID: 505611536}
+  - component: {fileID: 8548987773321803180}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -819,3 +821,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loseCanvas: {fileID: 0}
+--- !u!114 &505611536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889530787533061635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207264a31e91448ef91f81382df44e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 0}
+  maxSpeed: {fileID: 0}
+--- !u!114 &8548987773321803180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889530787533061635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db70df4bfb6264163b6918284116d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
