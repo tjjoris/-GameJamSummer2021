@@ -31,6 +31,8 @@ namespace FreeEscape.Control
             ReverseKey();
             SpaceKey();
             SendRotation();
+            EquipFuseBomb();
+            EquipStickyBomb();
         }
 
         private void ForwardKey()
@@ -98,6 +100,22 @@ namespace FreeEscape.Control
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 launchBomb.LaunchBombAction();
+            }
+        }
+
+        private void EquipFuseBomb()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                launchBomb.EquipFuseBomb();
+            }
+        }
+
+        private void EquipStickyBomb()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                launchBomb.EquipStickyBomb();
             }
         }
     }

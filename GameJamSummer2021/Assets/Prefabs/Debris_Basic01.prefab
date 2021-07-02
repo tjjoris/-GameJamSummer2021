@@ -96,8 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8384ef2e859fb12418e78df8e491371f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 37f6ba0b7694af8408b1f93b80bfcdc8, type: 2}
-  timeToVaporize: 1000
 --- !u!1 &7041336704041507611
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +176,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 7041336704041507611}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 68914d51d4e7247ed928297428ef5f66, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
