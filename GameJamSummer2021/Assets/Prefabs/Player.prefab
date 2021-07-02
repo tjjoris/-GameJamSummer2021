@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 8889530787533061661}
   - component: {fileID: 8889530787533061660}
   - component: {fileID: 6781993689847770052}
+  - component: {fileID: -6368327151448224369}
   - component: {fileID: 1329549614296166035}
   - component: {fileID: 6214594623971848839}
   - component: {fileID: 505611536}
@@ -789,12 +790,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0ae1e293ace4e9e81bf3c3e4281002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fusePrefab: {fileID: 2280275934327890897, guid: c22b15dcfded44e13aebbd5895e2ac13, type: 3}
-  stickyPrefab: {fileID: 2280275934327890897, guid: 8f627cdeb434c484d84b786ecd499530, type: 3}
   bombLauncher: {fileID: 8742023607099743394}
-  reverseVelocity: 100
-  cooldown: 0.38
-  launchAudioClip: {fileID: 2103591954373780629}
+--- !u!114 &-6368327151448224369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889530787533061635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de560ae422d133c48b00ce69cc385776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuseBomb: {fileID: 2280275934327890897, guid: c22b15dcfded44e13aebbd5895e2ac13, type: 3}
+  stickyBomb: {fileID: 2280275934327890897, guid: 8f627cdeb434c484d84b786ecd499530, type: 3}
 --- !u!58 &1329549614296166035
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -49,7 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resistantDebris: 0
   shader: {fileID: 2902163031163310962}
-  timeToVaporize: 0.62
+  timeToVaporizeMin: 0.38
+  timeToVaporizeMax: 1.62
 --- !u!50 &7220936010178237584
 Rigidbody2D:
   serializedVersion: 4

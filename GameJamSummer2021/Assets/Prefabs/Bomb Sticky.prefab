@@ -153,6 +153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTillExplode: 0
   bombExplosionPrefab: {fileID: 1271698509434383672, guid: d7e5c273c6f5de44891def1e05d5d104, type: 3}
+  _launchVelocity: 1000
+  _cooldown: 0.1
+  _spriteRenderer: {fileID: 2280275932234270712}
+  _animator: {fileID: 3283229687269551031}
+  _launchAudioClip: {fileID: 8300000, guid: 1db7c1ca564a87445ada186aa1b20a7a, type: 3}
 --- !u!50 &6381160337420666806
 Rigidbody2D:
   serializedVersion: 4
