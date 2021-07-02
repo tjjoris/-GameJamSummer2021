@@ -9,17 +9,21 @@ namespace FreeEscape.Damage
     {
         [SerializeField] private bool resistantDebris;
         [SerializeField] private ProgressShader shader;
-        [SerializeField] private float timeToVaporize = 1000f;
+        [SerializeField] private float timeToVaporizeMin = 0.38f;
+        [SerializeField] private float timeToVaporizeMax = 1.62f;
 
         
         public void HitByExplosion(BombExplosion _explosion)
         {
             if ((_explosion.BigExplosion && resistantDebris) || (!resistantDebris))
             {
+                float timeToVaporize = Random.Range(timeToVaporizeMin, timeToVaporizeMax);
+                
                 if (shader)
                 {
                     shader.ApplyShaderEffect(timeToVaporize);
                 }
+                
                 Destroy(gameObject, timeToVaporize);
             }
         }
