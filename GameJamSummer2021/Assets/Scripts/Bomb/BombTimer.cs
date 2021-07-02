@@ -12,8 +12,11 @@ namespace FreeEscape.Bomb
         // Start is called before the first frame update
         IEnumerator Start()
         {
-            yield return new WaitForSecondsRealtime(timeTillExplode);
-            Detonate();
+            if (timeTillExplode > 0)
+            {
+                yield return new WaitForSecondsRealtime(timeTillExplode);
+                Detonate();
+            }
         }
         private void Detonate()
         {

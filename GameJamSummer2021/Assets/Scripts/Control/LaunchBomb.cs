@@ -6,8 +6,10 @@ namespace FreeEscape.Control
 {
     public class LaunchBomb : MonoBehaviour
     {
-        [SerializeField] private GameObject bombPrefab;
+        [SerializeField] private GameObject fusePrefab;
+        [SerializeField] private GameObject stickyPrefab;
         [SerializeField] private GameObject bombLauncher;
+        private GameObject equippedBomb;
         private SpriteRenderer heldBombSprite;
         private Rigidbody2D rb;
         [SerializeField] private float reverseVelocity = 100f;
@@ -19,6 +21,7 @@ namespace FreeEscape.Control
         {
             rb = GetComponent<Rigidbody2D>();
             heldBombSprite = bombLauncher.GetComponent<SpriteRenderer>();
+            equippedBomb = fusePrefab;
         }
 
         private void Update()
@@ -42,7 +45,7 @@ namespace FreeEscape.Control
 
         private void GenerateBomb()
         {
-            GameObject bomb = Instantiate(bombPrefab, bombLauncher.transform.position, transform.rotation);
+            GameObject bomb = Instantiate(equippedBomb, bombLauncher.transform.position, transform.rotation);
             Vector2 shipVelocity = rb.velocity;
             Vector2 reverseV2 = new Vector2(0, -reverseVelocity);
             bomb.GetComponent<Rigidbody2D>().AddRelativeForce(reverseV2);
@@ -62,6 +65,18 @@ namespace FreeEscape.Control
         {
             canLaunchBomb = true;
             heldBombSprite.enabled = true;
+        }
+
+        public void EquipFuseBomb()
+        {
+            equippedBomb = fusePrefab;
+            heldBombSprite.color = new Color(255, 255, 255, 255);
+        }
+
+        public void EquipStickyBomb()
+        {
+            equippedBomb = stickyPrefab;
+            heldBombSprite.color = Color.green;
         }
     }
 }
