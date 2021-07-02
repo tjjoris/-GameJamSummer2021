@@ -10,7 +10,8 @@ namespace FreeEscape
 
         public void restartLevel()
         {
-            SceneManager.LoadScene(0);
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentScene);
             Time.timeScale = 1f;
         }
     }
