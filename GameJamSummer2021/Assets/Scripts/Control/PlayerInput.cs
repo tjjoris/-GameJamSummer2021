@@ -13,7 +13,7 @@ namespace FreeEscape.Control
         private Reverse reverse;
         private bool rotateRight;
         private bool rotateLeft;
-        private bool reverseBool;
+        //private bool reverseBool;
 
         void Start()
         {
@@ -25,25 +25,36 @@ namespace FreeEscape.Control
 
         void Update()
         {
-            ForwardKey();
-            LeftKey();
-            RightKey();
-            ReverseKey();
+            bool reverseBool = ReverseKey();
+            bool forwardBool = false;
+            if (!reverseBool)
+            {
+                forwardBool = ForwardKey();
+                LeftKey();
+                RightKey();
+            }
+            if (!reverseBool && !forwardBool)
+            {
+                mover.Accelerate(false);
+            }
+
+            
             SpaceKey();
             SendRotation();
             EquipFuseBomb();
             EquipStickyBomb();
         }
 
-        private void ForwardKey()
+        private bool ForwardKey()
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
                 mover.Accelerate(true);
+                return true;
             }
-            if (Input.GetKeyUp(KeyCode.W))
+            else
             {
-                mover.Accelerate(false);
+                return false;
             }
         }
         private void LeftKey()
@@ -68,16 +79,18 @@ namespace FreeEscape.Control
                 rotateRight = false;
             }
         }
-        private void ReverseKey()
+        private bool ReverseKey()
         {
             if (Input.GetKey(KeyCode.S))
             {
-                reverseBool = true;
+                //reverseBool = true;
                 reverse.ReverseFunction();
+                return true;
             }
             else
             {
-                reverseBool = false;
+                //reverseBool = false;
+                return false;
             }
         }
         private void SendRotation()
