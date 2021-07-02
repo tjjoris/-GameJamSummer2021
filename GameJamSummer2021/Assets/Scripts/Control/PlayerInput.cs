@@ -83,7 +83,8 @@ namespace FreeEscape.Control
         {
             if (Input.GetKey(KeyCode.S))
             {
-                //reverseBool = true;
+                rotateLeft = false;
+                rotateRight = false;
                 reverse.ReverseFunction();
                 return true;
             }
