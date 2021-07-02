@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeTillExplode: 0
-  bombExplosionPrefab: {fileID: 1271698509434383672, guid: a087afe7ce91d4418b096edea80be608, type: 3}
+  bombExplosionPrefab: {fileID: 1271698509434383672, guid: d7e5c273c6f5de44891def1e05d5d104, type: 3}
 --- !u!50 &6381160337420666806
 Rigidbody2D:
   serializedVersion: 4
