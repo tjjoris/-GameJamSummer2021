@@ -31,6 +31,11 @@ namespace FreeEscape.Core
                 TimeSpan ts = TimeSpan.FromSeconds(currentTimeRemaining);
                 String result = ts.ToString("m\\:ss\\.fff");
                 timeRemainingText.text = "Fleet Arrival In: " + result;
+
+                if (currentTimeRemaining <= 0)
+                {
+                    PlayerRanOutOfTime();
+                }
             }
         }
 
@@ -42,6 +47,11 @@ namespace FreeEscape.Core
             Debug.Log("game end");
             scoreScreenCanvas.SetActive(true);
             Time.timeScale = 0f;
+        }
+
+        private void PlayerRanOutOfTime()
+        {
+            
         }
     }
 }
