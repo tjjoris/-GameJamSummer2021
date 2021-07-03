@@ -973,10 +973,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: acea9976e89f1974ba0c97ddfb149ef7, type: 3}
   - {fileID: 8300000, guid: d9c49b72e29bbde4eb72123d1ce3e6ac, type: 3}
   - {fileID: 8300000, guid: c34af6ca259609d4a81586f1d6efc919, type: 3}
-  explosion2AC: {fileID: 0}
-  explosion2aAC: {fileID: 0}
-  explosion3AC: {fileID: 0}
-  explosion3aAC: {fileID: 0}
-  thruster1AC: {fileID: 0}
-  thruster2AC: {fileID: 0}
-  winThemeAC: {fileID: 0}
+  explosionArrayAC:
+  - {fileID: 8300000, guid: c0f229d78a0f610429f34e113ee528e9, type: 3}
+  - {fileID: 8300000, guid: 469af90cdb0fa884b9cc2d1d291d05f2, type: 3}
+  - {fileID: 8300000, guid: 5a67c418a6518ec41af974eec7f73d9a, type: 3}
+  - {fileID: 8300000, guid: a8a3f74d5902f7d47b43c8e0ed37ad9d, type: 3}
+  thruster1AC: {fileID: 8300000, guid: dfe0267de81751b4f860ea3bb8a98b44, type: 3}
+  thruster2AC: {fileID: 8300000, guid: e24cd0dd801ca394083747e689c2982a, type: 3}
+  winThemeAC: {fileID: 8300000, guid: 70ccca8b10b483b47ac889b07ad3c6e4, type: 3}

@@ -10,7 +10,7 @@ namespace FreeEscape
         private AudioPlayerManager audioPlayerManager;
         private void Start()
         {
-            audioPlayerManager = GetComponent<AudioPlayerManager>();
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {

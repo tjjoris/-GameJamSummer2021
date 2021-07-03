@@ -19,12 +19,15 @@ namespace FreeEscape.Bomb
         public Animator animator { get{ return _animator; } set{ _animator = value; } }
         [SerializeField] private AudioClip _launchAudioClip;
         public AudioClip launchAudioClip { get{ return _launchAudioClip; } set{ _launchAudioClip = value; } }
+        [SerializeField] private int explosionType;
+        private AudioPlayerManager audioPlayerManager;
         
         
         
         
         IEnumerator Start()
         {
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
             if (timeTillExplode > 0)
             {
                 yield return new WaitForSecondsRealtime(timeTillExplode);
@@ -34,6 +37,7 @@ namespace FreeEscape.Bomb
         private void Detonate()
         {
             Instantiate(bombExplosionPrefab, gameObject.transform.position, Quaternion.identity);
+            audioPlayerManager.PlayExplosion(explosionType);
             Destroy(gameObject);
         }
 

@@ -11,8 +11,13 @@ namespace FreeEscape.Damage
         [SerializeField] private ProgressShader shader;
         [SerializeField] private float timeToVaporizeMin = 0.38f;
         [SerializeField] private float timeToVaporizeMax = 1.62f;
+        private AudioPlayerManager audioPlayerManger;
 
-        
+        private void Start()
+        {
+         audioPlayerManger = FindObjectOfType<AudioPlayerManager>();
+        }
+
         public void HitByExplosion(BombExplosion _explosion)
         {
             if ((_explosion.BigExplosion && resistantDebris) || (!resistantDebris))
@@ -25,6 +30,7 @@ namespace FreeEscape.Damage
                 }
                 
                 Destroy(gameObject, timeToVaporize);
+                //audioPlayerManger.PlayExplosion(1);
             }
         }
     }

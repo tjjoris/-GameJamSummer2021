@@ -21,10 +21,11 @@ namespace FreeEscape
         [SerializeField] AudioClip[] bonkArrayAC;
         //[SerializeField] AudioClip bonk2AC;
         //[SerializeField] AudioClip bonk3AC;
-        [SerializeField] AudioClip explosion2AC;
-        [SerializeField] AudioClip explosion2aAC;
-        [SerializeField] AudioClip explosion3AC;
-        [SerializeField] AudioClip explosion3aAC;
+        //[SerializeField] AudioClip explosion2AC;
+        //[SerializeField] AudioClip explosion2aAC;
+        //[SerializeField] AudioClip explosion3AC;
+        //[SerializeField] AudioClip explosion3aAC;
+        [SerializeField] AudioClip[] explosionArrayAC;
         [SerializeField] AudioClip thruster1AC;
         [SerializeField] AudioClip thruster2AC;
         [SerializeField] AudioClip winThemeAC;
@@ -42,9 +43,27 @@ namespace FreeEscape
         public void PlayBonkAC(int intensity)
         {
             {
-                AudioSource.PlayClipAtPoint(bonkArrayAC[intensity], Camera.main.transform.position);
+                AudioSource.PlayClipAtPoint(bonkArrayAC[intensity], Camera.main.transform.position, 0.2f);
                 Debug.Log("playing bonk");
             }
+        }
+        public void PlayExplosion(int index)
+        {
+            int whichExplosionToPlay = ChooseWhichExplosionToPlay(index);
+            Debug.Log("play explosion " + whichExplosionToPlay.ToString());
+            AudioSource.PlayClipAtPoint(explosionArrayAC[whichExplosionToPlay], Camera.main.transform.position, 0.4f);
+        }
+        private int ChooseWhichExplosionToPlay(int index)
+        {
+            if (index == 0)
+            {
+                return Random.Range(0, 2);
+                 }
+            else if (index == 1)
+            {
+                return Random.Range(2, 4);
+            }
+            return 0;
         }
     }
 }
