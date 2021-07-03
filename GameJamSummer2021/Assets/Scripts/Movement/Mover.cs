@@ -12,14 +12,23 @@ namespace FreeEscape.Movement
         [SerializeField]private float accelAmount;
         [SerializeField] private float rotateAmount;
         private Rigidbody2D rb;
+        private AudioPlayerManager audioPlayerManager;
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
 
         public void Accelerate(bool accelBool)
         {
             this.accelBool = accelBool;
+            if (accelBool)
+            {
+                audioPlayerManager.StartForwardThrustAudio();
+            } else
+            {
+                audioPlayerManager.StopForwardThrustAudio();
+            }
         }
         public void Rotate(float _rotateDir)
         {

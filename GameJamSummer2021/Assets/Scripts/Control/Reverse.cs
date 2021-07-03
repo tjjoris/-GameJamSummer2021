@@ -22,7 +22,7 @@ namespace FreeEscape.Control
             if (maxSpeed.GetSpeed() > 0)
             {
                 Vector2 rbVelocity = maxSpeed.GetRBVelocity();
-                Debug.Log("rb velocity " + rbVelocity.ToString());
+                //Debug.Log("rb velocity " + rbVelocity.ToString());
                 float angleOfTravel = Mathf.Atan2(rbVelocity.y, rbVelocity.x);
                 angleOfTravel = Mathf.Rad2Deg * angleOfTravel;
 

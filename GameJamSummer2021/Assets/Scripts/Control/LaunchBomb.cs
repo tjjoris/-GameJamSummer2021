@@ -77,7 +77,7 @@ namespace FreeEscape.Control
             cooldown = bomb.cooldown;
             heldBombSpriteRenderer.sprite = bomb.spriteRenderer.sprite;
             heldBombSpriteRenderer.color = bomb.spriteRenderer.color;
-            playerAudioSource.clip = bomb.launchAudioClip;
+            //playerAudioSource.clip = bomb.launchAudioClip;
         }
     }
 }
