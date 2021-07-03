@@ -33,7 +33,7 @@ namespace FreeEscape
         private Coroutine forwardThrustCR;
         private Coroutine rotarteThrustCR;
         private bool forwardThrustPlaying;
-        private bool rotateThrustBool;
+        private bool rotateAudioPlaying;
         private GameObject forwardThrustAudio;
         private AudioSource rotateThrustAudio;
 
@@ -77,7 +77,7 @@ namespace FreeEscape
             {
                 forwardThrustPlaying = true;
                 thruster1.Play();
-                Debug.Log("play forward thruster start");
+                //Debug.Log("play forward thruster start");
             }
         }
         public void StopForwardThrustAudio()
@@ -86,7 +86,25 @@ namespace FreeEscape
             {
                 forwardThrustPlaying = false;
                 thruster1.Stop();
-                Debug.Log("playe forward thruster stop");
+                //Debug.Log("playe forward thruster stop");
+            }
+        }
+        public void StartRotateAudio()
+        {
+            if (!rotateAudioPlaying)
+            {
+                rotateAudioPlaying = true;
+                thruster2.Play();
+                Debug.Log("begin playing rotate");
+            }
+        }
+        public void StopRotateAudio()
+        {
+            if (rotateAudioPlaying)
+            {
+                rotateAudioPlaying = false;
+                thruster2.Stop();
+                Debug.Log("stop playing rotate");
             }
         }
         //public void StartForwardThrustAudio()
