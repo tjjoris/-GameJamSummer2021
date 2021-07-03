@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 3012461782019748095}
   - component: {fileID: 6769262863544360612}
   - component: {fileID: -7055839285937281398}
+  - component: {fileID: 3529654388587517248}
   m_Layer: 6
   m_Name: Debris_ResistantLong01
   m_TagString: Untagged
@@ -241,5 +242,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d92d20777a79141f480517708e349541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3529654388587517248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5222399217945210516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20be9fd724069754fbb7ae0b517c6187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

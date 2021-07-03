@@ -20,9 +20,7 @@ namespace FreeEscape.Bomb
         [SerializeField] private AudioClip _launchAudioClip;
         public AudioClip launchAudioClip { get{ return _launchAudioClip; } set{ _launchAudioClip = value; } }
         
-        
-        
-        
+                
         IEnumerator Start()
         {
             if (timeTillExplode > 0)
