@@ -18,9 +18,9 @@ namespace FreeEscape
         //[SerializeField] AudioSource thruster2;
         //[SerializeField] AudioSource winTheme;
         [SerializeField] AudioClip bombFireAC;
-        [SerializeField] AudioClip bonkAC;
-        [SerializeField] AudioClip bonk2AC;
-        [SerializeField] AudioClip bonk3AC;
+        [SerializeField] AudioClip[] bonkArrayAC;
+        //[SerializeField] AudioClip bonk2AC;
+        //[SerializeField] AudioClip bonk3AC;
         [SerializeField] AudioClip explosion2AC;
         [SerializeField] AudioClip explosion2aAC;
         [SerializeField] AudioClip explosion3AC;
@@ -28,11 +28,23 @@ namespace FreeEscape
         [SerializeField] AudioClip thruster1AC;
         [SerializeField] AudioClip thruster2AC;
         [SerializeField] AudioClip winThemeAC;
-        
+        private AudioSource audioSource;
+
+        private void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         public void PlayBombFire()
         {
-            
+            AudioSource.PlayClipAtPoint(bombFireAC, Camera.main.transform.position);
+        }
+        public void PlayBonkAC(int intensity)
+        {
+            {
+                AudioSource.PlayClipAtPoint(bonkArrayAC[intensity], Camera.main.transform.position);
+                Debug.Log("playing bonk");
+            }
         }
     }
 }

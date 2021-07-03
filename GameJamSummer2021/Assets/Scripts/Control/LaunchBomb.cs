@@ -13,6 +13,7 @@ namespace FreeEscape.Control
         private Rigidbody2D rb;
         private float launchVelocity;
         private AudioSource playerAudioSource;
+        private AudioPlayerManager audioPlayerManger;
         private float cooldown;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
@@ -21,6 +22,7 @@ namespace FreeEscape.Control
             rb = GetComponent<Rigidbody2D>();
             playerAudioSource = this.GetComponent<AudioSource>();
             heldBombSpriteRenderer = bombLauncher.GetComponent<SpriteRenderer>();
+            audioPlayerManger = GetComponent<AudioPlayerManager>();
         }
 
         private void Update()
@@ -49,7 +51,8 @@ namespace FreeEscape.Control
             Vector2 reverseV2 = new Vector2(0, launchVelocity);
             bomb.GetComponent<Rigidbody2D>().AddRelativeForce(reverseV2);
             bomb.GetComponent<Rigidbody2D>().velocity = shipVelocity;
-            playerAudioSource.Play();
+            //playerAudioSource.Play();
+            audioPlayerManger.PlayBombFire();
 
         }
 

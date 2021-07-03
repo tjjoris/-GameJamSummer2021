@@ -20,7 +20,7 @@ namespace FreeEscape.Movement
             speed = rbVelocity.magnitude;
             radiansOfVelocity = Mathf.Atan2(rbVelocity.y, rbVelocity.x);
             //angleOfVelocity = angleOfVelocity * Mathf.Rad2Deg;
-            if (speed > maxSpeed)
+            if (speed >= maxSpeed)
             {
                 float xSpeed = Mathf.Cos(radiansOfVelocity) * maxSpeed;
                 float ySpeed = Mathf.Sin(radiansOfVelocity) * maxSpeed;
