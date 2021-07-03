@@ -34,6 +34,7 @@ namespace FreeEscape.Movement
         {
             gameObject.transform.Rotate(0, 0, rotateAmount * _rotateDir * Time.deltaTime);
             UpdateAnimatorRotation(_rotateDir);
+            Debug.Log("rotete dir " + _rotateDir.ToString());
             if (_rotateDir != 0)
             {
                 audioPlayerManager.StartRotateAudio();
