@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using FreeEscape.UI;
 
 namespace FreeEscape.Core
 {
@@ -12,7 +13,7 @@ namespace FreeEscape.Core
         [SerializeField] private float levelTotalTime;
         private float currentTimeRemaining;
         [SerializeField] private DebrisTracker debrisTracker;
-        [SerializeField] private GameObject scoreScreenCanvas;
+        [SerializeField] private GameplayMenu gameplayMenu;
         private bool timerActive = false;
         void Start()
         {
@@ -31,6 +32,11 @@ namespace FreeEscape.Core
                 TimeSpan ts = TimeSpan.FromSeconds(currentTimeRemaining);
                 String result = ts.ToString("m\\:ss\\.fff");
                 timeRemainingText.text = "Fleet Arrival In: " + result;
+
+                if (currentTimeRemaining <= 0)
+                {
+                    PlayerRanOutOfTime();
+                }
             }
         }
 
@@ -40,8 +46,13 @@ namespace FreeEscape.Core
             timerActive = false;
 
             Debug.Log("game end");
-            scoreScreenCanvas.SetActive(true);
-            Time.timeScale = 0f;
+            gameplayMenu.ClearAllDebrisScoreScreen();
+        }
+
+        private void PlayerRanOutOfTime()
+        {
+            timerActive = false;
+            gameplayMenu.OutOfTimeScoreScreen();
         }
     }
 }
