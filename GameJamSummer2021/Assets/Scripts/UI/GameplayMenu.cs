@@ -19,27 +19,22 @@ namespace FreeEscape.UI
             {
                 if (GameIsPaused)
                 {
-                    Resume();
+                    ClosePauseMenu();
                 } else
                 {
-                    Pause();
+                    OpenPauseMenu();
                 }
             }    
         }
     
-        private void Resume()
+        public void ClosePauseMenu()
         {
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GameIsPaused = false;
         }
 
-        public void ResumeButton()
-        {
-            Resume();
-        }
-
-        private void Pause()
+        public void OpenPauseMenu()
         {
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
