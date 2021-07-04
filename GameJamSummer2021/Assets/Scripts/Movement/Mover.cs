@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Display;
+using FreeEscape.Audio;
 
 namespace FreeEscape.Movement
 {
@@ -12,14 +13,24 @@ namespace FreeEscape.Movement
         [SerializeField]private float accelAmount;
         [SerializeField] private float rotateAmount;
         private Rigidbody2D rb;
+        private AudioPlayerManager audioPlayerManager;
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
 
         public void Accelerate(bool accelBool)
         {
             this.accelBool = accelBool;
+            if (accelBool)
+            {
+                audioPlayerManager.StartMainThrustersAudio();
+            }
+            else
+            {
+                audioPlayerManager.StopMainThrustersAudio();
+            }
         }
         public void Rotate(float _rotateDir)
         {
@@ -32,14 +43,17 @@ namespace FreeEscape.Movement
             {
                 playerAnimator.InputLeft(false);
                 playerAnimator.InputRight(false);
+                audioPlayerManager.StopRotatingThrustersAudio();
             }
             else if (_rotateDir > 0)
             {
                 playerAnimator.InputLeft(true);
+                audioPlayerManager.StartRotatingThrustersAudio();
             }
             else if (_rotateDir < 0)
             {
                 playerAnimator.InputRight(true);
+                audioPlayerManager.StartRotatingThrustersAudio();
             }
         }
 

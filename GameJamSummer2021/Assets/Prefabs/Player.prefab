@@ -703,6 +703,8 @@ GameObject:
   - component: {fileID: 505611536}
   - component: {fileID: 8548987773321803180}
   - component: {fileID: 2103591954373780629}
+  - component: {fileID: 3152391913174373609}
+  - component: {fileID: 3869608931693625521}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -869,11 +871,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1db7c1ca564a87445ada186aa1b20a7a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dfe0267de81751b4f860ea3bb8a98b44, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -955,3 +957,124 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &3152391913174373609
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889530787533061635}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e24cd0dd801ca394083747e689c2982a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3869608931693625521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889530787533061635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d277e1625db4420fac69b814f0172c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombFire: {fileID: 8300000, guid: 1db7c1ca564a87445ada186aa1b20a7a, type: 3}
+  explosions:
+  - {fileID: 8300000, guid: c0f229d78a0f610429f34e113ee528e9, type: 3}
+  - {fileID: 8300000, guid: 469af90cdb0fa884b9cc2d1d291d05f2, type: 3}
+  - {fileID: 8300000, guid: 5a67c418a6518ec41af974eec7f73d9a, type: 3}
+  - {fileID: 8300000, guid: a8a3f74d5902f7d47b43c8e0ed37ad9d, type: 3}
+  bonk:
+  - {fileID: 8300000, guid: c34af6ca259609d4a81586f1d6efc919, type: 3}
+  - {fileID: 8300000, guid: d9c49b72e29bbde4eb72123d1ce3e6ac, type: 3}
+  - {fileID: 8300000, guid: acea9976e89f1974ba0c97ddfb149ef7, type: 3}
+  winTheme: {fileID: 8300000, guid: 70ccca8b10b483b47ac889b07ad3c6e4, type: 3}
+  thruster1: {fileID: 2103591954373780629}
+  thruster2: {fileID: 3152391913174373609}

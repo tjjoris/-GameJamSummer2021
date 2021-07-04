@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Bomb;
+using FreeEscape.Audio;
 
 namespace FreeEscape.Control
 {
@@ -11,16 +12,16 @@ namespace FreeEscape.Control
         private GameObject equippedBomb;
         private SpriteRenderer heldBombSpriteRenderer;
         private Rigidbody2D rb;
+        private AudioPlayerManager audioPlayerManager;
         private float launchVelocity;
-        private AudioSource playerAudioSource;
         private float cooldown;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            playerAudioSource = this.GetComponent<AudioSource>();
             heldBombSpriteRenderer = bombLauncher.GetComponent<SpriteRenderer>();
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
 
         private void Update()
@@ -49,7 +50,7 @@ namespace FreeEscape.Control
             Vector2 reverseV2 = new Vector2(0, launchVelocity);
             bomb.GetComponent<Rigidbody2D>().AddRelativeForce(reverseV2);
             bomb.GetComponent<Rigidbody2D>().velocity = shipVelocity;
-            playerAudioSource.Play();
+            audioPlayerManager.PlayFireBomb();
 
         }
 
@@ -74,7 +75,6 @@ namespace FreeEscape.Control
             cooldown = bomb.cooldown;
             heldBombSpriteRenderer.sprite = bomb.spriteRenderer.sprite;
             heldBombSpriteRenderer.color = bomb.spriteRenderer.color;
-            playerAudioSource.clip = bomb.launchAudioClip;
         }
     }
 }
