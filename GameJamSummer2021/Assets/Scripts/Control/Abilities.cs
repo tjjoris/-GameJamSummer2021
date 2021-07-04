@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace FreeEscape.Control
 {
-    public class AbilityManager : MonoBehaviour
+    public class Abilities : MonoBehaviour
     {
         [SerializeField] private GameObject fuseBomb;
         [SerializeField] private GameObject stickyBomb;
         private LaunchBomb launchBomb;
         
-        void Awake()
+        void Start()
         {
             launchBomb = this.GetComponent<LaunchBomb>();
             launchBomb.EquipBomb(fuseBomb);
