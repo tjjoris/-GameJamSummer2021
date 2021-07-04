@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace FreeEscape.UI
 {
@@ -33,6 +34,11 @@ namespace FreeEscape.UI
             GameIsPaused = false;
         }
 
+        public void ResumeButton()
+        {
+            Resume();
+        }
+
         private void Pause()
         {
             pauseMenuUI.SetActive(true);
@@ -52,6 +58,13 @@ namespace FreeEscape.UI
             outOfTimeScoreUI.SetActive(true);
             Time.timeScale = 0f;
             GameIsPaused = true;
+        }
+
+        public void ExitToMainMenu()
+        {
+            Time.timeScale = 1f;
+            GameIsPaused = false;
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
