@@ -22,9 +22,7 @@ namespace FreeEscape.Bomb
         [SerializeField] private int explosionType;
         private AudioPlayerManager audioPlayerManager;
         
-        
-        
-        
+                
         IEnumerator Start()
         {
             audioPlayerManager = FindObjectOfType<AudioPlayerManager>();

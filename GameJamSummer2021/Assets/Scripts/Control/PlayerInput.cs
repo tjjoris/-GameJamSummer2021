@@ -10,7 +10,7 @@ namespace FreeEscape.Control
     {
         private Mover mover;
         private LaunchBomb launchBomb;
-        private Abilities abilities;
+        private AbilityManager abilityManager;
         private Reverse reverse;
         private bool rotateRight;
         private bool rotateLeft;
@@ -19,7 +19,7 @@ namespace FreeEscape.Control
         {
             mover = GetComponent<Mover>();
             launchBomb = GetComponent<LaunchBomb>();
-            abilities = GetComponent<Abilities>();
+            abilityManager = GetComponent<AbilityManager>();
             reverse = GetComponent<Reverse>();
         }
 
@@ -122,7 +122,7 @@ namespace FreeEscape.Control
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                abilities.EquipPrevAbility();
+                abilityManager.EquipPrevAbility();
             }
         }
 
@@ -130,7 +130,7 @@ namespace FreeEscape.Control
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                abilities.EquipNextAbility();
+                abilityManager.EquipNextAbility();
             }
         }
     }

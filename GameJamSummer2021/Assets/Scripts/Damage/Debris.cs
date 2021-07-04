@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Display;
+using FreeEscape.Core;
 
 namespace FreeEscape.Damage
 {
@@ -28,7 +29,8 @@ namespace FreeEscape.Damage
                 {
                     shader.ApplyShaderEffect(timeToVaporize);
                 }
-                
+
+                debrisEvent.AlertEventWatchers();    
                 Destroy(gameObject, timeToVaporize);
                 //audioPlayerManger.PlayExplosion(1);
             }
