@@ -10,7 +10,8 @@ namespace FreeEscape.Control
         [SerializeField] private GameObject stickyBomb;
         private LaunchBomb launchBomb;
         
-        void Start()
+        
+        private void Start()
         {
             launchBomb = this.GetComponent<LaunchBomb>();
             launchBomb.EquipBomb(fuseBomb);

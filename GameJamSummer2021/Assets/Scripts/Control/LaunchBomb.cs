@@ -17,7 +17,7 @@ namespace FreeEscape.Control
         private float cooldown;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
-        private void Start()
+        private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             playerAudioSource = this.GetComponent<AudioSource>();
