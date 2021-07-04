@@ -9,6 +9,7 @@ namespace FreeEscape.UI
     {
         [SerializeField] private GameObject mainMenuPage;
         [SerializeField] private GameObject optionsPage;
+        [SerializeField] private GameObject aboutPage;
         public void PlayGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -18,12 +19,21 @@ namespace FreeEscape.UI
         {
             mainMenuPage.SetActive(false);
             optionsPage.SetActive(true);
+            aboutPage.SetActive(false);
         }
 
         public void TravelToMainMenuPage()
         {
             mainMenuPage.SetActive(true);
             optionsPage.SetActive(false);
+            aboutPage.SetActive(false);
+        }
+
+        public void TravelToAboutPage()
+        {
+            mainMenuPage.SetActive(false);
+            optionsPage.SetActive(false);
+            aboutPage.SetActive(true);
         }
     }
 }
