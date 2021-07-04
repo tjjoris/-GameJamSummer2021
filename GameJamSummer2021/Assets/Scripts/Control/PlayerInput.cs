@@ -14,6 +14,7 @@ namespace FreeEscape.Control
         private Reverse reverse;
         private bool rotateRight;
         private bool rotateLeft;
+        private bool reverseBool;
 
         void Start()
         {
@@ -26,13 +27,15 @@ namespace FreeEscape.Control
 
         void Update()
         {
-            bool reverseBool = ReverseKey();
+            reverseBool = ReverseKey();
             bool forwardBool = false;
             if (!reverseBool)
             {
                 forwardBool = ForwardKey();
                 LeftKey();
                 RightKey();
+                SendRotation();
+
             }
             if (!reverseBool && !forwardBool)
             {
@@ -41,7 +44,7 @@ namespace FreeEscape.Control
 
             
             SpaceKey();
-            SendRotation();
+
             EquipPrevAbility();
             EquipNextAbility();
         }
