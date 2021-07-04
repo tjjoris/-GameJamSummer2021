@@ -53,11 +53,15 @@ namespace FreeEscape.Control
             bool isRotated = CheckIfRotated(angleOfTravel, angleDiff);
             if (isRotated)
             {
+
                 ThrustInReverse();
+                mover.Rotate(0);
             }
             else
             {
                 mover.Accelerate(false);
+                mover.Rotate(0);
+
             }
         }
 
