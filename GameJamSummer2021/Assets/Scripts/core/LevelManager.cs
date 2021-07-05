@@ -54,5 +54,10 @@ namespace FreeEscape.Core
             timerActive = false;
             gameplayMenu.OutOfTimeScoreScreen();
         }
+
+        public void PlayerDestroyed()
+        {
+            gameplayMenu.PlayerDestroyedScoreScreen();
+        }
     }
 }
