@@ -21,7 +21,6 @@ namespace FreeEscape.Core
             debrisTracker.AllDebrisCleared += PlayerClearedAllDebris;
             currentTimeRemaining = levelTotalTime;
             timerActive = true;
-            
         }
 
         private void Update()
@@ -45,7 +44,6 @@ namespace FreeEscape.Core
             debrisTracker.LevelCleared();
             timerActive = false;
 
-            Debug.Log("game end");
             gameplayMenu.ClearAllDebrisScoreScreen();
         }
 

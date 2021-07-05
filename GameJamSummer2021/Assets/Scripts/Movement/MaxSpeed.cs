@@ -33,7 +33,7 @@ namespace FreeEscape.Movement
         }
         public Vector2 GetRBVelocity()
         {
-            Debug.Log("rb velocity return " + rbVelocity.ToString());
+            //Debug.Log("rb velocity return " + rbVelocity.ToString()); //!console spam
             return rbVelocity;
         }
     }

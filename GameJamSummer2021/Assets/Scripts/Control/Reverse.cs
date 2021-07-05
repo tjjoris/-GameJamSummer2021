@@ -11,18 +11,19 @@ namespace FreeEscape.Control
         float minSpeedToStop = 1f;
         private Mover mover;
         [SerializeField] private MaxSpeed maxSpeed;
+
         private void Start()
         {
             mover = GetComponent<Mover>();
             maxSpeed = GetComponent<MaxSpeed>();
         }
-        public void ReverseFunction()
 
+        public void ReverseFunction()
         {
             if (maxSpeed.GetSpeed() > 0)
             {
                 Vector2 rbVelocity = maxSpeed.GetRBVelocity();
-                Debug.Log("rb velocity " + rbVelocity.ToString());
+                //Debug.Log("rb velocity " + rbVelocity.ToString()); //! this log spams the console.
                 float angleOfTravel = Mathf.Atan2(rbVelocity.y, rbVelocity.x);
                 angleOfTravel = Mathf.Rad2Deg * angleOfTravel;
 
@@ -40,7 +41,7 @@ namespace FreeEscape.Control
         {
             float angleDiff = angleOfTravel - shipAngle;
             angleDiff = MakeIn360(angleDiff);
-            Debug.Log("angle of travel " + angleOfTravel.ToString() + " ship angle " + shipAngle.ToString() + " angeldiff "+ angleDiff.ToString());
+            //Debug.Log("angle of travel " + angleOfTravel.ToString() + " ship angle " + shipAngle.ToString() + " angeldiff "+ angleDiff.ToString()); //! this log spams the console.
             //Debug.Log("angle diff " + angleDiff.ToString());
             if ((angleDiff > minAngleToNotRotate && angleDiff <= 180))
             {
@@ -53,7 +54,6 @@ namespace FreeEscape.Control
             bool isRotated = CheckIfRotated(angleOfTravel, angleDiff);
             if (isRotated)
             {
-
                 ThrustInReverse();
                 mover.Rotate(0);
             }
@@ -61,7 +61,6 @@ namespace FreeEscape.Control
             {
                 mover.Accelerate(false);
                 mover.Rotate(0);
-
             }
         }
 
@@ -69,11 +68,12 @@ namespace FreeEscape.Control
         {
             if (angleDiff < minAngleToNotRotate || angleDiff > 360 - minAngleToNotRotate)
             {//make ship face in reverse
-                transform.eulerAngles = new Vector3(0, 0, angleOfTravel);
+                transform.eulerAngles = new Vector3(0, 0, angleOfTravel); //!Functions with return values should not make changes to stuff.
                 return true;
             }
             return false;
         }
+        
         private void ThrustInReverse()
         {
             float speed = maxSpeed.GetSpeed();
@@ -84,10 +84,9 @@ namespace FreeEscape.Control
             else
             {
                 mover.Accelerate(false);
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero; //TODO: Not that it gets called too much, but could use a reference to an RB instead of making a GetComponent call each time?
             }
         }
-
 
         private static float MakeIn360(float _angle)
         {
