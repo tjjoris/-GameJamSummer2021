@@ -34,6 +34,7 @@ namespace FreeEscape.Movement
         }
         public void Rotate(float _rotateDir)
         {
+            //Debug.Log("rotate " + _rotateDir);
             gameObject.transform.Rotate(0, 0, rotateAmount * _rotateDir * Time.deltaTime);
             UpdateAnimatorRotation(_rotateDir);
         }
