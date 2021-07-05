@@ -13,6 +13,7 @@ namespace FreeEscape.Damage
         [SerializeField] private ProgressShader shader;
         [SerializeField] private float timeToVaporizeMin = 0.38f;
         [SerializeField] private float timeToVaporizeMax = 1.62f;
+        [SerializeField] private float debrisHP = 1;
         private AudioPlayerManager audioPlayerManager;
         private DebrisEvent debrisEvent;
 
@@ -26,15 +27,18 @@ namespace FreeEscape.Damage
         {
             if ((_explosion.BigExplosion && resistantDebris) || (!resistantDebris))
             {
-                float timeToVaporize = Random.Range(timeToVaporizeMin, timeToVaporizeMax);
-                
-                if (shader)
-                {
-                    shader.ApplyShaderEffect(timeToVaporize);
+                debrisHP -= _explosion.Damage;
+                if (debrisHP <= 0)
+                {//destroy the debris because it's dead.
+                    float timeToVaporize = Random.Range(timeToVaporizeMin, timeToVaporizeMax);
+
+                    if (shader)
+                    {
+                        shader.ApplyShaderEffect(timeToVaporize);
+                    }
+                    debrisEvent.AlertEventWatchers();
+                    Destroy(gameObject, timeToVaporize);
                 }
-                //audioPlayerManager.PlayExplosion();
-                debrisEvent.AlertEventWatchers();    
-                Destroy(gameObject, timeToVaporize);
             }
         }
     }
