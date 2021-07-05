@@ -40,7 +40,7 @@ namespace FreeEscape.Control
         {
             float angleDiff = angleOfTravel - shipAngle;
             angleDiff = MakeIn360(angleDiff);
-            Debug.Log("angle of travel " + angleOfTravel.ToString() + " ship angle " + shipAngle.ToString() + " angeldiff "+ angleDiff.ToString());
+            //Debug.Log("angle of travel " + angleOfTravel.ToString() + " ship angle " + shipAngle.ToString() + " angeldiff "+ angleDiff.ToString());
             //Debug.Log("angle diff " + angleDiff.ToString());
             if ((angleDiff > minAngleToNotRotate && angleDiff <= 180))
             {

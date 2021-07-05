@@ -17,7 +17,7 @@ namespace FreeEscape.UI
         {
             if (hPSlider == null) return;
             hPSlider.value = hPFraction;
-            Debug.Log(hPFraction.ToString());
+            //Debug.Log(hPFraction.ToString());
         }
     }
 }
