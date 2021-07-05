@@ -31,9 +31,13 @@ namespace FreeEscape.Movement
         {
             return speed;
         }
+        public float GetMaxSpeed()
+        {
+            return maxSpeed;
+        }
         public Vector2 GetRBVelocity()
         {
-            //Debug.Log("rb velocity return " + rbVelocity.ToString()); //!console spam
+            //Debug.Log("rb velocity return " + rbVelocity.ToString());
             return rbVelocity;
         }
     }

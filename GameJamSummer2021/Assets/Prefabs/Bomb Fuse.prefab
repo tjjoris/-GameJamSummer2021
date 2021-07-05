@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTillExplode: 1.9
   bombExplosionPrefab: {fileID: 1271698509434383672, guid: a087afe7ce91d4418b096edea80be608, type: 3}
+  extraFuseExplosionPrefab: {fileID: 1271698509434383672, guid: 109a6456f0f3b4fbca628df6bb6c8446, type: 3}
   _launchVelocity: -100
   _cooldown: 0.38
   _spriteRenderer: {fileID: 2280275932234270712}

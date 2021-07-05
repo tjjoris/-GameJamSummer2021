@@ -23,7 +23,7 @@ namespace FreeEscape.Control
             if (maxSpeed.GetSpeed() > 0)
             {
                 Vector2 rbVelocity = maxSpeed.GetRBVelocity();
-                //Debug.Log("rb velocity " + rbVelocity.ToString()); //! this log spams the console.
+                //Debug.Log("rb velocity " + rbVelocity.ToString());
                 float angleOfTravel = Mathf.Atan2(rbVelocity.y, rbVelocity.x);
                 angleOfTravel = Mathf.Rad2Deg * angleOfTravel;
 
@@ -41,7 +41,7 @@ namespace FreeEscape.Control
         {
             float angleDiff = angleOfTravel - shipAngle;
             angleDiff = MakeIn360(angleDiff);
-            //Debug.Log("angle of travel " + angleOfTravel.ToString() + " ship angle " + shipAngle.ToString() + " angeldiff "+ angleDiff.ToString()); //! this log spams the console.
+            //Debug.Log("angle of travel " + angleOfTravel.ToString() + " ship angle " + shipAngle.ToString() + " angeldiff "+ angleDiff.ToString());
             //Debug.Log("angle diff " + angleDiff.ToString());
             if ((angleDiff > minAngleToNotRotate && angleDiff <= 180))
             {
@@ -51,8 +51,7 @@ namespace FreeEscape.Control
             {
                 mover.Rotate(-1);
             }
-            bool isRotated = CheckIfRotated(angleOfTravel, angleDiff);
-            if (isRotated)
+            if (CheckIfRotated(angleOfTravel, angleDiff))
             {
                 ThrustInReverse();
                 mover.Rotate(0);
@@ -60,7 +59,6 @@ namespace FreeEscape.Control
             else
             {
                 mover.Accelerate(false);
-                mover.Rotate(0);
             }
         }
 

@@ -22,6 +22,7 @@ namespace FreeEscape.Damage
 
         [SerializeField] private float timeToVaporizeMin = 0.38f;
         [SerializeField] private float timeToVaporizeMax = 1.62f;
+        [SerializeField] private float debrisHP = 1;
         private AudioPlayerManager audioPlayerManager;
         private DebrisEvent debrisEvent;
 

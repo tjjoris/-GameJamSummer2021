@@ -17,10 +17,10 @@ namespace FreeEscape.Audio
     public void PlayFireBomb(){
         AudioSource.PlayClipAtPoint(bombFire, Camera.main.transform.position);
         }
-        public void PlayBonk()
+        public void PlayBonk(float intensity)
         {
             int randIndex = Random.Range(0,3);
-            AudioSource.PlayClipAtPoint(bonk[randIndex], Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(bonk[randIndex], Camera.main.transform.position, intensity);
         }
         public void PlayExplosion()
         {
