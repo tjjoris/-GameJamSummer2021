@@ -13,24 +13,12 @@ namespace FreeEscape
         [SerializeField] private float _damage;
         public float Damage { get{ return _damage; } set{ _damage = value; } }
         private AudioPlayerManager audioPlayerManager;
-
-        
         
         void Start()
         {
             audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
             audioPlayerManager.PlayExplosion();
             Destroy(gameObject, 0.2f);
-            }
-  
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            I_ExplosionReaction objectHit = collision.gameObject.GetComponent<I_ExplosionReaction>();
-            if (objectHit != null)
-            {
-                objectHit.HitByExplosion(this);
-            }
         }
-
     }
 }

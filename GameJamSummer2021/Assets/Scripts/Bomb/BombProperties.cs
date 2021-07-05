@@ -5,7 +5,7 @@ using FreeEscape.Damage;
 
 namespace FreeEscape.Bomb
 {
-    public class BombProperties : MonoBehaviour, I_ExplosionReaction
+    public class BombProperties : MonoBehaviour, I_ExplosionDamageReaction, I_TriggerExplosion
     {
         [SerializeField] float timeTillExplode = 3.7f;
         [SerializeField] GameObject bombExplosionPrefab;
@@ -36,6 +36,11 @@ namespace FreeEscape.Bomb
         }
 
         public void HitByExplosion(BombExplosion _explosion)
+        {
+            return;
+        }
+
+        public void TriggerExplosionRange()
         {
             Detonate();
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FreeEscape.Damage
 {
-    public interface I_ExplosionReaction
+    public interface I_ExplosionDamageReaction
     {
         void HitByExplosion(BombExplosion _explosion);
     }

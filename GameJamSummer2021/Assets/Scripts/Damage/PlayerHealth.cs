@@ -6,7 +6,7 @@ using FreeEscape.Core;
 
 namespace FreeEscape.Damage
 {
-    public class PlayerHealth : MonoBehaviour, I_ExplosionReaction
+    public class PlayerHealth : MonoBehaviour, I_ExplosionDamageReaction
     {
         private HPBar hPBar;
         private float hPCurrent = 100f;
@@ -41,6 +41,10 @@ namespace FreeEscape.Damage
         public void HitByExplosion(BombExplosion _explosion)
         {
             TakeDamage(_explosion.Damage);
+        }
+        public void TriggerExplosionRange()
+        {
+            //TODO: explosion was close. Visual/audio effect?
         }
     }
 }

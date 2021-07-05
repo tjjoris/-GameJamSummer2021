@@ -8,11 +8,11 @@ using FreeEscape.Audio;
 namespace FreeEscape.Damage
 {
     [RequireComponent(typeof(DebrisEvent))]
-    public class Debris : MonoBehaviour, I_ExplosionReaction
+    public class Debris : MonoBehaviour, I_ExplosionDamageReaction
     {
         [SerializeField] private float _hitPoints;
         public float HitPoints { get{ return _hitPoints; } }
-        private float _currentHitPoints;
+        [SerializeField] private float _currentHitPoints;
         
         [SerializeField] private bool resistantDebris;
         [SerializeField] private ProgressShader innerShader;
@@ -38,6 +38,11 @@ namespace FreeEscape.Damage
             {
                 TakeDamage(_explosion);
             }
+        }
+
+        public void TriggerExplosionRange()
+        {
+            //TODO: Dust particle effect.
         }
 
         private void TakeDamage(BombExplosion _explosion)
