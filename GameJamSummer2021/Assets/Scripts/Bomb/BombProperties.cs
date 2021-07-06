@@ -9,7 +9,6 @@ namespace FreeEscape.Bomb
     {
         [SerializeField] float timeTillExplode = 3.7f;
         [SerializeField] GameObject bombExplosionPrefab;
-        [SerializeField] GameObject extraFuseExplosionPrefab;
         [SerializeField] private float _launchVelocity;
         public float launchVelocity { get{ return _launchVelocity; } set{ _launchVelocity = value; } }
         [SerializeField] private float _cooldown;
@@ -27,7 +26,6 @@ namespace FreeEscape.Bomb
             if (timeTillExplode > 0)
             {
                 yield return new WaitForSecondsRealtime(timeTillExplode);
-                //ExtraFuseExplosion();
                 Detonate();
             }
         }
@@ -45,10 +43,6 @@ namespace FreeEscape.Bomb
         public void TriggerExplosionRange()
         {
             Detonate();
-        }
-        private void ExtraFuseExplosion()
-        {
-            Instantiate(extraFuseExplosionPrefab, gameObject.transform.position, Quaternion.identity);
         }
     }
 }
