@@ -27,7 +27,7 @@ namespace FreeEscape.Bomb
             if (timeTillExplode > 0)
             {
                 yield return new WaitForSecondsRealtime(timeTillExplode);
-                ExtraFuseExplosion();
+                //ExtraFuseExplosion();
                 Detonate();
             }
         }

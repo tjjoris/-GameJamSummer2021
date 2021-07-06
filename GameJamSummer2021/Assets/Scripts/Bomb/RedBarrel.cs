@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FreeEscape.Bomb;
+using FreeEscape.Damage;
 
-namespace FreeEscape.Damage
+namespace FreeEscape.Bomb
 {
     public class RedBarrel : MonoBehaviour, I_ExplosionDamageReaction, I_TriggerExplosion
     {

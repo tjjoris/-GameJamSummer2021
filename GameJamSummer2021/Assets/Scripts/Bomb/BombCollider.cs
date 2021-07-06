@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Damage;
 
-namespace FreeEscape.Collision
+namespace FreeEscape.Bomb
 {
     public class BombCollider : MonoBehaviour
     {

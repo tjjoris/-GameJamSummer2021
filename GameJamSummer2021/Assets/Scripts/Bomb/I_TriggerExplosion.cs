@@ -6,6 +6,6 @@ namespace FreeEscape.Bomb
 {
     public interface I_TriggerExplosion
     {
-                void TriggerExplosionRange();
+        void TriggerExplosionRange();
     }
 }

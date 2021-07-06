@@ -14,6 +14,5 @@ namespace FreeEscape.Bomb
                 objectHit.TriggerExplosionRange();
             }
         }
-
     }
 }
