@@ -11,13 +11,14 @@ namespace FreeEscape.Control
         float minSpeedToStop = 1f;
         private Mover mover;
         [SerializeField] private MaxSpeed maxSpeed;
+
         private void Start()
         {
             mover = GetComponent<Mover>();
             maxSpeed = GetComponent<MaxSpeed>();
         }
-        public void ReverseFunction()
 
+        public void ReverseFunction()
         {
             if (maxSpeed.GetSpeed() > 0)
             {
@@ -52,14 +53,12 @@ namespace FreeEscape.Control
             }
             if (CheckIfRotated(angleOfTravel, angleDiff))
             {
-
                 ThrustInReverse();
                 mover.Rotate(0);
             }
             else
             {
                 mover.Accelerate(false);
-
             }
         }
 
@@ -67,11 +66,12 @@ namespace FreeEscape.Control
         {
             if (angleDiff < minAngleToNotRotate || angleDiff > 360 - minAngleToNotRotate)
             {//make ship face in reverse
-                transform.eulerAngles = new Vector3(0, 0, angleOfTravel);
+                transform.eulerAngles = new Vector3(0, 0, angleOfTravel); //!Functions with return values should not make changes to stuff.
                 return true;
             }
             return false;
         }
+        
         private void ThrustInReverse()
         {
             float speed = maxSpeed.GetSpeed();
@@ -82,10 +82,9 @@ namespace FreeEscape.Control
             else
             {
                 mover.Accelerate(false);
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero; //TODO: Not that it gets called too much, but could use a reference to an RB instead of making a GetComponent call each time?
             }
         }
-
 
         private static float MakeIn360(float _angle)
         {

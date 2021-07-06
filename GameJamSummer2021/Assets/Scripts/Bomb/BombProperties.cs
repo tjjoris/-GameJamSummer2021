@@ -5,11 +5,10 @@ using FreeEscape.Damage;
 
 namespace FreeEscape.Bomb
 {
-    public class BombProperties : MonoBehaviour, I_ExplosionReaction
+    public class BombProperties : MonoBehaviour, I_ExplosionDamageReaction, I_TriggerExplosion
     {
         [SerializeField] float timeTillExplode = 3.7f;
         [SerializeField] GameObject bombExplosionPrefab;
-        [SerializeField] GameObject extraFuseExplosionPrefab;
         [SerializeField] private float _launchVelocity;
         public float launchVelocity { get{ return _launchVelocity; } set{ _launchVelocity = value; } }
         [SerializeField] private float _cooldown;
@@ -27,7 +26,6 @@ namespace FreeEscape.Bomb
             if (timeTillExplode > 0)
             {
                 yield return new WaitForSecondsRealtime(timeTillExplode);
-                ExtraFuseExplosion();
                 Detonate();
             }
         }
@@ -39,11 +37,12 @@ namespace FreeEscape.Bomb
 
         public void HitByExplosion(BombExplosion _explosion)
         {
-            Detonate();
+            return;
         }
-        private void ExtraFuseExplosion()
+
+        public void TriggerExplosionRange()
         {
-            Instantiate(extraFuseExplosionPrefab, gameObject.transform.position, Quaternion.identity);
+            Detonate();
         }
     }
 }
