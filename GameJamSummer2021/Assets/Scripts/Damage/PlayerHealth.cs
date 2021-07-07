@@ -20,7 +20,6 @@ namespace FreeEscape.Damage
             hPBar.UpdateHPSlider(hPCurrent / hPMax);
             levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
             if (levelManager == null) {Debug.Log("Could not locate LevelManager.");}
-            //loseCanvas = FindObjectOfType<LoseCanvas>();
         }
         public void TakeDamage(float amount)
         {
@@ -32,8 +31,6 @@ namespace FreeEscape.Damage
         {
             if (hPCurrent <= 0f)
             {
-                // loseCanvas.ShowLoseCanvas();
-                // Time.timeScale = 0f;
                 levelManager.PlayerDestroyed();
             }
         }

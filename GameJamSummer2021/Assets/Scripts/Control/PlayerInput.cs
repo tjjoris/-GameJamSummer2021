@@ -15,6 +15,7 @@ namespace FreeEscape.Control
         private bool rotateRight;
         private bool rotateLeft;
         private bool reverseBool;
+        private bool playerLocked = true;
 
         void Start()
         {
@@ -27,6 +28,11 @@ namespace FreeEscape.Control
 
         void Update()
         {
+            if (playerLocked == true)
+            {
+                return;
+            }
+
             reverseBool = ReverseKey();
             bool forwardBool = false;
             if (!reverseBool)
@@ -135,6 +141,16 @@ namespace FreeEscape.Control
             {
                 abilityManager.EquipNextAbility();
             }
+        }
+
+        public void PlayerControlsLocked()
+        {
+            playerLocked = true;
+        }
+
+        public void PlayerControlsUnlocked()
+        {
+            playerLocked = false;
         }
     }
 }
