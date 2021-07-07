@@ -930,6 +930,9 @@ MonoBehaviour:
   levelTotalTime: 120
   debrisTracker: {fileID: 3123381098147578726}
   gameplayMenu: {fileID: 3123381097443572939}
+  mainCamera: {fileID: 0}
+  playerSpawnPoint: {fileID: 0}
+  playerPrefab: {fileID: 8889530787533061635, guid: 0f56a7e5deb5b4652b4b294b7e51a302, type: 3}
 --- !u!1 &3123381096905185983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,8 +1149,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_ScreenMatchMode: 2
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
