@@ -60,9 +60,9 @@ namespace FreeEscape.Core
             //Debris counter appears
             //Pans camera to where ship appears
             //Time Remaining text appears (paused)
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.5f);
             //Ship teleports in
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.5f);
             //teleportation animation plays
             //Timer Unpauses
             timerActive = true;
@@ -79,7 +79,7 @@ namespace FreeEscape.Core
         {
             debrisTracker.LevelCleared();
             timerActive = false;
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             gameplayMenu.ClearAllDebrisScoreScreen();
         }
 
@@ -89,7 +89,7 @@ namespace FreeEscape.Core
             timeRemainingText.text = "FLEET ARRIVAL IMMINENT!";
             playerInput.PlayerControlsLocked();
             //teleport out
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             gameplayMenu.OutOfTimeScoreScreen();
         }
 
@@ -100,7 +100,7 @@ namespace FreeEscape.Core
 
         IEnumerator PlayerDestroyedCoroutine()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             gameplayMenu.PlayerDestroyedScoreScreen();
         }
     }
