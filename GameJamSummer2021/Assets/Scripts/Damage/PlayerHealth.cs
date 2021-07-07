@@ -11,7 +11,6 @@ namespace FreeEscape.Damage
         private HPBar hPBar;
         private float hPCurrent = 100f;
         private float hPMax = 100f;
-        [SerializeField] private LoseCanvas loseCanvas;
         private LevelManager levelManager;
 
         void Start()

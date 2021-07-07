@@ -82,5 +82,15 @@ namespace FreeEscape.Core
         {
             debrisRemainingText.text = "All Debris Destroyed, Great Job!";
         }
+
+        public void HideText()
+        {
+            debrisRemainingText.gameObject.SetActive(false);
+        }
+
+        public void ShowText()
+        {
+            debrisRemainingText.gameObject.SetActive(true);
+        }
     }
 }
