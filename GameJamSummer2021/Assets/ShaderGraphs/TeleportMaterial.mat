@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f0c48aa8ce491ae47a073ac34c5bcb57, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5f42613b6658656498fc1aa82477b7e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -55,7 +55,7 @@ Material:
     m_Floats:
     - VaporizeAmount: 1.012398
     - _EnableExternalAlpha: 0
-    - _ProgressAmount: 0.01
+    - _ProgressAmount: 1.1
     - _VaporizeAmount: 0.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
