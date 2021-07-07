@@ -54,17 +54,32 @@ namespace FreeEscape.Core
 
         IEnumerator BeginLevelSequence()
         {
+            debrisTracker.HideText();
+            timeRemainingText.text = "";
+            player.SetActive(false);
             //level loads
             //camera zoomed out with view of debris
             //zooms in toward debris
+            
             //Debris counter appears
+            yield return new WaitForSeconds(0.5f);
+            debrisTracker.ShowText();
+            
             //Pans camera to where ship appears
+            
             //Time Remaining text appears (paused)
             yield return new WaitForSeconds(0.5f);
-            //Ship teleports in
+            TimeSpan ts = TimeSpan.FromSeconds(levelTotalTime);
+            String result = ts.ToString("m\\:ss\\.fff");
+            timeRemainingText.text = "Fleet Arrival In: " + result;
+
+            //Ship teleports in & teleportation animation plays
             yield return new WaitForSeconds(0.5f);
-            //teleportation animation plays
+            player.SetActive(true);
+
+
             //Timer Unpauses
+            yield return new WaitForSeconds(0.5f);
             timerActive = true;
             //player controls unlocked.
             playerInput.PlayerControlsUnlocked();
