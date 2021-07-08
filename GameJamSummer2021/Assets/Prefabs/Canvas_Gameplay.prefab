@@ -893,6 +893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3123381096874341226}
   - component: {fileID: 3123381096874341225}
+  - component: {fileID: 3103614967997640918}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -926,12 +927,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4521d9a9cb62846989d8b02b2984f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemainingText: {fileID: 3123381097058162169}
-  announcementText: {fileID: 1979427564970683941}
   levelTotalTime: 120
   debrisTracker: {fileID: 3123381098147578726}
+--- !u!114 &3103614967997640918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3123381096874341224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66971f0cae1245640b28d1ee9581d5a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   gameplayMenu: {fileID: 3123381097443572939}
-  mainCamera: {fileID: 0}
+  timeRemainingText: {fileID: 3123381097058162169}
+  announcementText: {fileID: 1979427564970683941}
 --- !u!1 &3123381096905185983
 GameObject:
   m_ObjectHideFlags: 0

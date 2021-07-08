@@ -9,135 +9,70 @@ using FreeEscape.Display;
 
 namespace FreeEscape.Core
 {
+    [RequireComponent(typeof(CutsceneManager))]
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI timeRemainingText;
-        [SerializeField] private TextMeshProUGUI announcementText;
         [SerializeField] private float levelTotalTime;
         private float currentTimeRemaining;
         [SerializeField] private DebrisTracker debrisTracker;
-        [SerializeField] private GameplayMenu gameplayMenu;
-        [SerializeField] private Camera mainCamera;
-        private GameObject player;
-        private PlayerInput playerInput;
-        private ProgressShader progressShader;
-
+        private CutsceneManager cutsceneManager;
         private bool timerActive = false;
-        void Start()
+
+        private void Awake()
         {
-            SetupPlayerObject();
+            cutsceneManager = this.GetComponent<CutsceneManager>();
+            cutsceneManager.SetupCutsceneManager(this, debrisTracker, levelTotalTime);
+        }
+        private void Start()
+        {
             debrisTracker.TallyDebris();
             debrisTracker.AllDebrisCleared += PlayerClearedAllDebris;
             currentTimeRemaining = levelTotalTime;
-            StartCoroutine(BeginLevelSequence());
+            StartCoroutine(cutsceneManager.BeginLevelSequence());
         }
 
         private void Update()
         {
+            TickLevelTimer();
+        }
+
+        private void TickLevelTimer()
+        {
             if (timerActive)
             {
                 currentTimeRemaining -= Time.deltaTime;
-                TimeSpan ts = TimeSpan.FromSeconds(currentTimeRemaining);
-                String result = ts.ToString("m\\:ss\\.fff");
-                timeRemainingText.text = "Fleet Arrival In: " + result;
+                cutsceneManager.UpdateTimerText(currentTimeRemaining);
+                
 
                 if (currentTimeRemaining <= 0)
                 {
-                    StartCoroutine(PlayerRanOutOfTime());
+                    timerActive = false;
+                    StartCoroutine(cutsceneManager.PlayerRanOutOfTime());
                 }
             }
         }
 
-        private void SetupPlayerObject()
+        public void LevelTimerActive(bool _state)
         {
-            player = GameObject.Find("Player");
-            playerInput = player.GetComponent<PlayerInput>();
-            if (playerInput == null)
-            {
-                Debug.Log("Could not find Player.");
-                return;
-            }
-            playerInput.PlayerControlsLocked();
-            progressShader = player.GetComponentInChildren<ProgressShader>();
-            if (progressShader == null)
-            {
-                Debug.Log("Could not find ProgressShader");
-                return;
-            }
-            progressShader.ApplyShaderEffect(0f, 0f);
-            player.SetActive(false);
+            TallyScore();
+            timerActive = _state;
         }
-
-        IEnumerator BeginLevelSequence()
-        {
-            debrisTracker.HideText();
-            timeRemainingText.text = "";
-            announcementText.text = "";
-            yield return new WaitForSeconds(0.5f);
-            
-            //level loads
-            //camera zoomed out with view of debris
-            //zooms in toward debris
-            
-            debrisTracker.ShowText();
-            yield return new WaitForSeconds(0.5f);
-            
-            //Pans camera to where ship appears
-            
-            TimeSpan ts = TimeSpan.FromSeconds(levelTotalTime);
-            String result = ts.ToString("m\\:ss\\.fff");
-            timeRemainingText.text = "Fleet Arrival In: " + result;
-            yield return new WaitForSeconds(0.5f);
-
-            player.SetActive(true);
-            progressShader.ApplyShaderEffect(0.62f, 1.1f);
-            yield return new WaitForSeconds(0.62f);
-
-            timerActive = true;
-            playerInput.PlayerControlsUnlocked();
-        }
-
 
         private void PlayerClearedAllDebris (object sender, EventArgs e)
         {
-            StartCoroutine(ClearAllDebrisCoroutine());            
-        }
-        IEnumerator ClearAllDebrisCoroutine()
-        {
-            debrisTracker.LevelCleared();
-            announcementText.text = "MISSION ACCOMPLISHED!";
-            timerActive = false;
-            yield return new WaitForSeconds(0.62f);
-            progressShader.ApplyShaderEffect(0.62f, 0f);
-            yield return new WaitForSeconds(1.38f);
-
-            gameplayMenu.ClearAllDebrisScoreScreen();
-        }
-
-        IEnumerator PlayerRanOutOfTime()
-        {
-            timerActive = false;
-            announcementText.text = "FLEET ARRIVAL IMMINENT!";
-            yield return new WaitForSeconds(0.62f);
-            
-            progressShader.ApplyShaderEffect(0.62f, 0f);
-            yield return new WaitForSeconds(1.38f);
-            
-
-            gameplayMenu.OutOfTimeScoreScreen();
+            TallyScore();
+            StartCoroutine(cutsceneManager.ClearAllDebrisCoroutine());            
         }
 
         public void PlayerDestroyed()
         {
-            StartCoroutine(PlayerDestroyedCoroutine());
+            TallyScore();
+            StartCoroutine(cutsceneManager.PlayerDestroyedCoroutine());
         }
 
-        IEnumerator PlayerDestroyedCoroutine()
+        private void TallyScore()
         {
-            announcementText.text = "CRITICAL DAMAGE: ABORTING MISSION";
-            progressShader.ApplyShaderEffect(0.62f, 0f);
-            yield return new WaitForSeconds(2.38f);
-            gameplayMenu.PlayerDestroyedScoreScreen();
+            //probably calls a scoreManager script to do it's thing. Likely pushes currentTimeRemaining to it.
         }
     }
 }
