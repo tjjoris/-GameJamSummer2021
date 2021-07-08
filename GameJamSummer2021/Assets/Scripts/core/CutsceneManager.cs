@@ -47,7 +47,7 @@ namespace FreeEscape.Core
                 Debug.Log("Could not find Player.");
                 return;
             }
-            playerInput.PlayerControlsLocked();
+            playerInput.PlayerControlsLocked(true);
             progressShader = player.GetComponentInChildren<ProgressShader>();
             if (progressShader == null)
             {
@@ -93,7 +93,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(0.62f);
 
             levelManager.LevelTimerActive(true);
-            playerInput.PlayerControlsUnlocked();
+            playerInput.PlayerControlsLocked(false);
             hpBar.SetActive(true);
         }
 
@@ -102,7 +102,9 @@ namespace FreeEscape.Core
             debrisTracker.LevelCleared();
             levelManager.LevelTimerActive(false);
             yield return new WaitForSeconds(0.62f);
+            
             progressShader.ApplyShaderEffect(0.62f, 0f);
+            playerInput.PlayerControlsLocked(true);
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.ClearAllDebrisScoreScreen();
@@ -115,6 +117,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(0.62f);
             
             progressShader.ApplyShaderEffect(0.62f, 0f);
+            playerInput.PlayerControlsLocked(true);
             yield return new WaitForSeconds(1.38f);
             
 
@@ -125,6 +128,7 @@ namespace FreeEscape.Core
         {
             announcementText.text = "CRITICAL DAMAGE: ABORTING MISSION";
             progressShader.ApplyShaderEffect(0.62f, 0f);
+            playerInput.PlayerControlsLocked(true);
             yield return new WaitForSeconds(2.38f);
             gameplayMenu.PlayerDestroyedScoreScreen();
         }
