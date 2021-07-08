@@ -14,17 +14,17 @@ namespace FreeEscape.Control
         private void Start()
         {
             launchBomb = this.GetComponent<LaunchBomb>();
-            launchBomb.EquipBomb(fuseBomb);
+            launchBomb.EquipBomb(fuseBomb, 0);
         }
 
         public void EquipPrevAbility()
         {
-            launchBomb.EquipBomb(fuseBomb);
+            launchBomb.EquipBomb(fuseBomb, 0);
         }
 
         public void EquipNextAbility()
         {
-            launchBomb.EquipBomb(stickyBomb);
+            launchBomb.EquipBomb(stickyBomb, 1);
         }
     }
 }

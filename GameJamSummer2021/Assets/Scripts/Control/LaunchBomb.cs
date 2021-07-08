@@ -17,6 +17,9 @@ namespace FreeEscape.Control
         private float cooldown;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
+        [Header("[0]sticky(infinate), [1]fuse, [2]proximity")]
+        [SerializeField] int[] bombAmmo = { 0, 5 };
+        private int bombTypeEquipped; //0 = fuse bomb, 1= sticky bomb, 2=proximity bomb.
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -37,7 +40,7 @@ namespace FreeEscape.Control
         }
         public void LaunchBombAction()
         {
-            if (!canLaunchBomb) { return; }
+            if ((!canLaunchBomb) || (!UseAmmo())) { return; }
 
             GenerateBomb();
             BeginCooldown();
@@ -67,8 +70,9 @@ namespace FreeEscape.Control
             heldBombSpriteRenderer.enabled = true;
         }
 
-        public void EquipBomb(GameObject _bombPrefab)
+        public void EquipBomb(GameObject _bombPrefab, int bombIndex)
         {
+            bombTypeEquipped = bombIndex;
             equippedBomb = _bombPrefab;
             BombProperties bomb = equippedBomb.GetComponent<BombProperties>();
             launchVelocity = bomb.launchVelocity;
@@ -76,5 +80,16 @@ namespace FreeEscape.Control
             heldBombSpriteRenderer.sprite = bomb.spriteRenderer.sprite;
             heldBombSpriteRenderer.color = bomb.spriteRenderer.color;
         }
+        private bool UseAmmo()
+        {
+            if ((bombTypeEquipped == 0) || (bombAmmo[bombTypeEquipped] > 0))
+            {
+                bombAmmo[bombTypeEquipped]--;
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }

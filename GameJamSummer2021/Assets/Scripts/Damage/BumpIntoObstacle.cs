@@ -13,16 +13,17 @@ namespace FreeEscape
         private AudioPlayerManager audioPlayerManager;
         private float collisionDamageMax = 10f; //this is not the max damage, it is lessedned by the ratioOfMinSpeedForNoDamage 
         private float ratioOfMinSpeedForNoDamage = 0.3f;
-        private void Start()
-        {
-            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
-            maxSpeed = FindObjectOfType<MaxSpeed>();
-        }
+        //private void Start()
+        //{
+        //    //audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
+        //    //maxSpeed = FindObjectOfType<MaxSpeed>();
+        //}
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.tag == "Player")
             {
                 PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+                maxSpeed = collision.gameObject.GetComponent<MaxSpeed>();
                 float maxSpeedFloat = maxSpeed.GetMaxSpeed();
                 float speedFloat = maxSpeed.GetSpeed();
                 float speedRatio = speedFloat / maxSpeedFloat;
@@ -31,8 +32,9 @@ namespace FreeEscape
                 {
                     speedRatio = 0f;
                 }
-                Debug.Log("collision damage " + speedRatio * collisionDamageMax);
+                //Debug.Log("collision damage " + speedRatio * collisionDamageMax);
                 playerHealth.TakeDamage(speedRatio * collisionDamageMax);
+                audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
                 audioPlayerManager.PlayBonk(speedRatio);
             }
         }
