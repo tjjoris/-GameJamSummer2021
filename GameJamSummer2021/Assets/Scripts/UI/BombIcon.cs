@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace FreeEscape.UI
 {
-    public class BombIcon : MonoBehaviour, I_ChangeBombActive
+    public class BombIcon : MonoBehaviour
     {
         [SerializeField] Sprite bombArmed;
         [SerializeField] Sprite bombUnarmed;
