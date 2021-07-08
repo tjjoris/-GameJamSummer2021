@@ -21,6 +21,7 @@ namespace FreeEscape.Core
         [SerializeField] private GameplayMenu gameplayMenu;
         [SerializeField] private TextMeshProUGUI timeRemainingText;
         [SerializeField] private TextMeshProUGUI announcementText;
+        [SerializeField] private GameObject hpBar;
         
 
         private void Start()
@@ -65,11 +66,12 @@ namespace FreeEscape.Core
         }
 
 
-        public IEnumerator BeginLevelSequence()
+        IEnumerator BeginLevelSequence()
         {
             debrisTracker.HideText();
             timeRemainingText.text = "";
             announcementText.text = "";
+            hpBar.SetActive(false);
             yield return new WaitForSeconds(0.5f);
             
             //level loads
@@ -92,6 +94,7 @@ namespace FreeEscape.Core
 
             levelManager.LevelTimerActive(true);
             playerInput.PlayerControlsUnlocked();
+            hpBar.SetActive(true);
         }
 
         public IEnumerator ClearAllDebrisCoroutine()

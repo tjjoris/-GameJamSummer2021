@@ -28,7 +28,6 @@ namespace FreeEscape.Core
             debrisTracker.TallyDebris();
             debrisTracker.AllDebrisCleared += PlayerClearedAllDebris;
             currentTimeRemaining = levelTotalTime;
-            StartCoroutine(cutsceneManager.BeginLevelSequence());
         }
 
         private void Update()
