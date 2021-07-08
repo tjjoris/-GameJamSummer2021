@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FreeEscape.UI
+namespace FreeEscape.Options
 {
     public class VolumeSliderScript : MonoBehaviour
     {

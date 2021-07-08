@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FreeEscape.UI;
+using FreeEscape.Options;
 
 namespace FreeEscape.Audio
 {
@@ -14,18 +16,25 @@ namespace FreeEscape.Audio
         [SerializeField] private AudioSource thruster2;
         private bool isAccelerating;
         private bool isRotating;
-    public void PlayFireBomb(){
-        AudioSource.PlayClipAtPoint(bombFire, Camera.main.transform.position);
+        private float volume;
+        private void Start()
+        {
+            volume = PlayerPrefsController.GetMasterVolume();
+            thruster1.volume = volume;
+            thruster2.volume = volume;
+        }
+        public void PlayFireBomb(){
+        AudioSource.PlayClipAtPoint(bombFire, Camera.main.transform.position, volume);
         }
         public void PlayBonk(float intensity)
         {
             int randIndex = Random.Range(0,3);
-            AudioSource.PlayClipAtPoint(bonk[randIndex], Camera.main.transform.position, intensity);
+            AudioSource.PlayClipAtPoint(bonk[randIndex], Camera.main.transform.position, intensity * volume);
         }
         public void PlayExplosion()
         {
             int randIndex = Random.Range(0,4);
-            AudioSource.PlayClipAtPoint(explosions[randIndex], Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(explosions[randIndex], Camera.main.transform.position, volume);
         }
         public void StartMainThrustersAudio()
         {

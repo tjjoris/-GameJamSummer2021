@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FreeEscape.UI
+namespace FreeEscape.Options
 {
     public class MusicSliderScript : MonoBehaviour
     {
@@ -37,9 +37,9 @@ namespace FreeEscape.UI
             slider.onValueChanged.AddListener(delegate { ValueChangeCheck(slider.value); });
         }
 
-        private void ValueChangeCheck(float volume)
+        public void ValueChangeCheck(float volume)
         {
-            PlayerPrefsController.SetMasterVolume(volume);
+            PlayerPrefsController.SetMasterMusicVolume(volume);
             musicAudioSource.volume = volume;
         }
     }

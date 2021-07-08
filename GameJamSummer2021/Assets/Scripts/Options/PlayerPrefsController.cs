@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FreeEscape.UI
+namespace FreeEscape.Options
 {
     public class PlayerPrefsController : MonoBehaviour
     {
