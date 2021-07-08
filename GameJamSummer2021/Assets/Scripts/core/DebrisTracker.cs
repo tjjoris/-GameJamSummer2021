@@ -80,7 +80,7 @@ namespace FreeEscape.Core
 
         public void LevelCleared()
         {
-            debrisRemainingText.text = "All Debris Destroyed, Great Job!";
+            debrisRemainingText.text = "All Debris Destroyed!";
         }
 
         public void HideText()
