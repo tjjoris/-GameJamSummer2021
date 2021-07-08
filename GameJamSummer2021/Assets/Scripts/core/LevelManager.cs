@@ -5,12 +5,14 @@ using System;
 using TMPro;
 using FreeEscape.UI;
 using FreeEscape.Control;
+using FreeEscape.Display;
 
 namespace FreeEscape.Core
 {
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI timeRemainingText;
+        [SerializeField] private TextMeshProUGUI announcementText;
         [SerializeField] private float levelTotalTime;
         private float currentTimeRemaining;
         [SerializeField] private DebrisTracker debrisTracker;
@@ -18,18 +20,12 @@ namespace FreeEscape.Core
         [SerializeField] private Camera mainCamera;
         private GameObject player;
         private PlayerInput playerInput;
+        private ProgressShader progressShader;
 
         private bool timerActive = false;
         void Start()
         {
-            player = GameObject.Find("Player");
-            playerInput = player.GetComponent<PlayerInput>();
-            if (playerInput == null)
-            {
-                Debug.Log("Could not find Player.");
-                return;
-            }
-            playerInput.PlayerControlsLocked();
+            SetupPlayerObject();
             debrisTracker.TallyDebris();
             debrisTracker.AllDebrisCleared += PlayerClearedAllDebris;
             currentTimeRemaining = levelTotalTime;
@@ -52,36 +48,52 @@ namespace FreeEscape.Core
             }
         }
 
+        private void SetupPlayerObject()
+        {
+            player = GameObject.Find("Player");
+            playerInput = player.GetComponent<PlayerInput>();
+            if (playerInput == null)
+            {
+                Debug.Log("Could not find Player.");
+                return;
+            }
+            playerInput.PlayerControlsLocked();
+            progressShader = player.GetComponentInChildren<ProgressShader>();
+            if (progressShader == null)
+            {
+                Debug.Log("Could not find ProgressShader");
+                return;
+            }
+            progressShader.ApplyShaderEffect(0f, 0f);
+            player.SetActive(false);
+        }
+
         IEnumerator BeginLevelSequence()
         {
             debrisTracker.HideText();
             timeRemainingText.text = "";
-            player.SetActive(false);
+            announcementText.text = "";
+            yield return new WaitForSeconds(0.5f);
+            
             //level loads
             //camera zoomed out with view of debris
             //zooms in toward debris
             
-            //Debris counter appears
-            yield return new WaitForSeconds(0.5f);
             debrisTracker.ShowText();
+            yield return new WaitForSeconds(0.5f);
             
             //Pans camera to where ship appears
             
-            //Time Remaining text appears (paused)
-            yield return new WaitForSeconds(0.5f);
             TimeSpan ts = TimeSpan.FromSeconds(levelTotalTime);
             String result = ts.ToString("m\\:ss\\.fff");
             timeRemainingText.text = "Fleet Arrival In: " + result;
-
-            //Ship teleports in & teleportation animation plays
             yield return new WaitForSeconds(0.5f);
+
             player.SetActive(true);
+            progressShader.ApplyShaderEffect(0.62f, 1.1f);
+            yield return new WaitForSeconds(0.62f);
 
-
-            //Timer Unpauses
-            yield return new WaitForSeconds(0.5f);
             timerActive = true;
-            //player controls unlocked.
             playerInput.PlayerControlsUnlocked();
         }
 
@@ -93,18 +105,25 @@ namespace FreeEscape.Core
         IEnumerator ClearAllDebrisCoroutine()
         {
             debrisTracker.LevelCleared();
+            announcementText.text = "MISSION ACCOMPLISHED!";
             timerActive = false;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.62f);
+            progressShader.ApplyShaderEffect(0.62f, 0f);
+            yield return new WaitForSeconds(1.38f);
+
             gameplayMenu.ClearAllDebrisScoreScreen();
         }
 
         IEnumerator PlayerRanOutOfTime()
         {
             timerActive = false;
-            timeRemainingText.text = "FLEET ARRIVAL IMMINENT!";
-            playerInput.PlayerControlsLocked();
-            //teleport out
-            yield return new WaitForSeconds(1);
+            announcementText.text = "FLEET ARRIVAL IMMINENT!";
+            yield return new WaitForSeconds(0.62f);
+            
+            progressShader.ApplyShaderEffect(0.62f, 0f);
+            yield return new WaitForSeconds(1.38f);
+            
+
             gameplayMenu.OutOfTimeScoreScreen();
         }
 
@@ -115,7 +134,9 @@ namespace FreeEscape.Core
 
         IEnumerator PlayerDestroyedCoroutine()
         {
-            yield return new WaitForSeconds(1);
+            announcementText.text = "CRITICAL DAMAGE: ABORTING MISSION";
+            progressShader.ApplyShaderEffect(0.62f, 0f);
+            yield return new WaitForSeconds(2.38f);
             gameplayMenu.PlayerDestroyedScoreScreen();
         }
     }
