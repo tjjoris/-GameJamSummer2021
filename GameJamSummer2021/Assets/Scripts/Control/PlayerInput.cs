@@ -33,13 +33,17 @@ namespace FreeEscape.Control
                 return;
             }
 
-            reverseBool = ReverseKey();
+            //reverseBool = ReverseKey();
+            reverseBool = InputToReverse();
             bool forwardBool = false;
             if (!reverseBool)
             {
-                forwardBool = ForwardKey();
-                LeftKey();
-                RightKey();
+                //forwardBool = ForwardKey();
+                forwardBool = InputToForward();
+                //LeftKey();
+                //RightKey();
+                InputToLeft();
+                InputToRight();
                 SendRotation();
 
             }
@@ -68,6 +72,40 @@ namespace FreeEscape.Control
                 return false;
             }
         }
+        private bool InputToForward()
+        {
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                mover.Accelerate(true);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void InputToLeft()
+        {
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                rotateLeft = true;
+            }
+            else
+            {
+                rotateLeft = false;
+            }
+        }
+        private void InputToRight()
+        {
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                rotateRight = true;
+            }
+            else
+            {
+                rotateRight = false;
+            }
+        }
         private void LeftKey()
         {
             if (Input.GetKey(KeyCode.A))
@@ -93,6 +131,21 @@ namespace FreeEscape.Control
         private bool ReverseKey()
         {
             if (Input.GetKey(KeyCode.S))
+            {
+                rotateLeft = false;
+                rotateRight = false;
+                reverse.ReverseFunction();
+                return true;
+            }
+            else
+            {
+                //reverseBool = false;
+                return false;
+            }
+        }
+        private bool InputToReverse()
+        {
+            if (Input.GetAxis("Vertical") < 0)
             {
                 rotateLeft = false;
                 rotateRight = false;
