@@ -29,7 +29,7 @@ namespace FreeEscape.Bomb
                 Detonate();
             }
         }
-        private void Detonate()
+        public void Detonate()
         {
             Instantiate(bombExplosionPrefab, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);

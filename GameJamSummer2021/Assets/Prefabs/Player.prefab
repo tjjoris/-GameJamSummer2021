@@ -830,6 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombLauncher: {fileID: 8742023607099743394}
+  bombAmmo: 000000000500000005000000
 --- !u!114 &-6368327151448224369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuseBomb: {fileID: 2280275934327890897, guid: c22b15dcfded44e13aebbd5895e2ac13, type: 3}
   stickyBomb: {fileID: 2280275934327890897, guid: 8f627cdeb434c484d84b786ecd499530, type: 3}
+  proximityBomb: {fileID: 2280275934327890897, guid: abef8935dba0a4e099eeb66beff638ab, type: 3}
 --- !u!58 &1329549614296166035
 CircleCollider2D:
   m_ObjectHideFlags: 0
