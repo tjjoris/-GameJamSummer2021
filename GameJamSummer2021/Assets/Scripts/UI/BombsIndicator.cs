@@ -27,6 +27,10 @@ namespace FreeEscape.UI
                 }
             }
         }
+        public void ShowAmmo(int bombIndex, int newAmmo)
+        {
+            bombIcon[bombIndex].ShowAmmo(newAmmo);
+        }
 
     }
 }

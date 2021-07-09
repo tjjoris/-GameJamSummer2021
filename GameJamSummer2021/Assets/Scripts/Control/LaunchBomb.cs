@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Bomb;
 using FreeEscape.Audio;
+using FreeEscape.UI;
 
 namespace FreeEscape.Control
 {
@@ -13,6 +14,7 @@ namespace FreeEscape.Control
         private SpriteRenderer heldBombSpriteRenderer;
         private Rigidbody2D rb;
         private AudioPlayerManager audioPlayerManager;
+        private BombsIndicator bombsIndicator;
         private float launchVelocity;
         private float cooldown;
         private float countdownCurrent;
@@ -25,6 +27,8 @@ namespace FreeEscape.Control
             rb = GetComponent<Rigidbody2D>();
             heldBombSpriteRenderer = bombLauncher.GetComponent<SpriteRenderer>();
             audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
+            bombsIndicator = FindObjectOfType<BombsIndicator>();
+            bombsIndicator.ShowAmmo(1, bombAmmo[1]);
         }
 
         private void Update()
@@ -82,9 +86,14 @@ namespace FreeEscape.Control
         }
         private bool UseAmmo()
         {
-            if ((bombTypeEquipped == 0) || (bombAmmo[bombTypeEquipped] > 0))
+            if ((bombTypeEquipped != 0) && (bombAmmo[bombTypeEquipped] > 0))
             {
                 bombAmmo[bombTypeEquipped]--;
+                bombsIndicator.ShowAmmo(bombTypeEquipped, bombAmmo[bombTypeEquipped]);
+                return true;
+            }
+            else if (bombTypeEquipped == 0)
+            {
                 return true;
             }
             return false;
