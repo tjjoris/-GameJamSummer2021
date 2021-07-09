@@ -9,6 +9,7 @@ namespace FreeEscape.Control
     {
         [SerializeField] private GameObject fuseBomb;
         [SerializeField] private GameObject stickyBomb;
+        [SerializeField] private GameObject proximityBomb;
         private LaunchBomb launchBomb;
         private BombsIndicator bombsIndicator;
         
@@ -30,6 +31,12 @@ namespace FreeEscape.Control
         {
             launchBomb.EquipBomb(stickyBomb, 1);
             bombsIndicator.SetBombActive(1);
+        }
+        public void EquipProximityBomb()
+        {
+            //launchBomb.EquipBomb();
+            launchBomb.EquipBomb(proximityBomb, 2);
+            bombsIndicator.SetBombActive(2);
         }
     }
 }
