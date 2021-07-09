@@ -46,6 +46,7 @@ namespace FreeEscape.Core
                 if (currentTimeRemaining <= 0)
                 {
                     timerActive = false;
+                    cutsceneManager.UpdateTimerText(0f);
                     StartCoroutine(cutsceneManager.PlayerRanOutOfTime());
                 }
             }

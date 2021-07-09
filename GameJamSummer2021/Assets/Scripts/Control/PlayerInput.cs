@@ -100,7 +100,6 @@ namespace FreeEscape.Control
             }
             else
             {
-                //reverseBool = false;
                 return false;
             }
         }

@@ -941,6 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66971f0cae1245640b28d1ee9581d5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTeleportTime: 0.62
   gameplayMenu: {fileID: 3123381097443572939}
   timeRemainingText: {fileID: 3123381097058162169}
   announcementText: {fileID: 1979427564970683941}

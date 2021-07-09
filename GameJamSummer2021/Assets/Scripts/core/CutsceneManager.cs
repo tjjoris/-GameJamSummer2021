@@ -18,6 +18,7 @@ namespace FreeEscape.Core
         private ProgressShader progressShader;
         private DebrisTracker debrisTracker;
         private float levelTotalTime;
+        [SerializeField] private float playerTeleportTime;
         [SerializeField] private GameplayMenu gameplayMenu;
         [SerializeField] private TextMeshProUGUI timeRemainingText;
         [SerializeField] private TextMeshProUGUI announcementText;
@@ -89,22 +90,28 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(0.5f);
 
             player.SetActive(true);
-            progressShader.ApplyShaderEffect(0.62f, 1.1f);
-            yield return new WaitForSeconds(0.62f);
+            progressShader.ApplyShaderEffect(playerTeleportTime, 1.1f);
+            yield return new WaitForSeconds(playerTeleportTime);
 
             levelManager.LevelTimerActive(true);
             playerInput.PlayerControlsLocked(false);
             hpBar.SetActive(true);
         }
 
+        private void PlayerTeleportOut()
+        {
+            progressShader.ApplyShaderEffect(playerTeleportTime, 0f);
+            playerInput.PlayerControlsLocked(true);
+        }
+
         public IEnumerator ClearAllDebrisCoroutine()
         {
             debrisTracker.LevelCleared();
             levelManager.LevelTimerActive(false);
+            announcementText.text = "MISSION ACCOMPLISHED";
             yield return new WaitForSeconds(0.62f);
-            
-            progressShader.ApplyShaderEffect(0.62f, 0f);
-            playerInput.PlayerControlsLocked(true);
+
+            PlayerTeleportOut();
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.ClearAllDebrisScoreScreen();
@@ -116,10 +123,8 @@ namespace FreeEscape.Core
             announcementText.text = "FLEET ARRIVAL IMMINENT!";
             yield return new WaitForSeconds(0.62f);
             
-            progressShader.ApplyShaderEffect(0.62f, 0f);
-            playerInput.PlayerControlsLocked(true);
+            PlayerTeleportOut();
             yield return new WaitForSeconds(1.38f);
-            
 
             gameplayMenu.OutOfTimeScoreScreen();
         }
@@ -127,9 +132,9 @@ namespace FreeEscape.Core
         public IEnumerator PlayerDestroyedCoroutine()
         {
             announcementText.text = "CRITICAL DAMAGE: ABORTING MISSION";
-            progressShader.ApplyShaderEffect(0.62f, 0f);
-            playerInput.PlayerControlsLocked(true);
-            yield return new WaitForSeconds(2.38f);
+            PlayerTeleportOut();
+            yield return new WaitForSeconds(1.38f);
+
             gameplayMenu.PlayerDestroyedScoreScreen();
         }
 

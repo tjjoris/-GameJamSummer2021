@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisIsBigExplosion: 0
-  _damage: 10
+  _damage: 5
 --- !u!50 &768739744137848519
 Rigidbody2D:
   serializedVersion: 4
@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 6925399712018747549}
   - component: {fileID: 8003855981942902940}
   - component: {fileID: 7643215390620911260}
+  - component: {fileID: 5385474192428213958}
   - component: {fileID: 8871252551982049259}
   m_Layer: 10
   m_Name: TriggerBombCollider
@@ -299,6 +300,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08b83f56597bd0b469762b87769d3c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5385474192428213958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7160350978993870654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2c11aeb498dc94abbe561629a2de47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &8871252551982049259
