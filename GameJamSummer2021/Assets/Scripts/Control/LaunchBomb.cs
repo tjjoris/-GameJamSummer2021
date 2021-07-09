@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Bomb;
 using FreeEscape.Audio;
+using FreeEscape.UI;
 
 namespace FreeEscape.Control
 {
@@ -13,18 +14,27 @@ namespace FreeEscape.Control
         private SpriteRenderer heldBombSpriteRenderer;
         private Rigidbody2D rb;
         private AudioPlayerManager audioPlayerManager;
+        private BombsIndicator bombsIndicator;
         private float launchVelocity;
         private float cooldown;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
-        [Header("[0]sticky(infinate), [1]fuse, [2]proximity")]
-        [SerializeField] int[] bombAmmo = { 0, 5 };
+        [Header("[0]fuse(infinate), [1]sticky, [2]proximity")]
+        [SerializeField] int[] bombAmmo = { 0, 5 , 5};
         private int bombTypeEquipped; //0 = fuse bomb, 1= sticky bomb, 2=proximity bomb.
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             heldBombSpriteRenderer = bombLauncher.GetComponent<SpriteRenderer>();
             audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
+            bombsIndicator = FindObjectOfType<BombsIndicator>();
+        }
+        private void Start()
+        {
+            for (int i=1; i<bombAmmo.Length; i++)
+            {
+                bombsIndicator.ShowAmmo(i, bombAmmo[i]);
+            }
         }
 
         private void Update()
@@ -82,9 +92,14 @@ namespace FreeEscape.Control
         }
         private bool UseAmmo()
         {
-            if ((bombTypeEquipped == 0) || (bombAmmo[bombTypeEquipped] > 0))
+            if ((bombTypeEquipped != 0) && (bombAmmo[bombTypeEquipped] > 0))
             {
                 bombAmmo[bombTypeEquipped]--;
+                bombsIndicator.ShowAmmo(bombTypeEquipped, bombAmmo[bombTypeEquipped]);
+                return true;
+            }
+            else if (bombTypeEquipped == 0)
+            {
                 return true;
             }
             return false;

@@ -53,6 +53,7 @@ namespace FreeEscape.Control
 
             EquipPrevAbility();
             EquipNextAbility();
+            EquipProximityBomb();
         }
 
         private bool ForwardKey()
@@ -140,6 +141,13 @@ namespace FreeEscape.Control
             if (Input.GetKeyDown(KeyCode.E))
             {
                 abilityManager.EquipNextAbility();
+            }
+        }
+        private void EquipProximityBomb()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                abilityManager.EquipProximityBomb();
             }
         }
 
