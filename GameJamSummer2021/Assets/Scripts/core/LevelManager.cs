@@ -45,7 +45,7 @@ namespace FreeEscape.Core
             {
                 currentTimeRemaining -= Time.deltaTime;
                 cutsceneManager.UpdateTimerText(currentTimeRemaining);
-                
+
 
                 if (currentTimeRemaining <= 0)
                 {
@@ -58,14 +58,16 @@ namespace FreeEscape.Core
 
         public void LevelTimerActive(bool _state)
         {
-            TallyScore(false);
+            //Debug.Log("time out" + _state.ToString());
+            if (_state) { TallyScore(false); }
             timerActive = _state;
         }
 
-        private void PlayerClearedAllDebris (object sender, EventArgs e)
+        private void PlayerClearedAllDebris(object sender, EventArgs e)
         {
+            //Debug.Log("this level has been cleared");
             TallyScore(true);
-            StartCoroutine(cutsceneManager.ClearAllDebrisCoroutine());            
+            StartCoroutine(cutsceneManager.ClearAllDebrisCoroutine());
         }
 
         public void PlayerDestroyed()
@@ -81,13 +83,21 @@ namespace FreeEscape.Core
             scoreString = scoreString + "   Debris Destoryed: " + score[0].ToString() + "\n";
             if (levelCleared)
             {
-                //BonusScore();
+                BonusScore(out scoreString, scoreString);
             }
-            scoreString = scoreString + "   Time Remaining: " + CalculateTimeRemainingScore().ToString() + "\n";
             tMProScore.text = scoreString;
 
             //probably calls a scoreManager script to do it's thing. Likely pushes currentTimeRemaining to it.
         }
+
+        private void BonusScore(out string _scoreString, string origionalScoreString)
+        {//i cant remember how to use out properly so im doing it the way i can make work
+            float floatTimeScore = (levelTotalTime - currentTimeRemaining) * timeRemainingToScoreMult;
+             string timeScore = Mathf.FloorToInt(floatTimeScore).ToString();
+            _scoreString = origionalScoreString + "   Area Cleared! \n   Bonus Score: \n";
+            _scoreString = _scoreString + timeScore;
+        }
+    
 
         private int CalculateTimeRemainingScore()            
         {
