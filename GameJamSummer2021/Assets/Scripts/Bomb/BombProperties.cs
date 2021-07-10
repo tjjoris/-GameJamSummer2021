@@ -20,6 +20,9 @@ namespace FreeEscape.Bomb
         public Animator animator { get{ return _animator; } set{ _animator = value; } }
         [SerializeField] private AudioClip _launchAudioClip;
         public AudioClip launchAudioClip { get{ return _launchAudioClip; } set{ _launchAudioClip = value; } }
+        [SerializeField] private bool _frontLaunch;
+        public bool FrontLaunch { get{ return _frontLaunch; } }
+        
         
                 
         IEnumerator Start()
