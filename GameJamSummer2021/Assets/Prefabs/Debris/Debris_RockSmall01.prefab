@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 1635677922060747515}
   - component: {fileID: -7591285076897509577}
   m_Layer: 6
-  m_Name: Debris_smallRock01
+  m_Name: Debris_RockSmall01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,22 +306,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9227477
-      value: 0.76987725
-      inSlope: 1.9065883
-      outSlope: 1.9065883
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 4.3631787
-      outSlope: 4.3631787
+      value: 0.8
+      inSlope: 2.6238017
+      outSlope: 2.6238017
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.19454293
+      inWeight: 0.027453125
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

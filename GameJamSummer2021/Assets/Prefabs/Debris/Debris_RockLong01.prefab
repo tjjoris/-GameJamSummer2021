@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4110271471240540249}
   - component: {fileID: 2246969353928224683}
   m_Layer: 6
-  m_Name: Debris_BasicLong01
+  m_Name: Debris_RockLong01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528ac96a32e8e44a39581afa9cb30870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPoints: 30
+  _hitPoints: 40
   _currentHitPoints: 0
   resistantDebris: 0
   innerShader: {fileID: 4033680227072218594}
@@ -66,22 +66,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9227477
-      value: 0.76987725
-      inSlope: 1.9065883
-      outSlope: 1.9065883
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: 4.3631787
-      outSlope: 4.3631787
+      value: 0.8
+      inSlope: 2.6238017
+      outSlope: 2.6238017
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.19454293
+      inWeight: 0.027453125
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
