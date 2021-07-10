@@ -7,9 +7,9 @@ namespace FreeEscape.Control
 {
     public class AbilityManager : MonoBehaviour
     {
-        [SerializeField] private GameObject fuseBomb;
-        [SerializeField] private GameObject stickyBomb;
-        [SerializeField] private GameObject proximityBomb;
+        [SerializeField] private GameObject abilitySlot00;
+        [SerializeField] private GameObject abilitySlot01;
+        [SerializeField] private GameObject abilitySlot02;
         private LaunchBomb launchBomb;
         private BombsIndicator bombsIndicator;
         
@@ -18,24 +18,23 @@ namespace FreeEscape.Control
         {
             bombsIndicator = FindObjectOfType<BombsIndicator>();
             launchBomb = this.GetComponent<LaunchBomb>();
-            launchBomb.EquipBomb(fuseBomb, 0);
+            launchBomb.EquipBomb(abilitySlot00, 0);
         }
 
-        public void EquipPrevAbility()
+        public void EquipAbility00()
         {
-            launchBomb.EquipBomb(fuseBomb, 0);
+            launchBomb.EquipBomb(abilitySlot00, 0);
             bombsIndicator.SetBombActive(0);
         }
 
-        public void EquipNextAbility()
+        public void EquipAbility01()
         {
-            launchBomb.EquipBomb(stickyBomb, 1);
+            launchBomb.EquipBomb(abilitySlot01, 1);
             bombsIndicator.SetBombActive(1);
         }
-        public void EquipProximityBomb()
+        public void EquipAbility02()
         {
-            //launchBomb.EquipBomb();
-            launchBomb.EquipBomb(proximityBomb, 2);
+            launchBomb.EquipBomb(abilitySlot02, 2);
             bombsIndicator.SetBombActive(2);
         }
     }

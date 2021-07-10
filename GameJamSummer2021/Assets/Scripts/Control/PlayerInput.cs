@@ -33,15 +33,11 @@ namespace FreeEscape.Control
                 return;
             }
 
-            //reverseBool = ReverseKey();
             reverseBool = InputToReverse();
             bool forwardBool = false;
             if (!reverseBool)
             {
-                //forwardBool = ForwardKey();
                 forwardBool = InputToForward();
-                //LeftKey();
-                //RightKey();
                 InputToLeft();
                 InputToRight();
                 SendRotation();
@@ -55,9 +51,9 @@ namespace FreeEscape.Control
             
             SpaceKey();
 
-            EquipPrevAbility();
-            EquipNextAbility();
-            EquipProximityBomb();
+            EquipAbility00();
+            EquipAbility01();
+            EquipAbility02();
         }
 
         private bool ForwardKey()
@@ -153,7 +149,6 @@ namespace FreeEscape.Control
             }
             else
             {
-                //reverseBool = false;
                 return false;
             }
         }
@@ -180,26 +175,26 @@ namespace FreeEscape.Control
             }
         }
 
-        private void EquipPrevAbility()
+        private void EquipAbility00()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                abilityManager.EquipPrevAbility();
+                abilityManager.EquipAbility00();
             }
         }
 
-        private void EquipNextAbility()
+        private void EquipAbility01()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                abilityManager.EquipNextAbility();
+                abilityManager.EquipAbility01();
             }
         }
-        private void EquipProximityBomb()
+        private void EquipAbility02()
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                abilityManager.EquipProximityBomb();
+                abilityManager.EquipAbility02();
             }
         }
 

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1843471278127909013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.8, y: 3.8, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 2280275934327890902}
   m_RootOrder: 2
@@ -239,10 +239,11 @@ MonoBehaviour:
   bombExplosionPrefab: {fileID: 1271698509434383672, guid: 1ac85fb6e1c523344986a2ea25337217, type: 3}
   explosionsDetonate: 0
   _launchVelocity: 1000
-  _cooldown: 0.1
+  _cooldown: 2
   _spriteRenderer: {fileID: 2280275932234270712}
   _animator: {fileID: 3283229687269551031}
   _launchAudioClip: {fileID: 8300000, guid: 1db7c1ca564a87445ada186aa1b20a7a, type: 3}
+  _frontLaunch: 1
 --- !u!50 &6381160337420666806
 Rigidbody2D:
   serializedVersion: 4
@@ -390,7 +391,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 3.8197668
+  m_PointLightOuterRadius: 2
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

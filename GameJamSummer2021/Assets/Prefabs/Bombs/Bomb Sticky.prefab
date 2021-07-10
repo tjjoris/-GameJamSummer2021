@@ -159,6 +159,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2280275932234270712}
   _animator: {fileID: 3283229687269551031}
   _launchAudioClip: {fileID: 8300000, guid: 1db7c1ca564a87445ada186aa1b20a7a, type: 3}
+  _frontLaunch: 1
 --- !u!50 &6381160337420666806
 Rigidbody2D:
   serializedVersion: 4
