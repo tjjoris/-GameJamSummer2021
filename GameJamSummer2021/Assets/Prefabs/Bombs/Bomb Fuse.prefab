@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTillExplode: 1.9
   bombExplosionPrefab: {fileID: 1271698509434383672, guid: a087afe7ce91d4418b096edea80be608, type: 3}
-  extraFuseExplosionPrefab: {fileID: 1271698509434383672, guid: 109a6456f0f3b4fbca628df6bb6c8446, type: 3}
+  explosionsDetonate: 1
   _launchVelocity: -100
   _cooldown: 0.38
   _spriteRenderer: {fileID: 2280275932234270712}
@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 3518134094465385286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 2280275934327890902}
   m_RootOrder: 1
@@ -268,8 +268,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3fe9d011fcc0a4015b497489c16a44fb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Sprite: {fileID: 21300000, guid: 71bb3b2d3b95e9c4b9fc98a7707cf3ca, type: 3}
+  m_Color: {r: 1, g: 0.55521923, b: 0.2971698, a: 0.09803922}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 2.8
+  m_PointLightOuterRadius: 5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

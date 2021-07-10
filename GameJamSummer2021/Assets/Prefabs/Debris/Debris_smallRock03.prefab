@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitPoints: 10
+  _currentHitPoints: 0
   resistantDebris: 0
   innerShader: {fileID: 3833820391161057674}
   innerCurve:
@@ -185,13 +186,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.9227477
+      value: 0.76987725
+      inSlope: 1.9065883
+      outSlope: 1.9065883
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 4.3631787
+      outSlope: 4.3631787
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.19454293
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

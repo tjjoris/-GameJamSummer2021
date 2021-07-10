@@ -13,7 +13,7 @@ namespace FreeEscape.Damage
         private float hPMax = 100f;
         private LevelManager levelManager;
 
-        void Start()
+        private void Awake()
         {
             hPBar = FindObjectOfType<HPBar>();
             hPBar.UpdateHPSlider(hPCurrent / hPMax);

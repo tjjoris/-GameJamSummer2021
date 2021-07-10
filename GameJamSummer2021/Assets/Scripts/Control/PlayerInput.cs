@@ -17,7 +17,7 @@ namespace FreeEscape.Control
         private bool reverseBool;
         private bool playerLocked = true;
 
-        void Start()
+        void Awake()
         {
             mover = GetComponent<Mover>();
             launchBomb = GetComponent<LaunchBomb>();
@@ -139,7 +139,6 @@ namespace FreeEscape.Control
             }
             else
             {
-                //reverseBool = false;
                 return false;
             }
         }
@@ -204,14 +203,10 @@ namespace FreeEscape.Control
             }
         }
 
-        public void PlayerControlsLocked()
+        public void PlayerControlsLocked(bool _state)
         {
-            playerLocked = true;
-        }
-
-        public void PlayerControlsUnlocked()
-        {
-            playerLocked = false;
+            launchBomb.LauncherEnabled(!_state);
+            playerLocked = _state;
         }
     }
 }

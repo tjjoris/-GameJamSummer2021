@@ -18,33 +18,32 @@ namespace FreeEscape.UI
 
         public void TravelToOptionsPage()
         {
-            mainMenuPage.SetActive(false);
-            controlsPage.SetActive(false);
+            HideAll();
             optionsPage.SetActive(true);
-            aboutPage.SetActive(false);
         }
 
         public void TravelToMainMenuPage()
         {
+            HideAll();
             mainMenuPage.SetActive(true);
-            controlsPage.SetActive(false);
-            optionsPage.SetActive(false);
-            aboutPage.SetActive(false);
         }
         public void TravelToControlsPage()
         {
-            mainMenuPage.SetActive(false);
+            HideAll();
             controlsPage.SetActive(true);
-            optionsPage.SetActive(false);
-            aboutPage.SetActive(false);
-
         }
         public void TravelToAboutPage()
+        {
+            HideAll();
+            aboutPage.SetActive(true);
+        }
+
+        private void HideAll()
         {
             mainMenuPage.SetActive(false);
             controlsPage.SetActive(false);
             optionsPage.SetActive(false);
-            aboutPage.SetActive(true);
+            aboutPage.SetActive(false);
         }
 
     }

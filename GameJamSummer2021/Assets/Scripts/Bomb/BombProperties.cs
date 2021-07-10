@@ -9,6 +9,7 @@ namespace FreeEscape.Bomb
     {
         [SerializeField] float timeTillExplode = 3.7f;
         [SerializeField] GameObject bombExplosionPrefab;
+        [SerializeField] private bool explosionsDetonate = true;
         [SerializeField] private float _launchVelocity;
         public float launchVelocity { get{ return _launchVelocity; } set{ _launchVelocity = value; } }
         [SerializeField] private float _cooldown;
@@ -42,7 +43,8 @@ namespace FreeEscape.Bomb
 
         public void TriggerExplosionRange()
         {
-            Detonate();
+            if (explosionsDetonate)
+            { Detonate(); }
         }
     }
 }

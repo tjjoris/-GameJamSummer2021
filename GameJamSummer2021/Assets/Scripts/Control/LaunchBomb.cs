@@ -19,6 +19,7 @@ namespace FreeEscape.Control
         private float cooldown;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
+        private bool launcherEnabled = true;
         [Header("[0]fuse(infinate), [1]sticky, [2]proximity")]
         [SerializeField] int[] bombAmmo = { 0, 5 , 5};
         private int bombTypeEquipped; //0 = fuse bomb, 1= sticky bomb, 2=proximity bomb.
@@ -42,7 +43,7 @@ namespace FreeEscape.Control
             if (countdownCurrent > 0)
             {
                 countdownCurrent -= Time.deltaTime;
-                if (countdownCurrent <= 0)
+                if (countdownCurrent <= 0  && launcherEnabled)
                 {
                     BombReady();
                 }
@@ -78,6 +79,12 @@ namespace FreeEscape.Control
         {
             canLaunchBomb = true;
             heldBombSpriteRenderer.enabled = true;
+        }
+
+        public void LauncherEnabled(bool _state)
+        {
+            heldBombSpriteRenderer.enabled = _state;
+            launcherEnabled = _state;
         }
 
         public void EquipBomb(GameObject _bombPrefab, int bombIndex)
