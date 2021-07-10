@@ -10,6 +10,8 @@ namespace FreeEscape.Control
     public class LaunchBomb : MonoBehaviour
     {
         [SerializeField] private GameObject bombLauncher;
+        [SerializeField] private Transform frontLaunchPos;
+        [SerializeField] private Transform backLaunchPos;
         private GameObject equippedBomb;
         private SpriteRenderer heldBombSpriteRenderer;
         private Rigidbody2D rb;
@@ -20,9 +22,9 @@ namespace FreeEscape.Control
         private float countdownCurrent;
         private bool canLaunchBomb = true;
         private bool launcherEnabled = true;
-        [Header("[0]fuse(infinate), [1]sticky, [2]proximity")]
-        [SerializeField] int[] bombAmmo = { 0, 5 , 5};
-        private int bombTypeEquipped; //0 = fuse bomb, 1= sticky bomb, 2=proximity bomb.
+        [Header("[0]Ability 1, [1]Ability 2, [2]Ability 3")]
+        [SerializeField] int[] bombAmmo = { -1, 5 , 5};
+        private int bombTypeEquipped;
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -51,8 +53,9 @@ namespace FreeEscape.Control
         }
         public void LaunchBombAction()
         {
-            if ((!canLaunchBomb) || (!UseAmmo())) { return; }
-
+            if ((!canLaunchBomb) || (!HasAmmo())) { return; }
+            
+            UseAmmo();
             GenerateBomb();
             BeginCooldown();
         }
@@ -93,23 +96,33 @@ namespace FreeEscape.Control
             equippedBomb = _bombPrefab;
             BombProperties bomb = equippedBomb.GetComponent<BombProperties>();
             launchVelocity = bomb.launchVelocity;
+            
+            if (bomb.FrontLaunch)
+            {
+                bombLauncher.transform.position = frontLaunchPos.position;
+            }
+            else
+            {
+                bombLauncher.transform.position = backLaunchPos.position;
+            }
+            
             cooldown = bomb.cooldown;
             heldBombSpriteRenderer.sprite = bomb.spriteRenderer.sprite;
             heldBombSpriteRenderer.color = bomb.spriteRenderer.color;
         }
-        private bool UseAmmo()
+        private bool HasAmmo()
         {
-            if ((bombTypeEquipped != 0) && (bombAmmo[bombTypeEquipped] > 0))
+            if (bombAmmo[bombTypeEquipped] > 0 || bombAmmo[bombTypeEquipped] == -1)
+            { return true; }
+            return false;
+        }
+        private void UseAmmo()
+        {
+            if (bombAmmo[bombTypeEquipped] > 0 )
             {
                 bombAmmo[bombTypeEquipped]--;
                 bombsIndicator.ShowAmmo(bombTypeEquipped, bombAmmo[bombTypeEquipped]);
-                return true;
             }
-            else if (bombTypeEquipped == 0)
-            {
-                return true;
-            }
-            return false;
         }
 
 
