@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528ac96a32e8e44a39581afa9cb30870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPoints: 30
+  _hitPoints: 40
   _currentHitPoints: 0
   resistantDebris: 0
   innerShader: {fileID: 4033680227072218594}

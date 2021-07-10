@@ -207,6 +207,8 @@ namespace FreeEscape.Control
         {
             launchBomb.LauncherEnabled(!_state);
             playerLocked = _state;
+            mover.Rotate(0);
+            mover.Accelerate(false);
         }
     }
 }
