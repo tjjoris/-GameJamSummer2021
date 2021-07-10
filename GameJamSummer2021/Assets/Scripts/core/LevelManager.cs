@@ -13,10 +13,13 @@ namespace FreeEscape.Core
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private float levelTotalTime;
+        [SerializeField] private TMPro.TextMeshProUGUI tMProScore;
         private float currentTimeRemaining;
         [SerializeField] private DebrisTracker debrisTracker;
         private CutsceneManager cutsceneManager;
+        private ScoreTracker scoreTracker;
         private bool timerActive = false;
+        private float timeRemainingToScoreMult = 2f;
 
         private void Awake()
         {
@@ -25,6 +28,7 @@ namespace FreeEscape.Core
         }
         private void Start()
         {
+            scoreTracker = FindObjectOfType<ScoreTracker>();
             debrisTracker.TallyDebris();
             debrisTracker.AllDebrisCleared += PlayerClearedAllDebris;
             currentTimeRemaining = levelTotalTime;
@@ -54,25 +58,41 @@ namespace FreeEscape.Core
 
         public void LevelTimerActive(bool _state)
         {
-            TallyScore();
+            TallyScore(false);
             timerActive = _state;
         }
 
         private void PlayerClearedAllDebris (object sender, EventArgs e)
         {
-            TallyScore();
+            TallyScore(true);
             StartCoroutine(cutsceneManager.ClearAllDebrisCoroutine());            
         }
 
         public void PlayerDestroyed()
         {
-            TallyScore();
+            TallyScore(false);
             StartCoroutine(cutsceneManager.PlayerDestroyedCoroutine());
         }
 
-        private void TallyScore()
+        private void TallyScore(bool levelCleared)
         {
+            int[] score = scoreTracker.GetScorePerTask();
+            string scoreString = "Score: \n";
+            scoreString = scoreString + "   Debris Destoryed: " + score[0].ToString() + "\n";
+            if (levelCleared)
+            {
+                //BonusScore();
+            }
+            scoreString = scoreString + "   Time Remaining: " + CalculateTimeRemainingScore().ToString() + "\n";
+            tMProScore.text = scoreString;
+
             //probably calls a scoreManager script to do it's thing. Likely pushes currentTimeRemaining to it.
+        }
+
+        private int CalculateTimeRemainingScore()            
+        {
+            float floatTimeScore = (levelTotalTime - currentTimeRemaining) * timeRemainingToScoreMult;
+            return Mathf.FloorToInt(floatTimeScore);
         }
     }
 }

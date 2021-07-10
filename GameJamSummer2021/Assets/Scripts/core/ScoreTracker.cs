@@ -9,7 +9,7 @@ namespace FreeEscape
 {
     public class ScoreTracker : MonoBehaviour
     {
-        private TMPro.TextMeshProUGUI scoreTMPro;
+        [SerializeField]private TMPro.TextMeshProUGUI scoreTMPro;
         [Header("[0]=Debris Destroyed, [1]=time remaining, [2]=bombs remaining")]
         private int[] scorePerTask;
         private int[] scorePerLevel;
@@ -66,6 +66,10 @@ namespace FreeEscape
             {
                 scorePerLevel[SceneManager.GetActiveScene().buildIndex] += scorePerTask[i];
                 }
+        }
+        public int[] GetScorePerTask()
+        {
+            return scorePerTask;
         }
     }
 }
