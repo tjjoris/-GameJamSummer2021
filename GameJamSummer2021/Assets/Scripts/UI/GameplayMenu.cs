@@ -63,7 +63,7 @@ namespace FreeEscape.UI
             playerDestroyedScoreUI.SetActive(true);
             outOfTimeScoreUI.SetActive(false);
             clearAllScoreUI.SetActive(false);
-            nextLevelButton.interactable = false;
+            nextLevelButton.interactable = true;
 
             PauseTime();
         }
