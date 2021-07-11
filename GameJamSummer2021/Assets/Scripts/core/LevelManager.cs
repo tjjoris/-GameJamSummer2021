@@ -20,11 +20,12 @@ namespace FreeEscape.Core
         private CutsceneManager cutsceneManager;
         private ScoreTracker scoreTracker;
         private bool timerActive = false;
-        private float timeRemainingToScoreMult = 20f;
+        private float timeRemainingToScoreMult = 400f;
         private int[] scoreThisLevelByTask;
         private int scoreThisLevel;
         private int numberOfTasks;
         private int thisLevel;
+        private int bonusScoreForClear = 7000;
 
         private void Awake()
         {
@@ -111,9 +112,11 @@ namespace FreeEscape.Core
         private void BonusScore(out string _scoreString, string origionalScoreString)
         {//i cant remember how to use out properly so im doing it the way i can make work
             float floatTimeScore = (levelTotalTime - currentTimeRemaining) * timeRemainingToScoreMult;
-            _scoreString = origionalScoreString + "   Area Cleared! \n   Bonus Score: \n";
-            scoreThisLevelByTask[1] = Mathf.FloorToInt(floatTimeScore);
-            string timeScore = scoreThisLevelByTask[1].ToString();
+            _scoreString = origionalScoreString + "   Area Cleared! \n   Bonus Score: +"
+                + bonusScoreForClear.ToString() + "\n";
+            scoreThisLevelByTask[1] = bonusScoreForClear;//the bonus score for clearing
+            scoreThisLevelByTask[2] = Mathf.FloorToInt(floatTimeScore);//the task of bonus time
+            string timeScore = scoreThisLevelByTask[2].ToString();
             _scoreString = _scoreString + "   Time: " + timeScore;
 
         }
