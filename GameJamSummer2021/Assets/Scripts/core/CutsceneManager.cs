@@ -12,6 +12,9 @@ namespace FreeEscape.Core
     public class CutsceneManager : MonoBehaviour
     {
         private Camera mainCamera;
+        //[SerializeField] private Transform cameraStartPosition;
+        //[SerializeField] private Animator cameraMotion;
+        [SerializeField] private GameObject dialogueUI;
         private LevelManager levelManager;
         private GameObject player;
         private PlayerInput playerInput;
@@ -23,6 +26,7 @@ namespace FreeEscape.Core
         [SerializeField] private TextMeshProUGUI timeRemainingText;
         [SerializeField] private TextMeshProUGUI announcementText;
         [SerializeField] private GameObject hpBar;
+        [SerializeField] private GameObject abilityIcons;
         
 
         private void Start()
@@ -31,7 +35,8 @@ namespace FreeEscape.Core
             if (mainCamera == null)
             { Debug.Log("Could not find Main Camera.");}
             SetupPlayerObject();
-            StartCoroutine(BeginLevelSequence());
+            InitializeScene();
+            
         }
 
         public void SetupCutsceneManager(LevelManager _levelManager, DebrisTracker _debrisTracker, float _timeToComplete)
@@ -57,6 +62,7 @@ namespace FreeEscape.Core
             }
             progressShader.ApplyShaderEffect(0f, 0f);
             player.SetActive(false);
+            //player.transform.position = cameraStartPosition;
         }
 
         public void UpdateTimerText(float _currentTimeRemaining)
@@ -66,16 +72,33 @@ namespace FreeEscape.Core
                 timeRemainingText.text = "Fleet Arrival In: " + result;
         }
 
-
-        IEnumerator BeginLevelSequence()
+        private void InitializeScene()
         {
             debrisTracker.HideText();
             timeRemainingText.text = "";
             announcementText.text = "";
+            dialogueUI.SetActive(false);
             hpBar.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
-            
+            abilityIcons.SetActive(false);
+
+            StartCoroutine(IntroDialogue());
+        }
+
+        IEnumerator IntroDialogue()
+        {
+            yield return new WaitForSeconds(0.62f);
+            dialogueUI.SetActive(true);
+            dialogueUI.GetComponent<DialogueTrigger>().StartDialogue();
+        }
+
+
+
+        public IEnumerator BeginLevelSequence()
+        {
             //level loads
+            //dialogueUI.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+         
             //camera zoomed out with view of debris
             //zooms in toward debris
             
@@ -90,12 +113,14 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(0.5f);
 
             player.SetActive(true);
+            //mainCamera.GetComponent<FollowCamera>().FocusPlayer();
             progressShader.ApplyShaderEffect(playerTeleportTime, 1.1f);
             yield return new WaitForSeconds(playerTeleportTime);
 
             levelManager.LevelTimerActive(true);
             playerInput.PlayerControlsLocked(false);
             hpBar.SetActive(true);
+            abilityIcons.SetActive(true);
         }
 
         private void PlayerTeleportOut()

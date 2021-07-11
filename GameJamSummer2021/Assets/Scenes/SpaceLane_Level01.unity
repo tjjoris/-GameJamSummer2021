@@ -1377,6 +1377,19 @@ PrefabInstance:
       propertyPath: debrisResistantParent
       value: 
       objectReference: {fileID: 299476185}
+    - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
+      propertyPath: dialogue.dialogueString.Array.data[0]
+      value: More debris!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
+      propertyPath: dialogue.dialogueString.Array.data[1]
+      value: It seems like these obstacles have been placed here intentionally.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
+      propertyPath: dialogue.dialogueString.Array.data[2]
+      value: We're detecting some kind of unstable energy source as well. Don't let
+        us hit those!
+      objectReference: {fileID: 0}
     - target: {fileID: 4348729251278712507, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
