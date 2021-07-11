@@ -97,7 +97,8 @@ namespace FreeEscape.Core
             progressShader.ApplyShaderEffect(playerTeleportTime, 1.1f);
             yield return new WaitForSeconds(playerTeleportTime);
 
-            levelManager.LevelTimerActive(true);
+            levelManager.SetTimerActive(true);
+
             playerInput.PlayerControlsLocked(false);
             hpBar.SetActive(true);
         }
@@ -120,6 +121,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.ClearAllDebrisScoreScreen();
+            audioPlayerManager.PlayLevelWinTheme();
         }
 
         public IEnumerator PlayerRanOutOfTime()
@@ -132,6 +134,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.OutOfTimeScoreScreen();
+            audioPlayerManager.PlayLoseTheme();
         }
 
         public IEnumerator PlayerDestroyedCoroutine()
@@ -141,6 +144,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.PlayerDestroyedScoreScreen();
+            audioPlayerManager.PlayLoseTheme();
         }
 
 

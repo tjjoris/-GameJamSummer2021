@@ -4359,10 +4359,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'WASD, or arrow keys to move.
 
-    Space bar to fire bombs.
+    Space Bar to fire bombs.
 
-    Q, E,
-    Shift keys, to switch bomb types.'
+    Numbers
+    1,2,3 to swtich bomb types.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

@@ -13,6 +13,7 @@ namespace FreeEscape.Audio
         [SerializeField] private AudioClip[] bonk;
         [SerializeField] private AudioClip[] uiClips;
         [SerializeField] private AudioClip winTheme;
+        [SerializeField] private AudioClip loseTheme;
         [SerializeField] private AudioClip warpIn;
         [SerializeField] private AudioClip warpOut;
         [SerializeField] private AudioSource thruster1;
@@ -79,6 +80,14 @@ namespace FreeEscape.Audio
                 isRotating = false;
                 thruster2.Stop();
             }
+        }
+        public void PlayLevelWinTheme()
+        {
+            AudioSource.PlayClipAtPoint(winTheme, Camera.main.transform.position, volume * 0.7f);
+        }
+        public void PlayLoseTheme()
+        {
+            AudioSource.PlayClipAtPoint(loseTheme, Camera.main.transform.position, volume * 0.6f);
         }
     }
 
