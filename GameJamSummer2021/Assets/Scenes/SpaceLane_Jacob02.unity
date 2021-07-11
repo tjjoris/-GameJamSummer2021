@@ -2632,6 +2632,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1538276256081729589, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3123381096939617587, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2732,6 +2736,19 @@ PrefabInstance:
       propertyPath: debrisResistantParent
       value: 
       objectReference: {fileID: 299476185}
+    - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
+      propertyPath: dialogue.dialogueString.Array.data[0]
+      value: This is the last barrier before our destination, but it's a big one!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
+      propertyPath: dialogue.dialogueString.Array.data[1]
+      value: You're going to need to make clever use of your arsenal to clear all
+        of that.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
+      propertyPath: dialogue.dialogueString.Array.data[2]
+      value: You can do this!
+      objectReference: {fileID: 0}
     - target: {fileID: 4256242715560837922, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
