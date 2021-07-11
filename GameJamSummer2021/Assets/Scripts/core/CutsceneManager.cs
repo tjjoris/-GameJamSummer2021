@@ -98,6 +98,7 @@ namespace FreeEscape.Core
 
         public IEnumerator BeginLevelSequence()
         {
+            Debug.Log("called intro sequence.");
             //level loads
             //dialogueUI.SetActive(false);
             yield return new WaitForSeconds(0.5f);
@@ -126,6 +127,7 @@ namespace FreeEscape.Core
             playerInput.PlayerControlsLocked(false);
             hpBar.SetActive(true);
             abilityIcons.SetActive(true);
+            dialogueUI.SetActive(false);
         }
 
         private void PlayerTeleportOut()
