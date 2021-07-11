@@ -6,6 +6,7 @@ using TMPro;
 using FreeEscape.UI;
 using FreeEscape.Control;
 using FreeEscape.Display;
+using UnityEngine.SceneManagement;
 
 namespace FreeEscape.Core
 {
@@ -19,7 +20,11 @@ namespace FreeEscape.Core
         private CutsceneManager cutsceneManager;
         private ScoreTracker scoreTracker;
         private bool timerActive = false;
-        private float timeRemainingToScoreMult = 2f;
+        private float timeRemainingToScoreMult = 20f;
+        private int[] scoreThisLevelByTask;
+        private int scoreThisLevel;
+        private int numberOfTasks;
+        private int thisLevel;
 
         private void Awake()
         {
@@ -32,6 +37,10 @@ namespace FreeEscape.Core
             debrisTracker.TallyDebris();
             debrisTracker.AllDebrisCleared += PlayerClearedAllDebris;
             currentTimeRemaining = levelTotalTime;
+            numberOfTasks = scoreTracker.GetNumberOfTasks();
+            scoreThisLevelByTask = new int[numberOfTasks];
+            thisLevel = SceneManager.GetActiveScene().buildIndex;
+            scoreTracker.ResetScorePerTask();
         }
 
         private void Update()
@@ -78,24 +87,35 @@ namespace FreeEscape.Core
 
         private void TallyScore(bool levelCleared)
         {
-            int[] score = scoreTracker.GetScorePerTask();
+            scoreThisLevel = 0;
+            scoreThisLevelByTask = scoreTracker.GetScorePerTask();
             string scoreString = "Score: \n";
-            scoreString = scoreString + "   Debris Destoryed: " + score[0].ToString() + "\n";
+            scoreString = scoreString + "   Debris Destoryed: " + scoreThisLevelByTask[0].ToString() + "\n";
             if (levelCleared)
             {
                 BonusScore(out scoreString, scoreString);
             }
-            tMProScore.text = scoreString;
+            scoreString = scoreString + "\n \nTotal: ";
+            SumScore();
+            scoreString = scoreString + scoreThisLevel + "\n \n";
 
+            if (IsScoreHigherThanHighScore())
+            {
+                scoreTracker.SetHighScoreOfLevel(thisLevel, scoreThisLevel);
+            }
+            scoreString = scoreString + "High Score: " + scoreTracker.GetHighScoreOfLevel(thisLevel);
+            tMProScore.text = scoreString;
             //probably calls a scoreManager script to do it's thing. Likely pushes currentTimeRemaining to it.
         }
 
         private void BonusScore(out string _scoreString, string origionalScoreString)
         {//i cant remember how to use out properly so im doing it the way i can make work
             float floatTimeScore = (levelTotalTime - currentTimeRemaining) * timeRemainingToScoreMult;
-             string timeScore = Mathf.FloorToInt(floatTimeScore).ToString();
             _scoreString = origionalScoreString + "   Area Cleared! \n   Bonus Score: \n";
-            _scoreString = _scoreString + timeScore;
+            scoreThisLevelByTask[1] = Mathf.FloorToInt(floatTimeScore);
+            string timeScore = scoreThisLevelByTask[1].ToString();
+            _scoreString = _scoreString + "   Time: " + timeScore;
+
         }
     
 
@@ -103,6 +123,22 @@ namespace FreeEscape.Core
         {
             float floatTimeScore = (levelTotalTime - currentTimeRemaining) * timeRemainingToScoreMult;
             return Mathf.FloorToInt(floatTimeScore);
+        }
+        private void SumScore()
+        {
+            for (int i=0; i<numberOfTasks; i++)
+            {
+                scoreThisLevel += scoreThisLevelByTask[i];
+            }
+            scoreTracker.SetScoreOfLevel(scoreThisLevel);
+        }
+        private bool IsScoreHigherThanHighScore()
+        {
+            if (scoreThisLevel > scoreTracker.GetHighScoreOfLevel(thisLevel))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

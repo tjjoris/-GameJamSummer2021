@@ -19,16 +19,18 @@ namespace FreeEscape
         //private List<int> scorePerLevel = new List<int>();
         private int numberOfnonLevelScenes = 1;
         private int highScore;
+        private int[] highScoreOfLevel;
         private int numberOfTasks = 3;
         private float debrisHpToScoreMult = 10;
 
         private void Start()
         {
-            levelCount = SceneManager.sceneCountInBuildSettings - numberOfnonLevelScenes;
+            levelCount = SceneManager.sceneCountInBuildSettings;// - numberOfnonLevelScenes;
             Debug.Log("level count " + levelCount.ToString());
             scorePerTask = new int[numberOfTasks];
             clearedLevel = new bool[levelCount];
             scorePerLevel = new int[levelCount];
+            highScoreOfLevel = new int[levelCount];
 
         }
         public void ResetScorePerTask()
@@ -67,9 +69,30 @@ namespace FreeEscape
                 scorePerLevel[SceneManager.GetActiveScene().buildIndex] += scorePerTask[i];
                 }
         }
+        public void SetScoreOfLevel(int score)
+        {
+            Debug.Log("scene " + SceneManager.GetActiveScene().buildIndex);
+            scorePerLevel[SceneManager.GetActiveScene().buildIndex] = score;
+        }
+        public int GetScoreOfLevel(int index)
+        {
+            return scorePerLevel[index];
+        }
+        public int GetHighScoreOfLevel(int levelIndex)
+        {
+            return highScoreOfLevel[levelIndex];
+        }
+        public void SetHighScoreOfLevel(int index, int score)
+        {
+            highScoreOfLevel[index] = score;
+        }
         public int[] GetScorePerTask()
         {
             return scorePerTask;
+        }
+        public int GetNumberOfTasks()
+        {
+            return numberOfTasks;
         }
     }
 }
