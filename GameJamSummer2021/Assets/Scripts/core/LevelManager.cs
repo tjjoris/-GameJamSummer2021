@@ -127,7 +127,7 @@ namespace FreeEscape.Core
 
         private void BonusScore(out string _scoreString, string origionalScoreString)
         {//i cant remember how to use out properly so im doing it the way i can make work
-            float floatTimeScore = (levelTotalTime - currentTimeRemaining) * timeRemainingToScoreMult;
+            float floatTimeScore = (currentTimeRemaining) * timeRemainingToScoreMult;
             _scoreString = origionalScoreString + "   Area Cleared! \n   Bonus Score: +"
                 + bonusScoreForClear.ToString() + "\n";
             scoreThisLevelByTask[1] = bonusScoreForClear;//the bonus score for clearing
