@@ -13,8 +13,8 @@ namespace FreeEscape.Audio
             AudioSource musicSource = GetComponent<AudioSource>();
             if (PlayerPrefsController.GetFirstTimeMusic())
             {
-                musicSource.volume = 1f;
-                PlayerPrefsController.SetMasterMusicVolume(1f);
+                musicSource.volume = 0.3f;
+                PlayerPrefsController.SetMasterMusicVolume(0.3f);
             }
             else
             {
