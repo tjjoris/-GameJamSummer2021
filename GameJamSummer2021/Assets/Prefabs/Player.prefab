@@ -1068,5 +1068,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9c49b72e29bbde4eb72123d1ce3e6ac, type: 3}
   - {fileID: 8300000, guid: acea9976e89f1974ba0c97ddfb149ef7, type: 3}
   winTheme: {fileID: 8300000, guid: 70ccca8b10b483b47ac889b07ad3c6e4, type: 3}
+  warpIn: {fileID: 8300000, guid: 84202545d2d7345aca96a26e6ca47252, type: 3}
+  warpOut: {fileID: 8300000, guid: 2d715220ac4cf45128e8b0bdcff70e69, type: 3}
   thruster1: {fileID: 2103591954373780629}
   thruster2: {fileID: 3152391913174373609}

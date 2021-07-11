@@ -6,6 +6,7 @@ using FreeEscape.Display;
 using FreeEscape.Control;
 using FreeEscape.UI;
 using TMPro;
+using FreeEscape.Audio;
 
 namespace FreeEscape.Core
 {
@@ -18,6 +19,7 @@ namespace FreeEscape.Core
         private ProgressShader progressShader;
         private DebrisTracker debrisTracker;
         private float levelTotalTime;
+        private AudioPlayerManager audioPlayerManager;
         [SerializeField] private float playerTeleportTime;
         [SerializeField] private GameplayMenu gameplayMenu;
         [SerializeField] private TextMeshProUGUI timeRemainingText;
@@ -30,6 +32,7 @@ namespace FreeEscape.Core
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             if (mainCamera == null)
             { Debug.Log("Could not find Main Camera.");}
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
             SetupPlayerObject();
             StartCoroutine(BeginLevelSequence());
         }
@@ -89,6 +92,7 @@ namespace FreeEscape.Core
             timeRemainingText.text = "Fleet Arrival In: " + result;
             yield return new WaitForSeconds(0.5f);
 
+            audioPlayerManager.PlayeWarpIn();
             player.SetActive(true);
             progressShader.ApplyShaderEffect(playerTeleportTime, 1.1f);
             yield return new WaitForSeconds(playerTeleportTime);
@@ -100,6 +104,7 @@ namespace FreeEscape.Core
 
         private void PlayerTeleportOut()
         {
+            audioPlayerManager.PlayeWarpOut();
             progressShader.ApplyShaderEffect(playerTeleportTime, 0f);
             playerInput.PlayerControlsLocked(true);
         }
