@@ -20,7 +20,7 @@ namespace FreeEscape.UI
             if (persistentGO != null)
             {
                 musicAudioSource = persistentGO.GetComponent<AudioSource>();
-                musicAudioSource.Stop();
+                //musicAudioSource.Stop();
             }
             
             titleThemeAudioSource = GetComponent<AudioSource>();
@@ -30,6 +30,7 @@ namespace FreeEscape.UI
         public void PlayGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            musicAudioSource = GameObject.FindWithTag("PersistentGO").GetComponent<AudioSource>();
             if (musicAudioSource != null)
             {
                 musicAudioSource.Play();
