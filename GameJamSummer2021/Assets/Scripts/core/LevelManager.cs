@@ -107,7 +107,7 @@ namespace FreeEscape.Core
             scoreThisLevel = 0;
             scoreThisLevelByTask = scoreTracker.GetScorePerTask();
             string scoreString = "Score: \n";
-            scoreString = scoreString + "   Debris Destoryed: " + scoreThisLevelByTask[0].ToString() + "\n";
+            scoreString = scoreString + "   Debris Destroyed: " + scoreThisLevelByTask[0].ToString() + "\n";
             if (levelCleared)
             {
                 BonusScore(out scoreString, scoreString);
