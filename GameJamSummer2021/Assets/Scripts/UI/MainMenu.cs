@@ -17,15 +17,19 @@ namespace FreeEscape.UI
         private void Start()
         {
             GameObject persistentGO = GameObject.FindWithTag("PersistentGO");
-            musicAudioSource = persistentGO.GetComponent<AudioSource>();
-            musicAudioSource.Stop();
+            if (musicAudioSource != null)
+            {
+                musicAudioSource = persistentGO.GetComponent<AudioSource>();
+                musicAudioSource.Stop();
+            }
             titleThemeAudioSource = GetComponent<AudioSource>();
             titleThemeAudioSource.volume = PlayerPrefsController.GetMasteMusicVolume();
         }
         public void PlayGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            musicAudioSource.Play();
+            if (musicAudioSource != null)
+            { musicAudioSource.Play(); }
         }
 
         public void TravelToOptionsPage()
