@@ -7,6 +7,7 @@ using FreeEscape.UI;
 using FreeEscape.Control;
 using FreeEscape.Display;
 using UnityEngine.SceneManagement;
+using FreeEscape.Audio;
 
 namespace FreeEscape.Core
 {
@@ -19,6 +20,7 @@ namespace FreeEscape.Core
         [SerializeField] private DebrisTracker debrisTracker;
         private CutsceneManager cutsceneManager;
         private ScoreTracker scoreTracker;
+        private AudioPlayerManager audioPlayerManager;
         private bool timerActive = false;
         private float timeRemainingToScoreMult = 200f;
         private int[] scoreThisLevelByTask;
@@ -42,6 +44,7 @@ namespace FreeEscape.Core
             scoreThisLevelByTask = new int[numberOfTasks];
             thisLevel = SceneManager.GetActiveScene().buildIndex;
             scoreTracker.ResetScorePerTask();
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
 
         private void Update()
@@ -72,6 +75,10 @@ namespace FreeEscape.Core
             if (_state) { TallyScore(false); }
             timerActive = _state;
         }
+        public void SetTimerActive(bool _state)
+        {
+            timerActive = _state;
+        }
 
         private void PlayerClearedAllDebris(object sender, EventArgs e)
         {
@@ -88,6 +95,15 @@ namespace FreeEscape.Core
 
         private void TallyScore(bool levelCleared)
         {
+            //if (levelCleared)
+            //{
+            //    audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
+            //    audioPlayerManager.PlayLevelWinTheme();
+            //} else
+            //{
+            //    audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
+            //    audioPlayerManager.PlayLoseTheme();
+            //}
             scoreThisLevel = 0;
             scoreThisLevelByTask = scoreTracker.GetScorePerTask();
             string scoreString = "Score: \n";

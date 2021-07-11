@@ -6,6 +6,7 @@ using FreeEscape.Display;
 using FreeEscape.Control;
 using FreeEscape.UI;
 using TMPro;
+using FreeEscape.Audio;
 
 namespace FreeEscape.Core
 {
@@ -21,6 +22,7 @@ namespace FreeEscape.Core
         private ProgressShader progressShader;
         private DebrisTracker debrisTracker;
         private float levelTotalTime;
+        private AudioPlayerManager audioPlayerManager;
         [SerializeField] private float playerTeleportTime;
         [SerializeField] private GameplayMenu gameplayMenu;
         [SerializeField] private TextMeshProUGUI timeRemainingText;
@@ -34,6 +36,7 @@ namespace FreeEscape.Core
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             if (mainCamera == null)
             { Debug.Log("Could not find Main Camera.");}
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
             SetupPlayerObject();
             InitializeScene();
             
@@ -112,12 +115,14 @@ namespace FreeEscape.Core
             timeRemainingText.text = "Fleet Arrival In: " + result;
             yield return new WaitForSeconds(0.5f);
 
+            audioPlayerManager.PlayeWarpIn();
             player.SetActive(true);
             //mainCamera.GetComponent<FollowCamera>().FocusPlayer();
             progressShader.ApplyShaderEffect(playerTeleportTime, 1.1f);
             yield return new WaitForSeconds(playerTeleportTime);
 
-            levelManager.LevelTimerActive(true);
+            levelManager.SetTimerActive(true);
+
             playerInput.PlayerControlsLocked(false);
             hpBar.SetActive(true);
             abilityIcons.SetActive(true);
@@ -125,6 +130,7 @@ namespace FreeEscape.Core
 
         private void PlayerTeleportOut()
         {
+            audioPlayerManager.PlayeWarpOut();
             progressShader.ApplyShaderEffect(playerTeleportTime, 0f);
             playerInput.PlayerControlsLocked(true);
         }
@@ -140,6 +146,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.ClearAllDebrisScoreScreen();
+            audioPlayerManager.PlayLevelWinTheme();
         }
 
         public IEnumerator PlayerRanOutOfTime()
@@ -152,6 +159,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.OutOfTimeScoreScreen();
+            audioPlayerManager.PlayLoseTheme();
         }
 
         public IEnumerator PlayerDestroyedCoroutine()
@@ -161,6 +169,7 @@ namespace FreeEscape.Core
             yield return new WaitForSeconds(1.38f);
 
             gameplayMenu.PlayerDestroyedScoreScreen();
+            audioPlayerManager.PlayLoseTheme();
         }
 
 

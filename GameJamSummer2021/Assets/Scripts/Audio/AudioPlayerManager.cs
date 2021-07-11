@@ -11,9 +11,14 @@ namespace FreeEscape.Audio
         [SerializeField] private AudioClip bombFire;
         [SerializeField] private AudioClip[] explosions;
         [SerializeField] private AudioClip[] bonk;
+        [SerializeField] private AudioClip[] uiClips;
         [SerializeField] private AudioClip winTheme;
+        [SerializeField] private AudioClip loseTheme;
+        [SerializeField] private AudioClip warpIn;
+        [SerializeField] private AudioClip warpOut;
         [SerializeField] private AudioSource thruster1;
         [SerializeField] private AudioSource thruster2;
+
         private bool isAccelerating;
         private bool isRotating;
         private float volume;
@@ -22,6 +27,14 @@ namespace FreeEscape.Audio
             volume = PlayerPrefsController.GetMasterVolume();
             thruster1.volume = volume;
             thruster2.volume = volume;
+        }
+        public void PlayeWarpIn()
+        {
+            AudioSource.PlayClipAtPoint(warpIn, Camera.main.transform.position, volume);
+        }
+        public void PlayeWarpOut()
+        {
+            AudioSource.PlayClipAtPoint(warpOut, Camera.main.transform.position, volume);
         }
         public void PlayFireBomb(){
         AudioSource.PlayClipAtPoint(bombFire, Camera.main.transform.position, volume);
@@ -67,6 +80,14 @@ namespace FreeEscape.Audio
                 isRotating = false;
                 thruster2.Stop();
             }
+        }
+        public void PlayLevelWinTheme()
+        {
+            AudioSource.PlayClipAtPoint(winTheme, Camera.main.transform.position, volume * 0.7f);
+        }
+        public void PlayLoseTheme()
+        {
+            AudioSource.PlayClipAtPoint(loseTheme, Camera.main.transform.position, volume * 0.6f);
         }
     }
 

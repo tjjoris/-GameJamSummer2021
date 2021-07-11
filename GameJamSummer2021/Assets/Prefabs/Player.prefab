@@ -1067,6 +1067,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c34af6ca259609d4a81586f1d6efc919, type: 3}
   - {fileID: 8300000, guid: d9c49b72e29bbde4eb72123d1ce3e6ac, type: 3}
   - {fileID: 8300000, guid: acea9976e89f1974ba0c97ddfb149ef7, type: 3}
-  winTheme: {fileID: 8300000, guid: 70ccca8b10b483b47ac889b07ad3c6e4, type: 3}
+  uiClips:
+  - {fileID: 8300000, guid: 40490d8f150224622b3f6df5765426e2, type: 3}
+  - {fileID: 8300000, guid: 6e7e045801dc64702a5638ee54fb26ec, type: 3}
+  - {fileID: 8300000, guid: 7ac970e0d789b4b3285d602d679c72c6, type: 3}
+  - {fileID: 8300000, guid: c279445f6527f4ca3bfe942241e7e91c, type: 3}
+  - {fileID: 8300000, guid: 22365209cb111460997fe84fee0de8eb, type: 3}
+  - {fileID: 8300000, guid: ea86c9a5d040f49fd85cb179f0c1b595, type: 3}
+  winTheme: {fileID: 8300000, guid: 5d96ccc36d8ba44a29fff877b34ce576, type: 3}
+  loseTheme: {fileID: 8300000, guid: 228c7535281c042f48efa842d374f43f, type: 3}
+  warpIn: {fileID: 8300000, guid: 84202545d2d7345aca96a26e6ca47252, type: 3}
+  warpOut: {fileID: 8300000, guid: 2d715220ac4cf45128e8b0bdcff70e69, type: 3}
   thruster1: {fileID: 2103591954373780629}
   thruster2: {fileID: 3152391913174373609}
