@@ -11,6 +11,7 @@ namespace FreeEscape.Audio
         [SerializeField] private AudioClip bombFire;
         [SerializeField] private AudioClip[] explosions;
         [SerializeField] private AudioClip[] bonk;
+        [SerializeField] private AudioClip[] uiClips;
         [SerializeField] private AudioClip winTheme;
         [SerializeField] private AudioClip warpIn;
         [SerializeField] private AudioClip warpOut;
