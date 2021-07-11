@@ -20,12 +20,12 @@ namespace FreeEscape.Core
         private CutsceneManager cutsceneManager;
         private ScoreTracker scoreTracker;
         private bool timerActive = false;
-        private float timeRemainingToScoreMult = 400f;
+        private float timeRemainingToScoreMult = 200f;
         private int[] scoreThisLevelByTask;
         private int scoreThisLevel;
         private int numberOfTasks;
         private int thisLevel;
-        private int bonusScoreForClear = 7000;
+        private int bonusScoreForClear = 5000;
 
         private void Awake()
         {
