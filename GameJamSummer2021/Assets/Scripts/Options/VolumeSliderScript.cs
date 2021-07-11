@@ -21,7 +21,7 @@ namespace FreeEscape.Options
             if (PlayerPrefsController.GetFirstTime())
             {
                 Debug.Log("set sfx volume to default");
-                startVolume = 0.3f;
+                startVolume = 0.2f;
                 PlayerPrefsController.SetMasterVolume(startVolume);
             }
             slider.value = startVolume;

@@ -32,7 +32,7 @@ namespace FreeEscape.Options
                 if (PlayerPrefsController.GetFirstTimeMusic())
                 {
                 Debug.Log("set music to default");
-                    startVolume = 0.3f;
+                    startVolume = 0.2f;
                 ValueChangeCheck(startVolume);
 
                 }
