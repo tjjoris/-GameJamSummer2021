@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FreeEscape.Options;
 
 namespace FreeEscape.UI
 {
@@ -11,9 +12,20 @@ namespace FreeEscape.UI
         [SerializeField] private GameObject optionsPage;
         [SerializeField] private GameObject aboutPage;
         [SerializeField] private GameObject controlsPage;
+        private AudioSource musicAudioSource;
+        private AudioSource titleThemeAudioSource;
+        private void Start()
+        {
+            GameObject persistentGO = GameObject.FindWithTag("PersistentGO");
+            musicAudioSource = persistentGO.GetComponent<AudioSource>();
+            musicAudioSource.Stop();
+            titleThemeAudioSource = GetComponent<AudioSource>();
+            titleThemeAudioSource.volume = PlayerPrefsController.GetMasteMusicVolume();
+        }
         public void PlayGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            musicAudioSource.Play();
         }
 
         public void TravelToOptionsPage()

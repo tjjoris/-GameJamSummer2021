@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 8629971760827596153}
   - component: {fileID: 775030752002902946}
   - component: {fileID: 4809763487534948412}
+  - component: {fileID: 3997621885796018920}
   m_Layer: 5
   m_Name: ScoreScreenText
   m_TagString: Untagged
@@ -438,6 +439,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3997621885796018920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208645705508012006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4560e1f7b410c4a7e9f4ccdd1932327c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1381858151072310026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,6 +1684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTotalTime: 120
+  tMProScore: {fileID: 4809763487534948412}
   debrisTracker: {fileID: 3123381098147578726}
 --- !u!114 &3103614967997640918
 MonoBehaviour:

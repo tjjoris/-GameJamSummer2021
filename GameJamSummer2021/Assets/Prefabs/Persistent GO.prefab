@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4485161150808959138}
   - component: {fileID: 8812220566229147698}
   - component: {fileID: 4261122843333337315}
+  - component: {fileID: 8247580837452382628}
   m_Layer: 0
   m_Name: Persistent GO
   m_TagString: PersistentGO
@@ -138,5 +139,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beeeb60570f9146bda4e8565c4b3b9b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8247580837452382628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8790505398233336385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0d8eb29bf994b07ae7a30d521dc5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

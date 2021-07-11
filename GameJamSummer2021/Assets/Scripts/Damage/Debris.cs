@@ -65,6 +65,7 @@ namespace FreeEscape.Damage
             {
                 debrisEvent.AlertEventWatchers();    
                 Destroy(gameObject, timeToVaporize);
+                FindObjectOfType<ScoreTracker>().AddDebrisScore(_hitPoints);
             }
         }
 
