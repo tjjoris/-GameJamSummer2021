@@ -8,6 +8,7 @@ namespace FreeEscape.UI
 {
     public class EndGameMenu : MonoBehaviour
     {
+ 
         public void CompleteButton()
         {
             SceneManager.LoadScene("MainMenu");
