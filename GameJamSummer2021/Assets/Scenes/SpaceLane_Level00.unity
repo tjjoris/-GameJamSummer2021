@@ -1506,8 +1506,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
       propertyPath: dialogue.dialogueString.Array.data[3]
-      value: We've outfitted your ship, make use of all your abilitys. The whole
-        fleet is counting on you.
+      value: We've outfitted your ship, make use of all your abilities. The whole
+        fleet is counting on you!
       objectReference: {fileID: 0}
     - target: {fileID: 4348729251278712507, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
       propertyPath: m_AnchorMax.x

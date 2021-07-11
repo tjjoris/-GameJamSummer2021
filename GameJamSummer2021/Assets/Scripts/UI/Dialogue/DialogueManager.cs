@@ -12,6 +12,7 @@ namespace FreeEscape.UI
         [SerializeField] private CutsceneManager cutsceneManager;
         [SerializeField] private TextMeshProUGUI dialogueBox;
         private Animator animator;
+        private bool dialogueCompleted = false;
         void Awake()
         {
             sentences = new Queue<string>();
@@ -46,7 +47,13 @@ namespace FreeEscape.UI
 
         private void EndDialogue()
         {
+            if (dialogueCompleted == true)
+            {
+                return;
+            }
+
             animator.SetBool("DialogueActive", false);
+            dialogueCompleted = true;
             StartCoroutine(cutsceneManager.BeginLevelSequence());
         }
     }
