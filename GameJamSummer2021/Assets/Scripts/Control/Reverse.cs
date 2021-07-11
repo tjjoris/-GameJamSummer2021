@@ -7,8 +7,8 @@ namespace FreeEscape.Control
 {
     public class Reverse : MonoBehaviour
     {
-        float minAngleToNotRotate = 1f;
-        float minSpeedToStop = 1f;
+        float minAngleToNotRotate = 10f;
+        float minSpeedToStop = 3f;
         private Mover mover;
         [SerializeField] private MaxSpeed maxSpeed;
 
