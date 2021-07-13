@@ -14,9 +14,18 @@ namespace FreeEscape.Core
         private int numberOfScenesAfterMaxLevel = 1;
         void Start()
         {
-            scoreTracker = FindObjectOfType<ScoreTracker>();
             tMProScore = GetComponent<TMPro.TextMeshProUGUI>();
             string scoreText = "Score: \n";
+
+            scoreTracker = FindObjectOfType<ScoreTracker>();
+            if (scoreTracker == null)
+            {
+                Debug.Log("GameEndScoreText could not find ScoreTracker Object");
+                scoreText = "GameEndScoreText could not find ScoreTracker Object";
+                tMProScore.text = scoreText;
+                return;
+            }
+            
             int levelCount = 1;
             int scoreTotal = 0;
             for (int i=numberOfScenesBeforeLevel1; i< SceneManager.sceneCountInBuildSettings -

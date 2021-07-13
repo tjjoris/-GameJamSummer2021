@@ -71,7 +71,6 @@ namespace FreeEscape.Core
             }
         }
         
-        
         private void UnSubscribe(DebrisEvent _debrisEvent)
         {
             //make sure to do this if script is ever removed

@@ -36,15 +36,25 @@ namespace FreeEscape.Core
         }
         private void Start()
         {
-            scoreTracker = FindObjectOfType<ScoreTracker>();
+            GetScoreTracker();            
             debrisTracker.TallyDebris();
             debrisTracker.AllDebrisCleared += PlayerClearedAllDebris;
             currentTimeRemaining = levelTotalTime;
+            thisLevel = SceneManager.GetActiveScene().buildIndex;
+            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
+        }
+
+        private void GetScoreTracker()
+        {
+            scoreTracker = FindObjectOfType<ScoreTracker>();
+            if (scoreTracker == null)
+            {
+                Debug.Log("Could not find ScoreTracker.");
+                return;
+            }
             numberOfTasks = scoreTracker.GetNumberOfTasks();
             scoreThisLevelByTask = new int[numberOfTasks];
-            thisLevel = SceneManager.GetActiveScene().buildIndex;
             scoreTracker.ResetScorePerTask();
-            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
 
         private void Update()
@@ -62,17 +72,13 @@ namespace FreeEscape.Core
 
                 if (currentTimeRemaining <= 0)
                 {
-                    timerActive = false;
-                    cutsceneManager.UpdateTimerText(0f);
-                    StartCoroutine(cutsceneManager.PlayerRanOutOfTime());
+                    PlayerRanOutOfTime();
                 }
             }
         }
 
         public void LevelTimerActive(bool _state)
         {
-            //Debug.Log("time out" + _state.ToString());
-            if (_state) { TallyScore(false); }
             timerActive = _state;
         }
         public void SetTimerActive(bool _state)
@@ -82,9 +88,16 @@ namespace FreeEscape.Core
 
         private void PlayerClearedAllDebris(object sender, EventArgs e)
         {
-            //Debug.Log("this level has been cleared");
             TallyScore(true);
             StartCoroutine(cutsceneManager.ClearAllDebrisCoroutine());
+        }
+
+        private void PlayerRanOutOfTime()
+        {
+            timerActive = false;
+            cutsceneManager.UpdateTimerText(0f);
+            TallyScore(false);
+            StartCoroutine(cutsceneManager.PlayerRanOutOfTime());
         }
 
         public void PlayerDestroyed()
@@ -95,15 +108,8 @@ namespace FreeEscape.Core
 
         private void TallyScore(bool levelCleared)
         {
-            //if (levelCleared)
-            //{
-            //    audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
-            //    audioPlayerManager.PlayLevelWinTheme();
-            //} else
-            //{
-            //    audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
-            //    audioPlayerManager.PlayLoseTheme();
-            //}
+            if (scoreTracker == null) { GetScoreTracker(); } //this failsafe should not exist. Currently implemented due to a race condition.
+            
             scoreThisLevel = 0;
             scoreThisLevelByTask = scoreTracker.GetScorePerTask();
             string scoreString = "Score: \n";
@@ -122,7 +128,6 @@ namespace FreeEscape.Core
             }
             scoreString = scoreString + "High Score: " + scoreTracker.GetHighScoreOfLevel(thisLevel);
             tMProScore.text = scoreString;
-            //probably calls a scoreManager script to do it's thing. Likely pushes currentTimeRemaining to it.
         }
 
         private void BonusScore(out string _scoreString, string origionalScoreString)
