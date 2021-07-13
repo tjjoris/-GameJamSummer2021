@@ -100,7 +100,6 @@ namespace FreeEscape.Core
         {
             Debug.Log("called intro sequence.");
             //level loads
-            //dialogueUI.SetActive(false);
             yield return new WaitForSeconds(0.5f);
          
             //camera zoomed out with view of debris

@@ -64,8 +64,8 @@ namespace FreeEscape.Damage
             if (ProgressShaderToPercent() >= 1)
             {
                 debrisEvent.AlertEventWatchers();    
-                Destroy(gameObject, timeToVaporize);
                 FindObjectOfType<ScoreTracker>().AddDebrisScore(_hitPoints);
+                Destroy(gameObject, timeToVaporize);
             }
         }
 

@@ -23,7 +23,7 @@ namespace FreeEscape
         private int numberOfTasks = 3;
         private float debrisHpToScoreMult = 10;
 
-        private void Start()
+        private void Awake()
         {
             levelCount = SceneManager.sceneCountInBuildSettings;// - numberOfnonLevelScenes;
             Debug.Log("level count " + levelCount.ToString());
