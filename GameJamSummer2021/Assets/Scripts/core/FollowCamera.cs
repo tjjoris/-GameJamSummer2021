@@ -7,6 +7,7 @@ namespace FreeEscape.Core
     public class FollowCamera : MonoBehaviour
     {
         [SerializeField] private GameObject player;
+        private bool followPlayer = false;
         private Vector3 cameraOffset;
         // Start is called before the first frame update
         void Start()
@@ -17,7 +18,17 @@ namespace FreeEscape.Core
         // Update is called once per frame
         void Update()
         {
-            transform.position = player.transform.position + cameraOffset;
+            if (followPlayer)
+            {
+                transform.position = player.transform.position + cameraOffset;
+            }
+        }
+
+        public void LockCameraToPlayer(GameObject _player)
+        {
+            player = _player;
+            followPlayer = true;
+
         }
     }
 }

@@ -17,11 +17,12 @@ namespace FreeEscape.Core
         //[SerializeField] private Animator cameraMotion;
         [SerializeField] private GameObject dialogueUI;
         private LevelManager levelManager;
-        private GameObject player;
-        private PlayerInput playerInput;
+        private LevelProperties levelProperties;
         private ProgressShader progressShader;
         private DebrisTracker debrisTracker;
         private float levelTotalTime;
+        private GameObject player;        
+        private I_InputControl playerInput;
         private AudioPlayerManager audioPlayerManager;
         [SerializeField] private float playerTeleportTime;
         [SerializeField] private GameplayMenu gameplayMenu;
@@ -29,33 +30,14 @@ namespace FreeEscape.Core
         [SerializeField] private TextMeshProUGUI announcementText;
         [SerializeField] private GameObject hpBar;
         [SerializeField] private GameObject abilityIcons;
-        
 
-        private void Start()
+        public void SetupPlayer(GameObject _player, I_InputControl _InputControl, AudioPlayerManager _audioPlayerManager)
         {
-            mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-            if (mainCamera == null)
-            { Debug.Log("Could not find Main Camera.");}
-            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
-            SetupPlayerObject();
-            InitializeScene();
+            player = _player;
+            if (player == null) {Debug.LogWarning("CutsceneManager did not obtain Player Object");}
+            playerInput = _InputControl;
+            audioPlayerManager = _audioPlayerManager;
             
-        }
-
-        public void SetupCutsceneManager(LevelManager _levelManager, DebrisTracker _debrisTracker, float _timeToComplete)
-        {
-            levelManager = _levelManager;
-            debrisTracker = _debrisTracker;
-        }
-        private void SetupPlayerObject()
-        {
-            player = GameObject.Find("Player");
-            playerInput = player.GetComponent<PlayerInput>();
-            if (playerInput == null)
-            {
-                Debug.Log("Could not find Player.");
-                return;
-            }
             playerInput.PlayerControlsLocked(true);
             progressShader = player.GetComponentInChildren<ProgressShader>();
             if (progressShader == null)
@@ -65,8 +47,23 @@ namespace FreeEscape.Core
             }
             progressShader.ApplyShaderEffect(0f, 0f);
             player.SetActive(false);
-            //player.transform.position = cameraStartPosition;
+
+            InitializeScene();
         }
+
+        public void SetupCutsceneManager(LevelManager _levelManager, DebrisTracker _debrisTracker, float _timeToComplete)
+        {
+            levelManager = _levelManager;
+            debrisTracker = _debrisTracker;
+            
+            mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            if (mainCamera == null)
+            {
+                Debug.Log("Could not find Main Camera.");
+                return;
+            }
+        }
+        
 
         public void UpdateTimerText(float _currentTimeRemaining)
         {
@@ -77,6 +74,10 @@ namespace FreeEscape.Core
 
         private void InitializeScene()
         {
+            mainCamera.GetComponent<FollowCamera>().LockCameraToPlayer(player);
+
+            levelProperties = this.GetComponent<LevelProperties>();
+
             debrisTracker.HideText();
             timeRemainingText.text = "";
             announcementText.text = "";
@@ -90,11 +91,10 @@ namespace FreeEscape.Core
         IEnumerator IntroDialogue()
         {
             yield return new WaitForSeconds(0.62f);
+
             dialogueUI.SetActive(true);
             dialogueUI.GetComponent<DialogueTrigger>().StartDialogue();
         }
-
-
 
         public IEnumerator BeginLevelSequence()
         {
@@ -115,6 +115,11 @@ namespace FreeEscape.Core
             timeRemainingText.text = "Fleet Arrival In: " + result;
             yield return new WaitForSeconds(0.5f);
 
+            if (audioPlayerManager == null) 
+            {
+                Debug.Log("CutsceneManager does not have AudioPlayerManager.");
+                yield break;
+            }
             audioPlayerManager.PlayeWarpIn();
             player.SetActive(true);
             //mainCamera.GetComponent<FollowCamera>().FocusPlayer();

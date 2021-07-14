@@ -13,11 +13,12 @@ namespace FreeEscape.Movement
         [SerializeField]private float accelAmount;
         [SerializeField] private float rotateAmount;
         private Rigidbody2D rb;
-        private AudioPlayerManager audioPlayerManager;
+        private AudioPlayerManager _audioPlayerManager;
+        
+
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
 
         public void Accelerate(bool accelBool)
@@ -25,13 +26,24 @@ namespace FreeEscape.Movement
             this.accelBool = accelBool;
             if (accelBool)
             {
-                audioPlayerManager.StartMainThrustersAudio();
+                AudioPlayerManager.StartMainThrustersAudio();
             }
             else
             {
-                audioPlayerManager.StopMainThrustersAudio();
+                AudioPlayerManager.StopMainThrustersAudio();
             }
         }
+
+        private AudioPlayerManager AudioPlayerManager
+        {
+            get
+            {
+                if (_audioPlayerManager == null)
+                { _audioPlayerManager = GetComponent<AudioPlayerManager>();}
+                return _audioPlayerManager;
+            }
+        }
+
         public void Rotate(float _rotateDir)
         {
             //Debug.Log("rotate " + _rotateDir);
@@ -44,17 +56,17 @@ namespace FreeEscape.Movement
             {
                 playerAnimator.InputLeft(false);
                 playerAnimator.InputRight(false);
-                audioPlayerManager.StopRotatingThrustersAudio();
+                AudioPlayerManager.StopRotatingThrustersAudio();
             }
             else if (_rotateDir > 0)
             {
                 playerAnimator.InputLeft(true);
-                audioPlayerManager.StartRotatingThrustersAudio();
+                AudioPlayerManager.StartRotatingThrustersAudio();
             }
             else if (_rotateDir < 0)
             {
                 playerAnimator.InputRight(true);
-                audioPlayerManager.StartRotatingThrustersAudio();
+                AudioPlayerManager.StartRotatingThrustersAudio();
             }
         }
 

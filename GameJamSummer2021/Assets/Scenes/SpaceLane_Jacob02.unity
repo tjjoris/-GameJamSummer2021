@@ -2738,7 +2738,8 @@ PrefabInstance:
       objectReference: {fileID: 299476185}
     - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
       propertyPath: dialogue.dialogueString.Array.data[0]
-      value: This is the last barrier before our destination, but it's a big one!
+      value: Looks like this is the last debris field before our destination. And
+        it's a big one!
       objectReference: {fileID: 0}
     - target: {fileID: 3384997218262548468, guid: 3c3015d99ba607642a175e693fde0495, type: 3}
       propertyPath: dialogue.dialogueString.Array.data[1]

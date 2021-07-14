@@ -9,10 +9,10 @@ namespace FreeEscape.Bomb
     {
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            I_ExplosionDamageReaction objectHit = collision.gameObject.GetComponent<I_ExplosionDamageReaction>();
+            GameObject objectHit = collision.gameObject;
             if (objectHit != null)
             {
-                GetComponent<BombProperties>().Detonate();
+                GetComponent<I_CanDetonate>().Detonate();
             }
         }
     }

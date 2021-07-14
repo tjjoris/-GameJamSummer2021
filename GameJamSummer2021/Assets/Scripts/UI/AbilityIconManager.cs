@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FreeEscape.Control;
 
 namespace FreeEscape.UI
 {
-    public class BombsIndicator : MonoBehaviour
+    public class AbilityIconManager : MonoBehaviour
     {
         int numberOfbombtypes;
-        [SerializeField] BombIcon[] bombIcon;
+        [SerializeField] private GameObject abilityIconPrefab;
+        [SerializeField] private AbilityManager abilityManager;
+        [SerializeField] AbilityIcon[] bombIcon;
+        private List<GameObject> abilityIcons = new List<GameObject>();
 
         private void Start()
         {
-            numberOfbombtypes = FindObjectsOfType<BombIcon>().Length;
+            numberOfbombtypes = FindObjectsOfType<AbilityIcon>().Length;
         }
+
+
+        public void GenerateIcons(I_AbilityProperties abilityProperties)
+        {
+            GameObject iconObj = Instantiate(abilityIconPrefab, this.transform);
+            abilityIcons.Add(iconObj);
+            iconObj.GetComponent<AbilityIcon>().SetupAbilityIcon(abilityProperties);
+        }
+
+
         public void SetBombActive(int bombIndex)
         {
             for (int i = 0; i < numberOfbombtypes; i++)
