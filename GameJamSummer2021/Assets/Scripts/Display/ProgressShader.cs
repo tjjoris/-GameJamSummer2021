@@ -27,9 +27,17 @@ namespace FreeEscape.Display
 
         public void ApplyShaderEffect(float _timeToComplete, float _percentage)
         {
+            if (spriteRenderer == null)
+                { spriteRenderer = this.GetComponent<SpriteRenderer>(); }
+
             targetProgress = _percentage;
             activateShaderProgression = true;
             timeToComplete = _timeToComplete;
+
+            if (_timeToComplete == 0)
+            {
+                spriteRenderer.material.SetFloat("_ProgressAmount", progressCurve.Evaluate(1));
+            }
         }
 
         private void TickShader()

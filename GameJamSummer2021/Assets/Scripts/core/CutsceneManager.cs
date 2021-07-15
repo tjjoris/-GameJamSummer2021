@@ -45,8 +45,8 @@ namespace FreeEscape.Core
                 Debug.Log("Could not find ProgressShader");
                 return;
             }
-            progressShader.ApplyShaderEffect(0f, 0f);
             player.SetActive(false);
+            progressShader.ApplyShaderEffect(0f, 0f);
 
             InitializeScene();
         }
@@ -120,9 +120,8 @@ namespace FreeEscape.Core
                 Debug.Log("CutsceneManager does not have AudioPlayerManager.");
                 yield break;
             }
-            audioPlayerManager.PlayeWarpIn();
             player.SetActive(true);
-            //mainCamera.GetComponent<FollowCamera>().FocusPlayer();
+            audioPlayerManager.PlayeWarpIn();
             progressShader.ApplyShaderEffect(playerTeleportTime, 1.1f);
             yield return new WaitForSeconds(playerTeleportTime);
 
@@ -179,19 +178,5 @@ namespace FreeEscape.Core
             gameplayMenu.PlayerDestroyedScoreScreen();
             audioPlayerManager.PlayLoseTheme();
         }
-
-
-
-        ////////////////////////
-
-
-        //Level Ends
-        //Score collected
-        //Timer Paused
-        ////Player controls locked
-        //Player teleports out
-        //Fleet comes screaming through
-        //Fleet colliders hit debris/bombs
-        //
     }
 }
