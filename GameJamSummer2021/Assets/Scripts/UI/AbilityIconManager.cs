@@ -10,40 +10,49 @@ namespace FreeEscape.UI
         int numberOfbombtypes;
         [SerializeField] private GameObject abilityIconPrefab;
         [SerializeField] private AbilityManager abilityManager;
-        [SerializeField] AbilityIcon[] bombIcon;
-        private List<GameObject> abilityIcons = new List<GameObject>();
+        private List<AbilityIcon> abilityIcons;
 
-        private void Start()
+
+        public void GenerateIcons(I_AbilitySlot _abilitySlot)
         {
-            numberOfbombtypes = FindObjectsOfType<AbilityIcon>().Length;
-        }
+            abilityIcons = new List<AbilityIcon>();
 
-
-        public void GenerateIcons(I_AbilityProperties abilityProperties)
-        {
             GameObject iconObj = Instantiate(abilityIconPrefab, this.transform);
-            abilityIcons.Add(iconObj);
-            iconObj.GetComponent<AbilityIcon>().SetupAbilityIcon(abilityProperties);
+            AbilityIcon abilityIcon = iconObj.GetComponent<AbilityIcon>();
+            if (abilityIcon == null)
+                {Debug.LogWarning("Could not obtain AbilityIcon script"); return;}
+
+            GameObject abilityPrefab = _abilitySlot.AbilityPrefab;
+            if (abilityPrefab == null)
+            { Debug.LogWarning("AbilityIconManager could not obtain Ability Prefab"); return; }
+
+            I_AbilityProperties abilityProperties = abilityPrefab.GetComponent<I_AbilityProperties>();
+            if (abilityProperties == null)
+            { Debug.LogWarning("AbilityIconManager could not locate Ability Properties."); return; }
+
+            _abilitySlot.AbilityIcon = abilityIcon;
+            
+            abilityIcons.Add(abilityIcon);
+            abilityIcon.SetupAbilityIcon(abilityProperties, _abilitySlot.Ammo);
+
+            Debug.Log($"Generated Icon for {_abilitySlot.AbilityPrefab.name}.");
         }
 
-
-        public void SetBombActive(int bombIndex)
+        public void DisarmAll()
         {
-            for (int i = 0; i < numberOfbombtypes; i++)
+            foreach (AbilityIcon icon in abilityIcons)
             {
-                if (bombIndex != i)
-                {
-                    bombIcon[i].BombUnarmed();
-                }
-                else
-                {
-                    bombIcon[i].BombActive();
-                }
+                icon.BombUnarmed();
             }
         }
-        public void ShowAmmo(int bombIndex, int newAmmo)
+
+        public void ShowAmmo(int _abilityIndex, int _newAmmo)
         {
-            bombIcon[bombIndex].ShowAmmo(newAmmo);
+            if (abilityIcons[_abilityIndex] == null)
+                { return; }
+            
+            abilityIcons[_abilityIndex].ShowAmmo(_newAmmo);
+            
         }
 
     }

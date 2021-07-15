@@ -17,29 +17,27 @@ namespace FreeEscape.Control
         private SpriteRenderer heldBombSpriteRenderer;
         private Rigidbody2D rb;
         private AudioPlayerManager audioPlayerManager;
-        private AbilityIconManager abilityIconManager;
+        private I_AbilityManager _abilityManager;
+        public I_AbilityManager AbilityManager { set { _abilityManager = value; } }
         private float launchVelocity;
         private float cooldown;
         private float countdownCurrent;
         private bool canLaunchBomb = true;
         private bool launcherEnabled = true;
-        [Header("[0]Ability 1, [1]Ability 2, [2]Ability 3")]
-        [SerializeField] int[] bombAmmo = { -1, 5 , 5};
-        private int bombTypeEquipped;
+        private int abilitySlotEquipped;
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             heldBombSpriteRenderer = bombLauncher.GetComponent<SpriteRenderer>();
-            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
-            abilityIconManager = FindObjectOfType<AbilityIconManager>();
+            // audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
         }
-        private void Start()
-        {
-            for (int i=1; i<bombAmmo.Length; i++)
-            {
-                abilityIconManager.ShowAmmo(i, bombAmmo[i]);
-            }
-        }
+        // private void Start()
+        // {
+        //     for (int i=1; i<bombAmmo.Length; i++)
+        //     {
+        //         abilityIconManager.ShowAmmo(i, bombAmmo[i]);
+        //     }
+        // }
 
         private void Update()
         {
@@ -54,9 +52,13 @@ namespace FreeEscape.Control
         }
         public void ActivateAbility()
         {
-            if ((!canLaunchBomb) || (!HasAmmo())) { return; }
+            if (_abilityManager == null)
+                { Debug.LogWarning("LaunchBomb does not have AbilityManager."); return; }
+
+            if ((!canLaunchBomb) || OutOfAmmo())
+                { Debug.Log("Cannot activate ability right now."); return; }
             
-            UseAmmo();
+            _abilityManager.UseAmmo(abilitySlotEquipped);
             GenerateBomb();
             BeginCooldown();
         }
@@ -68,7 +70,7 @@ namespace FreeEscape.Control
             Vector2 reverseV2 = new Vector2(0, launchVelocity);
             bomb.GetComponent<Rigidbody2D>().AddRelativeForce(reverseV2);
             bomb.GetComponent<Rigidbody2D>().velocity = shipVelocity;
-            audioPlayerManager.PlayFireBomb();
+            //audioPlayerManager.PlayFireBomb();
 
         }
 
@@ -91,10 +93,11 @@ namespace FreeEscape.Control
             launcherEnabled = _state;
         }
 
-        public void EquipAbility(GameObject _bombPrefab, int bombIndex)
+        public void EquipAbility(I_AbilitySlot _abilitySlot, int _slotIndex)
         {
-            bombTypeEquipped = bombIndex;
-            equippedBomb = _bombPrefab;
+            //todo   use AbilityManager
+            abilitySlotEquipped = _slotIndex;
+            equippedBomb = _abilitySlot.AbilityPrefab;
             bombProperties = equippedBomb.GetComponent<BombProperties>();
             launchVelocity = bombProperties.launchVelocity;
             
@@ -112,22 +115,10 @@ namespace FreeEscape.Control
             heldBombSpriteRenderer.color = bombProperties.spriteRenderer.color;
         }
 
-
-        private bool HasAmmo()
+        private bool OutOfAmmo()
         {
-            if (bombAmmo[bombTypeEquipped] > 0 || bombAmmo[bombTypeEquipped] == -1)
-            { return true; }
-            return false;
+            bool outOfAmmo = _abilityManager.OutOfAmmo(abilitySlotEquipped);
+            return outOfAmmo;
         }
-        private void UseAmmo()
-        {
-            if (bombAmmo[bombTypeEquipped] > 0 )
-            {
-                bombAmmo[bombTypeEquipped]--;
-                abilityIconManager.ShowAmmo(bombTypeEquipped, bombAmmo[bombTypeEquipped]);
-            }
-        }
-
-
     }
 }

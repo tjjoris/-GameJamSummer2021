@@ -8,59 +8,72 @@ namespace FreeEscape.Control
 {
     public class AbilityManager : MonoBehaviour, I_AbilityManager
     {
-        [SerializeField] private GameObject abilitySlot00;
-        [SerializeField] private GameObject abilitySlot01;
-        [SerializeField] private GameObject abilitySlot02;
-
         [SerializeField] private List<AbilitySlot> abilitySlots;
-        private Dictionary<int, I_AbilityProperties> abilitySlotProperty;
         private I_AbilityLauncher abilityLauncher;
         private AbilityIconManager abilityIconManager;
+        private Dictionary<int, I_AbilitySlot> abilitySlotDictionary;
         
-        
-        // private void Start()
-        // {
-        //     abilityIconManager = FindObjectOfType<AbilityIconManager>();
-        //     abilityLauncher = this.GetComponent<LaunchBomb>();
-        //     abilityLauncher.EquipBomb(abilitySlot00, 0);
-        // }
 
         public void HookupPlayerAbilities(I_AbilityLauncher _launcher, AbilityIconManager _iconManager)
         {
             Debug.Log("Hooking up player abilities");
             abilityIconManager = _iconManager;
             abilityLauncher = _launcher;
-            abilityLauncher.EquipAbility(abilitySlot00, 0);
 
             GenerateAbilities();
-
-
+            EquipAbility(0);
         }
 
         private void GenerateAbilities()
         {
-            abilitySlotProperty = new Dictionary<int, I_AbilityProperties>();
+            abilitySlotDictionary = new Dictionary<int, I_AbilitySlot>();
             int i = 0;
 
-            foreach (I_AbilitySlot ability in abilitySlots)
+            foreach (I_AbilitySlot abilitySlot in abilitySlots)
             {
-                GameObject abilityPrefab = ability.AbilityPrefab;
-                I_AbilityProperties abilityProperties = abilityPrefab.GetComponent<I_AbilityProperties>();
+                if (abilitySlot == null)
+                    { Debug.Log("GenerateAbility slot was null."); return; }
 
-                abilityIconManager.GenerateIcons(abilityProperties);
-                abilitySlotProperty.Add(i, abilityProperties);
-                
-                i ++;
+                abilityIconManager.GenerateIcons(abilitySlot);
 
-                Debug.Log("added " + abilityPrefab.name);
+                Debug.Log($"added {abilitySlot.AbilityPrefab.name} in slot {i}.");
+
+                abilitySlotDictionary.Add(i, abilitySlot);
+
+                i++;
             }
         }
 
-        public void EquipAbility(int _abilitySlot)
+        public void EquipAbility(int _slotIndex)
         {
-            GameObject abilityPrefab = abilitySlots[_abilitySlot].AbilityPrefab;
-            abilityLauncher.EquipAbility(abilityPrefab, _abilitySlot);
-            abilityIconManager.SetBombActive(_abilitySlot);
+            Debug.Log("selected: " + abilitySlotDictionary[_slotIndex].AbilityPrefab.name);
+
+            if (abilitySlotDictionary[_slotIndex] == null)
+            { Debug.Log("No Ability in slot " + _slotIndex); return; }
+
+            // GameObject abilityPrefab = abilitySlotDictionary[_slotIndex].AbilityPrefab;
+            abilityLauncher.EquipAbility(abilitySlotDictionary[_slotIndex], _slotIndex);
+            abilityIconManager.DisarmAll();
+            abilitySlotDictionary[_slotIndex].AbilityIcon.BombActive();
+        }
+
+        public bool OutOfAmmo(int _abilityIndex)
+        {
+            I_AbilitySlot activeAbility = abilitySlotDictionary[_abilityIndex];
+            if (activeAbility.Ammo > 0 || activeAbility.Ammo == -1)
+            { return false; }
+            return true;
+        }
+
+        public void UseAmmo(int _slotIndex)
+        {
+            I_AbilitySlot ability = abilitySlotDictionary[_slotIndex];
+            if (ability.Ammo == -1)
+                { return; }
+            
+            ability.Ammo --;
+
+            ability.UpdateAmmo();
         }
     }
 }

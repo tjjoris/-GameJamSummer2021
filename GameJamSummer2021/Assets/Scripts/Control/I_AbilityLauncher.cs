@@ -8,6 +8,7 @@ namespace FreeEscape.Control
     {
         void ActivateAbility();
         void LauncherEnabled(bool state);
-        void EquipAbility(GameObject abilityPrefab, int slot);
+        void EquipAbility(I_AbilitySlot _abilitySlot, int _slotIndex);
+        I_AbilityManager AbilityManager { set; }
     }
 }

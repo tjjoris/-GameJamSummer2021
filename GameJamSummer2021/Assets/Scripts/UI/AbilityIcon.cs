@@ -8,33 +8,28 @@ namespace FreeEscape.UI
 {
     public class AbilityIcon : MonoBehaviour
     {
-        Sprite bombArmed;
-        Sprite bombUnarmed;
-        TextMeshProUGUI tMPro;
-        private Image _image;
+        [SerializeField] Sprite bombArmed;
+        [SerializeField] Sprite bombUnarmed;
+        [SerializeField] TextMeshProUGUI tMPro;
+        [SerializeField] private Image image;
 
-        private void Start()
-        {
-            _image = GetComponent<Image>();
-            tMPro = GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        }
-
-        public void SetupAbilityIcon(I_AbilityProperties _AbilityProperties)
+        public void SetupAbilityIcon(I_AbilityProperties _AbilityProperties, int _ammo)
         {
             bombArmed = _AbilityProperties.IconArmed;
             bombUnarmed = _AbilityProperties.IconDisarmed;
+            image.sprite = bombUnarmed;
+            tMPro.text = "" + _ammo;
         }
         public void BombActive()
         {
-            _image.sprite = bombArmed;
+            image.sprite = bombArmed;
         }
         public void BombUnarmed()
         {
-            _image.sprite = bombUnarmed;
+            image.sprite = bombUnarmed;
         }
         public void ShowAmmo(int newAmmo)
         {
-            tMPro = GetComponentInChildren<TMPro.TextMeshProUGUI>();
             tMPro.text = newAmmo.ToString();
         }
     }

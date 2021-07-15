@@ -244,6 +244,8 @@ MonoBehaviour:
   _animator: {fileID: 3283229687269551031}
   _launchAudioClip: {fileID: 8300000, guid: 1db7c1ca564a87445ada186aa1b20a7a, type: 3}
   _frontLaunch: 1
+  _iconArmed: {fileID: 21300000, guid: 6d90a2b98e83c4ef6ad1bf1be6f7234e, type: 3}
+  _iconDisarmed: {fileID: 21300000, guid: 6ecb349f5ae7f421b8f87707a51df756, type: 3}
 --- !u!50 &6381160337420666806
 Rigidbody2D:
   serializedVersion: 4
