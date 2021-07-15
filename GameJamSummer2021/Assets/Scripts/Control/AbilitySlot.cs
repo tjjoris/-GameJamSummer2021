@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,17 +17,39 @@ namespace FreeEscape.Control
         [SerializeField] private int ammo;
         public int Ammo { get { return ammo; } set { ammo = value; } }
         [SerializeField] private float _cooldown;
-        private bool isOnCooldown = false;
-        public bool IsOnCooldown { get { return isOnCooldown; } }
+        public float Cooldown { set { _cooldown = value; } }
+        private bool isOffCooldown = true;
+        public bool IsOffCooldown { get { return isOffCooldown; } }
+        public event EventHandler AbilityOffCooldown;
 
-        public IEnumerator ActivateCooldown()
+        public IEnumerator BeginCooldown()
         {
-            isOnCooldown = true;
+            Debug.Log("begincooldown");
+            isOffCooldown = false;
             yield return new WaitForSeconds(_cooldown);
 
-            isOnCooldown = false;
+            isOffCooldown = true;
+            AbilityOffCooldown?.Invoke(this, EventArgs.Empty);
+            Debug.Log("endcooldown");
         }
 
+
+        public void UseAmmo()
+        {
+            if (ammo > 0)
+            ammo --;
+            UpdateAmmo();
+        }
+
+        public bool OutOfAmmo()
+        {
+            if (ammo > 0 || ammo == -1)
+            {
+                return false;
+            }
+            
+            return true;
+        }
         public void UpdateAmmo()
         {
             _abilityIcon.ShowAmmo(ammo);

@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.UI;
@@ -12,6 +12,7 @@ namespace FreeEscape.Control
         private I_AbilityLauncher abilityLauncher;
         private AbilityIconManager abilityIconManager;
         private Dictionary<int, I_AbilitySlot> abilitySlotDictionary;
+        private I_AbilitySlot activeAbility;
         
 
         public void HookupPlayerAbilities(I_AbilityLauncher _launcher, AbilityIconManager _iconManager)
@@ -34,13 +35,26 @@ namespace FreeEscape.Control
                 if (abilitySlot == null)
                     { Debug.Log("GenerateAbility slot was null."); return; }
 
-                abilityIconManager.GenerateIcons(abilitySlot);
+                abilityIconManager.GenerateIcon(abilitySlot);
 
-                Debug.Log($"added {abilitySlot.AbilityPrefab.name} in slot {i}.");
+                // Debug.Log($"added {abilitySlot.AbilityPrefab.name} in slot {i}.");
 
                 abilitySlotDictionary.Add(i, abilitySlot);
-
+                abilitySlot.Cooldown = abilitySlot.AbilityPrefab.GetComponent<I_AbilityProperties>().cooldown;
+                // Debug.Log("cooldown set to " + abilitySlot.AbilityPrefab.GetComponent<I_AbilityProperties>().cooldown);
+                abilitySlot.AbilityOffCooldown += CooldownListener;
+                
                 i++;
+            }
+        }
+
+        private void CooldownListener(object _incomingAbility, EventArgs e)
+        {
+            // Debug.Log("Cooldown message received from " + _incomingAbility.ToString());
+            if (activeAbility == _incomingAbility)
+            {
+                Debug.Log("Active Ability Cooldown Ended.");
+                abilityLauncher.LauncherEnabled(true);
             }
         }
 
@@ -54,6 +68,7 @@ namespace FreeEscape.Control
             // GameObject abilityPrefab = abilitySlotDictionary[_slotIndex].AbilityPrefab;
             abilityLauncher.EquipAbility(abilitySlotDictionary[_slotIndex], _slotIndex);
             abilityIconManager.DisarmAll();
+            activeAbility = abilitySlotDictionary[_slotIndex];
             abilitySlotDictionary[_slotIndex].AbilityIcon.BombActive();
         }
 
@@ -63,17 +78,6 @@ namespace FreeEscape.Control
             if (activeAbility.Ammo > 0 || activeAbility.Ammo == -1)
             { return false; }
             return true;
-        }
-
-        public void UseAmmo(int _slotIndex)
-        {
-            I_AbilitySlot ability = abilitySlotDictionary[_slotIndex];
-            if (ability.Ammo == -1)
-                { return; }
-            
-            ability.Ammo --;
-
-            ability.UpdateAmmo();
         }
     }
 }

@@ -10,13 +10,12 @@ namespace FreeEscape.UI
         int numberOfbombtypes;
         [SerializeField] private GameObject abilityIconPrefab;
         [SerializeField] private AbilityManager abilityManager;
-        private List<AbilityIcon> abilityIcons;
+        private List<AbilityIcon> abilityIcons = new List<AbilityIcon>();
+        private Dictionary<int, I_AbilitySlot> abilitySlotDictionary;
 
 
-        public void GenerateIcons(I_AbilitySlot _abilitySlot)
+        public void GenerateIcon(I_AbilitySlot _abilitySlot)
         {
-            abilityIcons = new List<AbilityIcon>();
-
             GameObject iconObj = Instantiate(abilityIconPrefab, this.transform);
             AbilityIcon abilityIcon = iconObj.GetComponent<AbilityIcon>();
             if (abilityIcon == null)

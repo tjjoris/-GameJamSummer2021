@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.UI;
 
@@ -9,10 +9,13 @@ namespace FreeEscape.Control
     {
         GameObject AbilityPrefab { get; }
         int Ammo { get; set; }
-        bool IsOnCooldown { get; }
+        float Cooldown { set; }
+        bool IsOffCooldown { get; }
         AbilityIcon AbilityIcon { get; set; }
+        void UseAmmo();
+        bool OutOfAmmo();
         void UpdateAmmo();
-        
-        IEnumerator ActivateCooldown();
+        event EventHandler AbilityOffCooldown;
+        IEnumerator BeginCooldown();
     }
 }

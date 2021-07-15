@@ -26,6 +26,7 @@ namespace FreeEscape.UI
         }
         public void BombUnarmed()
         {
+            Debug.Log("bomb unarmed");
             image.sprite = bombUnarmed;
         }
         public void ShowAmmo(int newAmmo)
