@@ -21,6 +21,9 @@ namespace FreeEscape.Control
         private I_AbilitySlot equippedAbility;
         private float launchVelocity;
         private bool canLaunchBomb = true;
+        private bool _teleporting = false;
+        public bool Teleporting { set { _teleporting = value; } }
+
         private int abilitySlotEquipped;
 
         private void Awake()
@@ -32,12 +35,20 @@ namespace FreeEscape.Control
         public void ActivateAbility()
         {
             if (!canLaunchBomb || equippedAbility.OutOfAmmo())
-                { Debug.Log("Cannot activate ability right now."); return; }
+            {
+                CannotFire();
+                return;
+            }
             
             equippedAbility.UseAmmo();
             GenerateBomb();
             LauncherEnabled(false);
             StartCoroutine(equippedAbility.BeginCooldown());
+        }
+        
+        private void CannotFire()
+        {
+            //TODO: improved feedback when player can't fire.
         }
 
         private void GenerateBomb()
@@ -52,6 +63,11 @@ namespace FreeEscape.Control
 
         public void LauncherEnabled(bool _state)
         {
+            if (_teleporting || equippedAbility.OutOfAmmo())
+            {
+                _state = false;
+            }
+
             heldBombSpriteRenderer.enabled = _state;
             canLaunchBomb = _state;
         }

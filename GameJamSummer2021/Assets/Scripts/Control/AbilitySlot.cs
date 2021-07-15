@@ -11,12 +11,12 @@ namespace FreeEscape.Control
     {
         [SerializeField] private GameObject abilityPrefab;
         public GameObject AbilityPrefab { get { return abilityPrefab; } }
-        [SerializeField] private AbilityIcon _abilityIcon;
+        private AbilityIcon _abilityIcon;
         public AbilityIcon AbilityIcon { get{ return _abilityIcon; } set{ _abilityIcon = value; } }
         
         [SerializeField] private int ammo;
         public int Ammo { get { return ammo; } set { ammo = value; } }
-        [SerializeField] private float _cooldown;
+        private float _cooldown;
         public float Cooldown { set { _cooldown = value; } }
         private bool isOffCooldown = true;
         public bool IsOffCooldown { get { return isOffCooldown; } }
@@ -24,13 +24,11 @@ namespace FreeEscape.Control
 
         public IEnumerator BeginCooldown()
         {
-            Debug.Log("begincooldown");
             isOffCooldown = false;
             yield return new WaitForSeconds(_cooldown);
 
             isOffCooldown = true;
             AbilityOffCooldown?.Invoke(this, EventArgs.Empty);
-            Debug.Log("endcooldown");
         }
 
 

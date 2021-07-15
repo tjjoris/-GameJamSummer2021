@@ -10,5 +10,6 @@ namespace FreeEscape.Control
         void LauncherEnabled(bool state);
         void EquipAbility(I_AbilitySlot _abilitySlot, int _slotIndex);
         I_AbilityManager AbilityManager { set; }
+        bool Teleporting { set; }
     }
 }

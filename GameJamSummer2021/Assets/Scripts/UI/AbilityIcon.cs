@@ -26,12 +26,14 @@ namespace FreeEscape.UI
         }
         public void BombUnarmed()
         {
-            Debug.Log("bomb unarmed");
             image.sprite = bombUnarmed;
         }
         public void ShowAmmo(int newAmmo)
         {
-            tMPro.text = newAmmo.ToString();
+            string value = newAmmo.ToString();
+            if (newAmmo == -1)
+                { value = "--"; }
+            tMPro.text = value;
         }
     }
 }

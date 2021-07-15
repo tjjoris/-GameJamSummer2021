@@ -16,9 +16,12 @@ namespace FreeEscape.Damage
         private void GetHPBar()
         {
             hPBar = FindObjectOfType<HPBar>();
+            if (hPBar == null)
+                { Debug.LogWarning("PlayerHealth could not locate HPBar"); return;}
             hPBar.UpdateHPSlider(hPCurrent / hPMax);
             levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-            if (levelManager == null) {Debug.Log("Player Health could not locate LevelManager.");}
+            if (levelManager == null)
+                {Debug.LogWarning("Player Health could not locate LevelManager.");}
         }
         public void TakeDamage(float amount)
         {

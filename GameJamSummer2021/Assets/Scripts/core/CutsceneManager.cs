@@ -137,8 +137,10 @@ namespace FreeEscape.Core
         private void PlayerTeleportOut()
         {
             audioPlayerManager.PlayeWarpOut();
+            player.GetComponent<I_AbilityLauncher>().Teleporting = true;
             progressShader.ApplyShaderEffect(playerTeleportTime, 0f);
             playerInput.PlayerControlsLocked(true);
+
         }
 
         public IEnumerator ClearAllDebrisCoroutine()

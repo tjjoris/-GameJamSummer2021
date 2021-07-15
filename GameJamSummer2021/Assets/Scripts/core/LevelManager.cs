@@ -14,6 +14,7 @@ namespace FreeEscape.Core
     [RequireComponent(typeof(CutsceneManager), typeof(LevelProperties))]
     public class LevelManager : MonoBehaviour
     {
+        private GameObject mainCamera;
         [SerializeField] private float levelTotalTime;
         [SerializeField] private TMPro.TextMeshProUGUI tMProScore;
         private float currentTimeRemaining;
@@ -35,7 +36,8 @@ namespace FreeEscape.Core
             cutsceneManager = this.GetComponent<CutsceneManager>();
             cutsceneManager.SetupCutsceneManager(this, debrisTracker, levelTotalTime);
             levelProperties = this.GetComponent<LevelProperties>();
-            levelProperties.LevelSetup(cutsceneManager);
+            mainCamera = GameObject.Find("Main Camera");
+            levelProperties.LevelSetup(cutsceneManager, mainCamera);
         }
 
         private void Start()

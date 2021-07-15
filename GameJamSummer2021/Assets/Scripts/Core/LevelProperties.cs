@@ -17,16 +17,25 @@ namespace FreeEscape.Core
         private I_InputControl playerInput;
         private CutsceneManager cutsceneManager;
 
-        public void LevelSetup(CutsceneManager _cutsceneManager)
+        public void LevelSetup(CutsceneManager _cutsceneManager, GameObject _mainCamera)
         {
             cutsceneManager = _cutsceneManager;
             if (cutsceneManager == null)
                 {Debug.Log("LevelProperties did not get passed CutsceneManager"); return;}
+
+            if (_mainCamera)
+            {
+                Vector3 startPos = _mainCamera.transform.position;
+                startPos.z = 0f;
+                playerSpawnPoint.transform.position = startPos;
+                Debug.Log("Player Spawn Point moved to camera location.");
+            }
             SetupPlayerObject();
         }
         private void SetupPlayerObject()
         {
             player = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
+            player.SetActive(false);
             playerInput = player.GetComponent<I_InputControl>();
             if (playerInput == null)
                 { Debug.Log("LevelProperties could not find PlayerInput."); return; }

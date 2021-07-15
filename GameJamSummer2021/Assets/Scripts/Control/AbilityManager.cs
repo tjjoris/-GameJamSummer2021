@@ -37,11 +37,8 @@ namespace FreeEscape.Control
 
                 abilityIconManager.GenerateIcon(abilitySlot);
 
-                // Debug.Log($"added {abilitySlot.AbilityPrefab.name} in slot {i}.");
-
                 abilitySlotDictionary.Add(i, abilitySlot);
                 abilitySlot.Cooldown = abilitySlot.AbilityPrefab.GetComponent<I_AbilityProperties>().cooldown;
-                // Debug.Log("cooldown set to " + abilitySlot.AbilityPrefab.GetComponent<I_AbilityProperties>().cooldown);
                 abilitySlot.AbilityOffCooldown += CooldownListener;
                 
                 i++;
@@ -50,22 +47,17 @@ namespace FreeEscape.Control
 
         private void CooldownListener(object _incomingAbility, EventArgs e)
         {
-            // Debug.Log("Cooldown message received from " + _incomingAbility.ToString());
             if (activeAbility == _incomingAbility)
             {
-                Debug.Log("Active Ability Cooldown Ended.");
                 abilityLauncher.LauncherEnabled(true);
             }
         }
 
         public void EquipAbility(int _slotIndex)
         {
-            Debug.Log("selected: " + abilitySlotDictionary[_slotIndex].AbilityPrefab.name);
-
             if (abilitySlotDictionary[_slotIndex] == null)
-            { Debug.Log("No Ability in slot " + _slotIndex); return; }
+                { Debug.Log("No Ability in slot " + _slotIndex); return; }
 
-            // GameObject abilityPrefab = abilitySlotDictionary[_slotIndex].AbilityPrefab;
             abilityLauncher.EquipAbility(abilitySlotDictionary[_slotIndex], _slotIndex);
             abilityIconManager.DisarmAll();
             activeAbility = abilitySlotDictionary[_slotIndex];
