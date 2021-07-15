@@ -7,57 +7,48 @@ using FreeEscape.UI;
 
 namespace FreeEscape.Control
 {
-    public class LaunchBomb : MonoBehaviour
+    public class LaunchBomb : MonoBehaviour, I_AbilityLauncher
     {
         [SerializeField] private GameObject bombLauncher;
         [SerializeField] private Transform frontLaunchPos;
         [SerializeField] private Transform backLaunchPos;
         private GameObject equippedBomb;
+        private BombProperties bombProperties;
         private SpriteRenderer heldBombSpriteRenderer;
         private Rigidbody2D rb;
-        private AudioPlayerManager audioPlayerManager;
-        private BombsIndicator bombsIndicator;
+        private I_AbilityManager _abilityManager;
+        public I_AbilityManager AbilityManager { set { _abilityManager = value; } }
+        private I_AbilitySlot equippedAbility;
         private float launchVelocity;
-        private float cooldown;
-        private float countdownCurrent;
         private bool canLaunchBomb = true;
-        private bool launcherEnabled = true;
-        [Header("[0]Ability 1, [1]Ability 2, [2]Ability 3")]
-        [SerializeField] int[] bombAmmo = { -1, 5 , 5};
-        private int bombTypeEquipped;
+        private bool _teleporting = false;
+        public bool Teleporting { set { _teleporting = value; } }
+
+        private int abilitySlotEquipped;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             heldBombSpriteRenderer = bombLauncher.GetComponent<SpriteRenderer>();
-            audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
-            bombsIndicator = FindObjectOfType<BombsIndicator>();
-        }
-        private void Start()
-        {
-            for (int i=1; i<bombAmmo.Length; i++)
-            {
-                bombsIndicator.ShowAmmo(i, bombAmmo[i]);
-            }
         }
 
-        private void Update()
+        public void ActivateAbility()
         {
-            if (countdownCurrent > 0)
+            if (!canLaunchBomb || equippedAbility.OutOfAmmo())
             {
-                countdownCurrent -= Time.deltaTime;
-                if (countdownCurrent <= 0  && launcherEnabled)
-                {
-                    BombReady();
-                }
-            }    
-        }
-        public void LaunchBombAction()
-        {
-            if ((!canLaunchBomb) || (!HasAmmo())) { return; }
+                CannotFire();
+                return;
+            }
             
-            UseAmmo();
+            equippedAbility.UseAmmo();
             GenerateBomb();
-            BeginCooldown();
+            LauncherEnabled(false);
+            StartCoroutine(equippedAbility.BeginCooldown());
+        }
+        
+        private void CannotFire()
+        {
+            //TODO: improved feedback when player can't fire.
         }
 
         private void GenerateBomb()
@@ -67,37 +58,29 @@ namespace FreeEscape.Control
             Vector2 reverseV2 = new Vector2(0, launchVelocity);
             bomb.GetComponent<Rigidbody2D>().AddRelativeForce(reverseV2);
             bomb.GetComponent<Rigidbody2D>().velocity = shipVelocity;
-            audioPlayerManager.PlayFireBomb();
 
-        }
-
-        private void BeginCooldown()
-        {
-            canLaunchBomb = false;
-            heldBombSpriteRenderer.enabled = false;
-            countdownCurrent = cooldown;
-        }
-
-        private void BombReady()
-        {
-            canLaunchBomb = true;
-            heldBombSpriteRenderer.enabled = true;
         }
 
         public void LauncherEnabled(bool _state)
         {
+            if (_teleporting || equippedAbility.OutOfAmmo())
+            {
+                _state = false;
+            }
+
             heldBombSpriteRenderer.enabled = _state;
-            launcherEnabled = _state;
+            canLaunchBomb = _state;
         }
 
-        public void EquipBomb(GameObject _bombPrefab, int bombIndex)
+        public void EquipAbility(I_AbilitySlot _abilitySlot, int _slotIndex)
         {
-            bombTypeEquipped = bombIndex;
-            equippedBomb = _bombPrefab;
-            BombProperties bomb = equippedBomb.GetComponent<BombProperties>();
-            launchVelocity = bomb.launchVelocity;
+            equippedAbility = _abilitySlot;
+            abilitySlotEquipped = _slotIndex;
+            equippedBomb = _abilitySlot.AbilityPrefab;
+            bombProperties = equippedBomb.GetComponent<BombProperties>();
+            launchVelocity = bombProperties.launchVelocity;
             
-            if (bomb.FrontLaunch)
+            if (bombProperties.FrontLaunch)
             {
                 bombLauncher.transform.position = frontLaunchPos.position;
             }
@@ -106,25 +89,10 @@ namespace FreeEscape.Control
                 bombLauncher.transform.position = backLaunchPos.position;
             }
             
-            cooldown = bomb.cooldown;
-            heldBombSpriteRenderer.sprite = bomb.spriteRenderer.sprite;
-            heldBombSpriteRenderer.color = bomb.spriteRenderer.color;
-        }
-        private bool HasAmmo()
-        {
-            if (bombAmmo[bombTypeEquipped] > 0 || bombAmmo[bombTypeEquipped] == -1)
-            { return true; }
-            return false;
-        }
-        private void UseAmmo()
-        {
-            if (bombAmmo[bombTypeEquipped] > 0 )
-            {
-                bombAmmo[bombTypeEquipped]--;
-                bombsIndicator.ShowAmmo(bombTypeEquipped, bombAmmo[bombTypeEquipped]);
-            }
-        }
+            heldBombSpriteRenderer.sprite = bombProperties.spriteRenderer.sprite;
+            heldBombSpriteRenderer.color = bombProperties.spriteRenderer.color;
 
-
+            LauncherEnabled(_abilitySlot.IsOffCooldown);
+        }
     }
 }

@@ -6,11 +6,12 @@ using FreeEscape.Display;
 
 namespace FreeEscape.Control
 {
-    public class PlayerInput : MonoBehaviour
+    public class PlayerInput : MonoBehaviour, I_InputControl
     {
         private Mover mover;
-        private LaunchBomb launchBomb;
-        private AbilityManager abilityManager;
+        private I_AbilityLauncher launchBomb;
+        private I_AbilityManager _abilityManager;
+        public I_AbilityManager AbilityManager { set { _abilityManager = value; } }
         private Reverse reverse;
         private bool rotateRight;
         private bool rotateLeft;
@@ -20,8 +21,7 @@ namespace FreeEscape.Control
         void Awake()
         {
             mover = GetComponent<Mover>();
-            launchBomb = GetComponent<LaunchBomb>();
-            abilityManager = GetComponent<AbilityManager>();
+            launchBomb = GetComponent<I_AbilityLauncher>();
             reverse = GetComponent<Reverse>();
         }
 
@@ -51,9 +51,7 @@ namespace FreeEscape.Control
             
             SpaceKey();
 
-            EquipAbility00();
-            EquipAbility01();
-            EquipAbility02();
+            EquipAbility();
         }
 
         private bool ForwardKey()
@@ -171,31 +169,15 @@ namespace FreeEscape.Control
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                launchBomb.LaunchBombAction();
+                launchBomb.ActivateAbility();
             }
         }
 
-        private void EquipAbility00()
+        private void EquipAbility()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                abilityManager.EquipAbility00();
-            }
-        }
-
-        private void EquipAbility01()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                abilityManager.EquipAbility01();
-            }
-        }
-        private void EquipAbility02()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                abilityManager.EquipAbility02();
-            }
+            if (Input.GetKeyDown(KeyCode.Alpha1)) { _abilityManager.EquipAbility(0); }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) { _abilityManager.EquipAbility(1); }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) { _abilityManager.EquipAbility(2); }
         }
 
         public void PlayerControlsLocked(bool _state)

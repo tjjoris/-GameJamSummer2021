@@ -8,7 +8,7 @@ namespace FreeEscape.Core
     {
         static int numberOfPersistentGO = 0;
         [SerializeField] GameObject persistentPrefab;
-        // Start is called before the first frame update
+        
         void Awake()
         {
             if (numberOfPersistentGO == 0)
@@ -17,12 +17,6 @@ namespace FreeEscape.Core
                 DontDestroyOnLoad(persistentGO);
                 numberOfPersistentGO++;
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
         }
     }
 }

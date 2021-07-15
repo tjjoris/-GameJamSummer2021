@@ -11,14 +11,16 @@ using FreeEscape.Audio;
 
 namespace FreeEscape.Core
 {
-    [RequireComponent(typeof(CutsceneManager))]
+    [RequireComponent(typeof(CutsceneManager), typeof(LevelProperties))]
     public class LevelManager : MonoBehaviour
     {
+        private GameObject mainCamera;
         [SerializeField] private float levelTotalTime;
         [SerializeField] private TMPro.TextMeshProUGUI tMProScore;
         private float currentTimeRemaining;
         [SerializeField] private DebrisTracker debrisTracker;
         private CutsceneManager cutsceneManager;
+        private LevelProperties levelProperties;
         private ScoreTracker scoreTracker;
         private AudioPlayerManager audioPlayerManager;
         private bool timerActive = false;
@@ -33,7 +35,11 @@ namespace FreeEscape.Core
         {
             cutsceneManager = this.GetComponent<CutsceneManager>();
             cutsceneManager.SetupCutsceneManager(this, debrisTracker, levelTotalTime);
+            levelProperties = this.GetComponent<LevelProperties>();
+            mainCamera = GameObject.Find("Main Camera");
+            levelProperties.LevelSetup(cutsceneManager, mainCamera);
         }
+
         private void Start()
         {
             GetScoreTracker();            
@@ -42,6 +48,7 @@ namespace FreeEscape.Core
             currentTimeRemaining = levelTotalTime;
             thisLevel = SceneManager.GetActiveScene().buildIndex;
             audioPlayerManager = FindObjectOfType<AudioPlayerManager>();
+            if (audioPlayerManager) {Debug.Log("found audioPlayerManager");}
         }
 
         private void GetScoreTracker()
@@ -68,7 +75,6 @@ namespace FreeEscape.Core
             {
                 currentTimeRemaining -= Time.deltaTime;
                 cutsceneManager.UpdateTimerText(currentTimeRemaining);
-
 
                 if (currentTimeRemaining <= 0)
                 {
@@ -139,15 +145,14 @@ namespace FreeEscape.Core
             scoreThisLevelByTask[2] = Mathf.FloorToInt(floatTimeScore);//the task of bonus time
             string timeScore = scoreThisLevelByTask[2].ToString();
             _scoreString = _scoreString + "   Time: " + timeScore;
-
         }
-    
 
         private int CalculateTimeRemainingScore()            
         {
             float floatTimeScore = (levelTotalTime - currentTimeRemaining) * timeRemainingToScoreMult;
             return Mathf.FloorToInt(floatTimeScore);
         }
+
         private void SumScore()
         {
             for (int i=0; i<numberOfTasks; i++)
@@ -156,6 +161,7 @@ namespace FreeEscape.Core
             }
             scoreTracker.SetScoreOfLevel(scoreThisLevel);
         }
+        
         private bool IsScoreHigherThanHighScore()
         {
             if (scoreThisLevel > scoreTracker.GetHighScoreOfLevel(thisLevel))

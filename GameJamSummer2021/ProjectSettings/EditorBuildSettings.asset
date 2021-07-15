@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/SpaceLane_Level01.unity
     guid: cb16379421e5f3449a7ab1b9dd9e52fd
   - enabled: 1
-    path: Assets/Scenes/SpaceLane_NeffTest.unity
+    path: Assets/Scenes/SpaceLane_Level02.unity
     guid: 284983db41940544c95aa4c3119f233b
   - enabled: 1
-    path: Assets/Scenes/SpaceLane_Jacob02.unity
+    path: Assets/Scenes/SpaceLane_Level03.unity
     guid: 5a586ec179938874ba90c9d5e7871f1f
   - enabled: 1
     path: Assets/Scenes/EndScreen.unity

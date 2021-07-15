@@ -685,11 +685,11 @@ GameObject:
   - component: {fileID: 8889530787533061661}
   - component: {fileID: 6781993689847770052}
   - component: {fileID: -6368327151448224369}
-  - component: {fileID: 8889530787533061660}
-  - component: {fileID: 1329549614296166035}
   - component: {fileID: 6214594623971848839}
   - component: {fileID: 505611536}
   - component: {fileID: 8548987773321803180}
+  - component: {fileID: 8889530787533061660}
+  - component: {fileID: 1329549614296166035}
   - component: {fileID: 2103591954373780629}
   - component: {fileID: 3152391913174373609}
   - component: {fileID: 3869608931693625521}
@@ -779,43 +779,6 @@ MonoBehaviour:
   abilitySlot00: {fileID: 2280275934327890897, guid: abef8935dba0a4e099eeb66beff638ab, type: 3}
   abilitySlot01: {fileID: 2280275934327890897, guid: 8f627cdeb434c484d84b786ecd499530, type: 3}
   abilitySlot02: {fileID: 2280275934327890897, guid: c22b15dcfded44e13aebbd5895e2ac13, type: 3}
---- !u!50 &8889530787533061660
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8889530787533061635}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 100
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &1329549614296166035
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8889530787533061635}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 68914d51d4e7247ed928297428ef5f66, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
 --- !u!114 &6214594623971848839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +816,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db70df4bfb6264163b6918284116d923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &8889530787533061660
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889530787533061635}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 100
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1329549614296166035
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889530787533061635}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 68914d51d4e7247ed928297428ef5f66, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!82 &2103591954373780629
 AudioSource:
   m_ObjectHideFlags: 0
