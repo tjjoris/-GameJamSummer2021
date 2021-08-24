@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10312194383ac8143a245467bae7b7ec, type: 3}
+  m_Name: RotationSmoothstep
+  m_EditorClassIdentifier: 
+  smoothStepStrength: 0.1
+  currentTargetValue: 0
+  threshold: 0.0001
+  prevTarget: 0
+  easeInStrength: 1
+  currentProgress: 1
+  easeInComparator: 2

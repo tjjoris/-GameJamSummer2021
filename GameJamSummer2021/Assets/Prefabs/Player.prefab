@@ -746,8 +746,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 8311373712051900343}
+  pID_Controller: {fileID: 11400000, guid: 46e7e88d7aa37864c921a04861da5d06, type: 2}
+  smoothStepper: {fileID: 11400000, guid: c607bceac206c3f4cac52b95a03d2151, type: 2}
   accelAmount: 16
   rotateAmount: 250
+  currentRotationDifference: 0
 --- !u!114 &6781993689847770052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,7 +766,6 @@ MonoBehaviour:
   bombLauncher: {fileID: 8742023607099743394}
   frontLaunchPos: {fileID: 9087151240333347641}
   backLaunchPos: {fileID: 1714549584077719380}
-  bombAmmo: ffffffff0a0000000a000000
 --- !u!114 &-6368327151448224369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,9 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de560ae422d133c48b00ce69cc385776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilitySlot00: {fileID: 2280275934327890897, guid: abef8935dba0a4e099eeb66beff638ab, type: 3}
-  abilitySlot01: {fileID: 2280275934327890897, guid: 8f627cdeb434c484d84b786ecd499530, type: 3}
-  abilitySlot02: {fileID: 2280275934327890897, guid: c22b15dcfded44e13aebbd5895e2ac13, type: 3}
+  abilitySlots: []
 --- !u!114 &6214594623971848839
 MonoBehaviour:
   m_ObjectHideFlags: 0

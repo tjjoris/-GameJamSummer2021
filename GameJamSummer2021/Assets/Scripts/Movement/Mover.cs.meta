@@ -3,7 +3,9 @@ guid: 840a6f8e61f624f1eae5a590e12c4e10
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerAnimator: {instanceID: 0}
+  - pID_Controller: {fileID: 11400000, guid: 46e7e88d7aa37864c921a04861da5d06, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FreeEscape.Display;
 using FreeEscape.Audio;
+using FreeEscape.Math;
 
 namespace FreeEscape.Movement
 {
@@ -10,8 +11,11 @@ namespace FreeEscape.Movement
     {
         private bool accelBool; //true if acccelerating forward
         [SerializeField] private PlayerAnimator playerAnimator;
+        [SerializeField] PID_Controller pID_Controller;
+        [SerializeField] SmoothStep smoothStepper;
         [SerializeField]private float accelAmount;
         [SerializeField] private float rotateAmount;
+        [SerializeField] private float currentRotationDifference;
         private Rigidbody2D rb;
         private AudioPlayerManager _audioPlayerManager;
         
@@ -19,6 +23,7 @@ namespace FreeEscape.Movement
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            currentRotationDifference = 0f;
         }
 
         public void Accelerate(bool accelBool)
@@ -44,10 +49,25 @@ namespace FreeEscape.Movement
             }
         }
 
+        private float GetRotationValue(float _rotateDir)
+        {
+            float dt = Time.deltaTime;
+            float target = rotateAmount * _rotateDir;
+            float rotationStrength = smoothStepper.EaseIn(_rotateDir, Time.deltaTime);
+            float currentError = (target - currentRotationDifference);
+            float value = pID_Controller.GetOutput(currentError, rotationStrength, dt);
+            currentRotationDifference = value;
+
+            return value;
+        }
+
         public void Rotate(float _rotateDir)
         {
             //Debug.Log("rotate " + _rotateDir);
-            gameObject.transform.Rotate(0, 0, rotateAmount * _rotateDir * Time.deltaTime);
+            //gameObject.transform.Rotate(0, 0, rotateAmount * _rotateDir * Time.deltaTime);
+            float rotationValue = GetRotationValue(_rotateDir);
+            //Debug.Log("rotation value: " + rotationValue);
+            gameObject.transform.Rotate(0, 0, rotationValue * Time.deltaTime);
             UpdateAnimatorRotation(_rotateDir);
         }
         private void UpdateAnimatorRotation(float _rotateDir)
