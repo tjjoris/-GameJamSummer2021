@@ -7,7 +7,7 @@ namespace FreeEscape.Control
 {
     public class Reverse : MonoBehaviour
     {
-        float minAngleToNotRotate = 10f;
+        float minAngleToNotRotate = 3.8f;
         float minSpeedToStop = 3f;
         private Mover mover;
         [SerializeField] private MaxSpeed maxSpeed;
@@ -53,20 +53,21 @@ namespace FreeEscape.Control
             }
             if (CheckIfRotated(angleOfTravel, angleDiff))
             {
-                ThrustInReverse();
+                //make ship face in reverse
+                transform.eulerAngles = new Vector3(0, 0, angleOfTravel);
+                //ThrustInReverse();
                 mover.Rotate(0);
             }
             else
             {
-                mover.Accelerate(false);
+                //mover.Accelerate(false);
             }
         }
 
         private bool CheckIfRotated(float angleOfTravel, float angleDiff)
         {
             if (angleDiff < minAngleToNotRotate || angleDiff > 360 - minAngleToNotRotate)
-            {//make ship face in reverse
-                transform.eulerAngles = new Vector3(0, 0, angleOfTravel); //!Functions with return values should not make changes to stuff.
+            {
                 return true;
             }
             return false;
